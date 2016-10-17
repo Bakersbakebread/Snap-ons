@@ -1,11 +1,9 @@
 from discord.ext import commands
 import random
 import discord
-
 class Kill:
     def __init__(self, bot):
         self.bot = bot
-
     @commands.command(pass_context=True)
     async def kill(self, context, member : discord.Member):
         """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 21 unique and funny kill commands!"""
@@ -32,9 +30,9 @@ class Kill:
         method['19'] = '{0} was so swag that {1} died due to it. #Swag'.format(killer, victim)
         method['20'] = '{0} has been found guilty, time for their execution!'.format(victim)
         method['21'] = '{0} fell down a cliff while playing Pokemon Go. Good job on keeping your nose in that puny phone. :iphone:'.format(victim)
-
+        
        await self.bot.say('**{0}**'.format(random.choice([method[i] for i in method])))
-
+    
 def setup(bot):
     n = Kill(bot)
     bot.add_cog(n)
