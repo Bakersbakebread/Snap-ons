@@ -24,4 +24,4 @@ class Saitama:
         await self.bot.say("ONE KICK! And " + user.mention + " has been KO'd")
 
 def setup(bot):
-    bot.add_cog(saitama(bot))
+    bot.add_cog(Saitama(bot))
