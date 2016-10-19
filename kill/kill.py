@@ -13,13 +13,14 @@ class Kill:
         victim = member.mention
         technique = {}
         technique['1'] = '{0} shoots  in {1}\'s mouth with rainbow laser, causing {1}\'s head to explode with rainbows and {1} is reborn as unicorn. :unicorn:'.format(killer, victim)
+        technique['2'] = '{0} ate a piece of exotic butter. It was so amazing that it killed him.'.format(victim)
         technique['3'] = '{0} is stuffed into a suit by Freddy on their night guard duty. Oh, not those animatronics again!'.format(victim)
         technique['4'] = '{0} grabs {1} and shoves them into an auto-freeze machine with some juice and sets the temperature to 100 Kelvin, creating human ice pops.'.format(killer, victim)
         technique['5'] = '{0} drowns {1} in a tub of hot chocolate. *"How was your last drink?"*'.format(killer, victim)
         technique['6'] = '{0} screams in terror as they accidentally spawn in the cthulhu while uttering random latin words. Cthulhu grabs {0} by the right leg and takes them to his dimension yelling,"Honey, Dinner\'s ready!"'.format(victim)
         technique['7'] = '{0} feeds toothpaste-filled oreos to {1}, who were apparently allergic to fluorine. GGWP.'.format(killer, victim)
         technique['8'] = '{0} forgot to zombie-proof {1}\'s lawn... Looks like zombies had a feast last night.'.format(killer, victim)
-        technique['9'] = '{0} cranks up the music system only to realize the volume was at max and they are in heaven...'.format(victim)
+        technique['9'] = '{0} cranks up the music system only to realize the volume was at max and the song playing was Baby by Justin Beiber...'.format(victim)
         technique['10'] = '{0} presses a random button and is teleported to the height of 100m, allowing them to fall to their inevitable death. Moral of the story: Don\'t go around pressing random buttons.'.format(victim)
         technique['11'] = '{0} is injected with chocolate syrup, which mutates them into a person made out of chocolate. While doing a part-time job at the Daycare, they are devoured by the hungry babies. :chocolate:'.format(victim)
         technique['12'] = '{0} is sucked into Minecraft. {0}, being a noob at the so called "Real-Life Minecraft" faces the Game Over screen.'.format(victim)
