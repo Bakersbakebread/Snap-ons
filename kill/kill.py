@@ -33,6 +33,8 @@ class Kill:
         technique['19'] = '{0} was so swag that {1} died due to it. #Swag'.format(killer, victim)
         technique['20'] = '{0} has been found guilty, time for their execution!'.format(victim)
         technique['21'] = '{0} fell down a cliff while playing Pokemon Go. Good job on keeping your nose in that puny phone. :iphone:'.format(victim)
+        
+        #SFW version of kill cog by PaddoCogs.
 
         await self.bot.say('**{0}**'.format(random.choice([technique[i] for i in technique])))
 
