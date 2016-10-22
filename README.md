@@ -6,12 +6,12 @@ To submit an idea for a cog, DM me on discord. You can always find me at the off
 To install the cogs, Follow the given steps:
 
 **Step 1** - Adding the repo.
-> To add the repo, type this into the chat:
-> ``[p]cog repo add snappycogs https://github.com/SnappyDragon18/SnappyCogs``
+> To add the repo, type this into the chat:\n
+> ``[p]cog repo add snappycogs https://github.com/SnappyDragon18/SnappyCogs``\n
 > Then type,"I agree".
 
 **Step 2** - Adding the cog.
-> To add the cog, type this into the chat:
-> ``[p]cog install snappycogs [cog_name]``
-> If it has any library dependencies, type ``pip3 install [library_name]`` in git.
+> To add the cog, type this into the chat:\n
+> ``[p]cog install snappycogs [cog_name]``\n
+> If it has any library dependencies, type ``pip3 install [library_name]`` in git.\n
 > Once the module has loaded up, type yes.
