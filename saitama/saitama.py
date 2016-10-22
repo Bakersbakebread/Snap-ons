@@ -10,7 +10,7 @@ class Saitama:
     @commands.command()
     async def saitama(self):
 
-        await self.bot.say("```|saitama\n\nDefeat anyone with the power of One Punch Man!\n\nCommands:\n  onepunch       Punch\n  onekick        Kick!\n  oneslap        Slap!\n\nType [|commandname] for more info on a command.```")
+        await self.bot.say("```|saitama\n\nDefeat anyone with the power of One Punch Man!\n\nCommands:\n  onepunch       Punch!\n  onekick        Kick!\n  oneslap        Slap!\n\nType [|commandname] for more info on a command.```")
     @commands.command()
     async def onepunch(self, user : discord.Member):
         """Punch!"""
