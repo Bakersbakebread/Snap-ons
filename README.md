@@ -1,2 +1,2 @@
 # SnappyCogs
-Cogs that I have made for Red-Discord Bot
+SnappyDragon's Cogs for Red-Discord Bot.
