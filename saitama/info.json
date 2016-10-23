@@ -1,5 +1,7 @@
-Defeat anyone with the power of one punch man.
-The commands are:
-``[p]onepunch @user``: """Punch!"""
-``[p]oneslap @user``: """Slap!"""
-``[p]onekick @user``: """Kick!"""
+{
+    "AUTHOR" : "SnappyDragon",
+    "INSTALL_MSG" : "Thank you for installing the saitama cog! You now have the power of One Punch Man!",
+    "NAME" : "Saitama",
+    "SHORT" : "Use the power of One Punch Man!",
+    "DESCRIPTION" : "Defeat anyone with the power of One Punch Man!"
+}
