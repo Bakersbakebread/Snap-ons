@@ -1,5 +1,5 @@
 Defeat anyone with the power of one punch man.
 The commands are:
-``[p]onepunch @user``
-``[p]oneslap @user``
-``[p]onekick @user``
+``[p]onepunch @user``: """Punch!"""
+``[p]oneslap @user``: """Slap!"""
+``[p]onekick @user``: """Kick!"""
