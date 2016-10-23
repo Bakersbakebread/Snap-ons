@@ -1,9 +1,7 @@
-Look through SCP articles with this cog.
-The commands are:
-``[p]scp``: """Look up SCP articles. Warning: Some of them may be too creepy or gruesome. Reminder: You must specify a number between 1 and 2999."""
-``[p]scpj``: """Look up SCP-Js. Reminder: Enter the correct name or else the resultant page will be invalid. (Use 001, etc. in case of numbers less than 100.)"""
-``[p]scparc``: """Look up SCP archives. Warning: Some of them may be too creepy or gruesome. Reminder: You must specify a valid archive number. (13, 48, 51, 89, 91, 112, 132, 138, 157, 186, 232, 234, 244, 252, 257, 338, 356, 361, 400, 406, 503, 515, 517, 578, 728, 744, 776, 784, 837, 922, 987, 1023)"""
-``[p]scpex``: """Look up explained SCP articles. Warning: Some of them may be too creepy or gruesome. Reminder: You must specify a valid archive number.(711, 920, 1841, 1851, 1974, 2600, 4023, 8900)"""
-``[p]anomalousitems``: """Look through the log of anomalous items."""
-``[p]extranormalevents``: """Look through the log of extranormal events."""
-``[p]unexplainedlocations``: """Look through the log of unexplained locations."""
+{
+    "AUTHOR" : "SnappyDragon",
+    "INSTALL_MSG" : "You are now connected to the SCP database. You may now proceed to access the data.",
+    "NAME" : "SCP",
+    "SHORT" : "Look up SCP articles.",
+    "DESCRIPTION" : "Look up SCP articles. Warning: Some of them may be too creepy or gruesome."
+}
