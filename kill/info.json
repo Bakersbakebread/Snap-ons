@@ -2,3 +2,10 @@ Use this cog to kill anyone in a funny way!
 Don't worry! This cog is 100% safe! Original cog by PaddoCogs.
 The command is:
 ``[p]kill @user``: """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 21 unique and funny kill commands!"""
+{
+    "AUTHOR" : "SnappyDragon",
+    "INSTALL_MSG" : "Thank you for downloading the kill cog! It's 100% SFW!",
+    "NAME" : "Kill",
+    "SHORT" : "SFW kill command for the lulz!",
+    "DESCRIPTION" : "Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 21 unique and funny kill commands!"
+}
