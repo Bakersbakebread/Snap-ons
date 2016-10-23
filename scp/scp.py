@@ -46,14 +46,17 @@ class SCP:
         await self.bot.say(msg)
     @commands.command()
     async def anomalousitems(self):
+        """Look through the log of anomalous items."""
 
         await self.bot.say("""http://www.scp-wiki.net/log-of-anomalous-items""")
     @commands.command()
     async def extranormalevents(self):
+        """Look through the log of extranormal events."""
 
         await self.bot.say("""http://www.scp-wiki.net/log-of-extranormal-events""")
     @commands.command()
     async def unexplainedlocations(self):
+        """Look through the log of unexplained locations."""
 
         await self.bot.say("""http://www.scp-wiki.net/log-of-unexplained-locations""")
         
