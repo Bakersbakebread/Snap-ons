@@ -28,7 +28,7 @@ class Kill:
         technique['14'] = '{0} after a long day, plops down on the couch with {1} and turns on The Big Bang Theory. After a Sheldon Cooper joke, {1} laughs uncontrollably as they die.'.format(killer, victim)
         technique['15'] = '{0} was given a chance to synthesize element 119 (Ununennium) and have it named after them, but they messed up. R.I.P.'.format(victim)
         technique['16'] = '{0} gets {1} to watch anime with them. {1} couldn\'t handle it.'.format(killer, victim)
-        technique['17'] = '{0} tries to get crafty, but they accidentally cut themselves with the scissors.:scissors:'.format(victim)
+        technique['17'] = '{0} tried to get crafty, but they accidentally cut themselves with the scissors.:scissors:'.format(victim)
         technique['18'] = '{0} goes genocide and Sans totally dunks {0}!'.format(victim)
         technique['19'] = '{0} was so swag that {1} died due to it. #Swag'.format(killer, victim)
         technique['20'] = '{0} has been found guilty, time for their execution!'.format(victim)
