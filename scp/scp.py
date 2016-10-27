@@ -23,7 +23,7 @@ class SCP:
     async def scpj(self, joke : str):
         """Look up SCP-Js. Reminder: Enter the correct name or else the resultant page will be invalid. (Use 001, etc. in case of numbers less than 100.)"""
 
-        await self.bot.say("http://www.scp-wiki.net/scp-{0}-j").format(joke)
+        await self.bot.say(("http://www.scp-wiki.net/scp-{0}-j").format(joke))
     @commands.command()
     async def scparc(self, num : int):
         """Look up SCP archives. Warning: Some of them may be too creepy or gruesome. Reminder: You must specify a valid archive number. (13, 48, 51, 89, 91, 112, 132, 138, 157, 186, 232, 234, 244, 252, 257, 338, 356, 361, 400, 406, 503, 515, 517, 578, 728, 744, 776, 784, 837, 922, 987, 1023)"""
