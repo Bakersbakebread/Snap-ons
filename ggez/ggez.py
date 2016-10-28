@@ -18,7 +18,7 @@ class GGEZ:
         message['5'] = 'Gee whiz! That was fun. Good playing!'
         message['6'] = 'For glory and honor! Huzzah comrades!'
         message['7'] = 'Well played. I salute you all.'
-        message['8'] = 'Aw shucks... Yiy guys are the best!'
+        message['8'] = 'Aw shucks... You guys are the best!'
         message['9'] = 'Mommy says people my age shouldn\'t suck their thumbs.'
         message['10'] = 'Wishing you all the best.'
 
