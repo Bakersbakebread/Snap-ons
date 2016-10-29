@@ -8,12 +8,12 @@ class Kill:
 
     @commands.command(pass_context=True)
     async def kill(self, context, member : discord.Member):
-        """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 21 unique and funny kill commands!"""
+        """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 25 unique and funny kill commands!"""
         killer = context.message.author.mention
         victim = member.mention
         technique = {}
         technique['1'] = '{0} shoots  in {1}\'s mouth with rainbow laser, causing {1}\'s head to explode with rainbows and {1} is reborn as unicorn. :unicorn:'.format(killer, victim)
-        technique['2'] = '{0} ate a piece of exotic butter. It was so amazing that it killed him.'.format(victim)
+        technique['1'] = '{0} ate a piece of exotic butter. It was so amazing that it killed him.'.format(victim)
         technique['3'] = '{0} is stuffed into a suit by Freddy on their night guard duty. Oh, not those animatronics again!'.format(victim)
         technique['4'] = '{0} grabs {1} and shoves them into an auto-freeze machine with some juice and sets the temperature to 100 Kelvin, creating human ice pops.'.format(killer, victim)
         technique['5'] = '{0} drowns {1} in a tub of hot chocolate. *"How was your last drink?"*'.format(killer, victim)
@@ -33,7 +33,11 @@ class Kill:
         technique['19'] = '{0} was so swag that {1} died due to it. #Swag'.format(killer, victim)
         technique['20'] = '{0} has been found guilty, time for their execution!'.format(victim)
         technique['21'] = '{0} fell down a cliff while playing Pokemon Go. Good job on keeping your nose in that puny phone. :iphone:'.format(victim)
-        
+        technique['22'] = '{0} strikes {1} with the killing curse... *"Avada Kedavra!"*'.format(killer, victim)
+        technique['23'] = '{0} ate an apple and turned out it was made out of wax. Someone died from wax poisoning later that day.'.format(victim)
+        technique['24'] = '{0} was teleported to the timeline where Jurassic World was real and they were eaten alive by the Indominus Rex.'.format(victim)
+        technique['25'] = '{0} was charging their Samasung Galaxy Note 7...'.format(victim)
+
         #SFW version of kill cog by PaddoCogs.
 
         await self.bot.say('**{0}**'.format(random.choice([technique[i] for i in technique])))
