@@ -1,7 +1,0 @@
-{
-    "AUTHOR" : "SnappyDragon",
-    "INSTALL_MSG" : "Red can now say whatever you want her to!",
-    "NAME" : "Say",
-    "SHORT" : "Make Red say stuff!",
-    "DESCRIPTION" : "Make Red say stuff! Remember, enclose the sentence you want Red to say in double quotes."
-}
