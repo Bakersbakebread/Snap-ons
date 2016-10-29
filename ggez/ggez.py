@@ -22,7 +22,6 @@ class GGEZ:
         message['9'] = 'Mommy says people my age shouldn\'t suck their thumbs.'
         message['10'] = 'Wishing you all the best.'
 
-
         await self.bot.say('{0}: *{1}*'.format(troll, random.choice([message[i] for i in message])))
 
 def setup(bot):
