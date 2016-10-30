@@ -43,5 +43,4 @@ class Kill:
         await self.bot.say('**{0}**'.format(random.choice([technique[i] for i in technique])))
 
 def setup(bot):
-    n = Kill(bot)
-    bot.add_cog(n)
+    bot.add_cog(Kill(bot)
