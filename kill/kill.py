@@ -6,6 +6,8 @@ class Kill:
     def __init__(self, bot):
         self.bot = bot
 
+        #SFW version of kill cog by PaddoCogs. Thanks Kowlin, Twentysix, and Redjumpman for line 43.
+
     @commands.command(pass_context=True)
     async def kill(self, context, member : discord.Member):
         """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 25 unique and funny kill commands!"""
@@ -38,9 +40,10 @@ class Kill:
         technique['24'] = '{0} was teleported to the timeline where Jurassic World was real and they were eaten alive by the Indominus Rex.'.format(victim)
         technique['25'] = '{0} was charging their Samasung Galaxy Note 7...'.format(victim)
 
-        #SFW version of kill cog by PaddoCogs.
-
-        await self.bot.say('**{0}**'.format(random.choice([technique[i] for i in technique])))
+        if member.id == self.bot.user.id:
+            await self.bot.say('**{0}, how dare you try to kill me? DIE!**'.format(killer))
+        else:
+            await self.bot.say('**{0}**'.format(random.choice([technique[i] for i in technique])))
 
 def setup(bot):
-    bot.add_cog(Kill(bot)
+    bot.add_cog(Kill(bot))
