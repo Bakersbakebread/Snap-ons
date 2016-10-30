@@ -2,6 +2,6 @@
     "AUTHOR" : "SnappyDragon",
     "INSTALL_MSG" : "You: Accio wizard money converter! Me: *here*",
     "NAME" : "WizardCurrency",
-    "SHORT" : "Convert Real Life currencies into Galleons and Vice Versa! ʛ",
-    "DESCRIPTION" : "ʛ: Convert Real Life currencies into Galleons and Vice Versa! Supported Currencies: ``galleon, pound, dollar, yen, rupee, euro``"
+    "SHORT" : "ʛ: Convert Real Life currencies into Galleons and Vice Versa!",
+    "DESCRIPTION" : "ʛ: Convert Real Life currencies into Galleons and Vice Versa! Supported Currencies: ``galleon, pound (uk), dollar (us), yen, rupee (in), euro (eu), ruble (ru), real (br), peso (ph), kroner (de)``"
 }
