@@ -9,7 +9,7 @@ class WizardCurrency:
 
     @commands.command()
     async def wizconvert(self, src : str, fnl : str, amt : float):
-        """ʛ: Convert Real Life currencies into Galleons and Vice Versa! Supported Currencies: ``galleon, pound (uk), dollar (us), yen, rupee (in), euro (eu), ruble (ru), real (br), peso (ph)``"""
+        """ʛ: Convert Real Life currencies into Galleons and Vice Versa! Supported Currencies: ``galleon, pound (uk), dollar (us), yen, rupee (in), euro (eu), ruble (ru), real (br), peso (ph), kroner (de)``"""
         if (src == 'galleon' and fnl == 'pound'):
             ans = amt*4.93
         elif (src == 'pound' and fnl == 'galleon'):
@@ -42,8 +42,12 @@ class WizardCurrency:
             ans = amt*342.24
         elif (src == 'peso' and fnl == 'galleon'):
             ans = amt/342.24
+        elif (src == 'galleon' and fnl == 'kroner'):
+            ans = amt*43.94
+        elif (src == 'kroner' and fnl == 'galleon'):
+            ans = amt/43.94
         else:
-            ans = "Source currency and Final currency can only be one of the following: ``galleon, pound (uk), dollar (us), yen, rupee (in), euro (eu), ruble (ru), real (br), peso (ph)``"
+            ans = "Source currency and Final currency can only be one of the following: ``galleon, pound (uk), dollar (us), yen, rupee (in), euro (eu), ruble (ru), real (br), peso (ph), kroner (de)``"
         await self.bot.say(ans)
 
 def setup(bot):
