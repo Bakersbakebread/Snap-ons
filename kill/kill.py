@@ -13,7 +13,7 @@ class Kill:
         victim = member.mention
         technique = {}
         technique['1'] = '{0} shoots  in {1}\'s mouth with rainbow laser, causing {1}\'s head to explode with rainbows and {1} is reborn as unicorn. :unicorn:'.format(killer, victim)
-        technique['1'] = '{0} ate a piece of exotic butter. It was so amazing that it killed him.'.format(victim)
+        technique['2'] = '{0} ate a piece of exotic butter. It was so amazing that it killed him.'.format(victim)
         technique['3'] = '{0} is stuffed into a suit by Freddy on their night guard duty. Oh, not those animatronics again!'.format(victim)
         technique['4'] = '{0} grabs {1} and shoves them into an auto-freeze machine with some juice and sets the temperature to 100 Kelvin, creating human ice pops.'.format(killer, victim)
         technique['5'] = '{0} drowns {1} in a tub of hot chocolate. *"How was your last drink?"*'.format(killer, victim)
