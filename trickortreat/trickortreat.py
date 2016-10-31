@@ -1,13 +1,11 @@
 from discord.ext import commands
 import random
 import discord
-
 class TrickOrTreat:
     """Go trick or treating on Discord and get either a trick or a treat!"""
     
     def __init__(self, bot):
         self.bot = bot
-
     @commands.command(pass_context=True)
     async def trickortreat(self, context):
         """Go trick or treating on Discord and get either a trick or a treat! Don't let the tricks spoop you!"""
@@ -37,8 +35,6 @@ class TrickOrTreat:
         suprise['22'] = 'https://cdn.instructables.com/FM3/X5MC/H88XIJR6/FM3X5MCH88XIJR6.MEDIUM.jpg'
         suprise['23'] = 'http://img00.deviantart.net/12db/i/2006/185/a/4/jack_skellington_by_kev2137.jpg'
         suprise['24'] = 'http://melvillecandy.com/assets/images/spooky_assortment.jpg'
-
         await self.bot.say('**{0} got: **{1}'.format(trickortreater, random.choice([suprise[i] for i in suprise])))
-
 def setup(bot):
     bot.add_cog(TrickOrTreat(bot))
