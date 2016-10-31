@@ -25,4 +25,4 @@ class GGEZ:
         await self.bot.say('{0}: *{1}*'.format(troll, random.choice([message[i] for i in message])))
 
 def setup(bot):
-    bot.add_cog(GGEZ(bot)
+    bot.add_cog(GGEZ(bot))
