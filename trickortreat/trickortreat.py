@@ -33,6 +33,10 @@ class TrickOrTreat:
         suprise['18'] = 'https://pioneerpartyandgift.com/image/cache/data/product/pioneer_party_eyeball_gumballs-500x500.jpg'
         suprise['19'] = 'http://i.imgur.com/nbcTtZC.gif'
         suprise['20'] = 'http://www.zombiegift.com/zombie-blog/wp-content/uploads/2014/01/zombie-bar-chocolate-bar-sugar-plum-chocolates-zombie-chocolate-bar-review11.jpg'
+        suprise['21'] = 'http://media.tumblr.com/tumblr_lkqcixv4UN1qd3url.gif'
+        suprise['22'] = 'https://cdn.instructables.com/FM3/X5MC/H88XIJR6/FM3X5MCH88XIJR6.MEDIUM.jpg'
+        suprise['23'] = 'http://img00.deviantart.net/12db/i/2006/185/a/4/jack_skellington_by_kev2137.jpg'
+        suprise['24'] = 'http://melvillecandy.com/assets/images/spooky_assortment.jpg'
 
         await self.bot.say('**{0} got: **{1}'.format(trickortreater, random.choice([suprise[i] for i in suprise])))
 
