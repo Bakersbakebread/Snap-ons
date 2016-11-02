@@ -23,7 +23,7 @@ class FNAF:
         elif num == 5:
             await self.bot.say('http://vignette1.wikia.nocookie.net/freddy-fazbears-pizza/images/b/b6/FNAF2BB.png/revision/latest?cb=20141111111744')
         elif num == 6:
-            await self.bot.say('http://vignette1.wikia.nocookie.net/freddy-fazbears-pizza/images/b/b6/FNAF2BB.png/revision/latest?cb=20141111111744')
+            await self.bot.say('https://s-media-cache-ak0.pinimg.com/originals/98/c7/d8/98c7d8f9403d91aafe7996539d114517.png')
         elif num == 7:
             await self.bot.say('http://orig15.deviantart.net/0aaa/f/2016/282/b/f/baby_png_by_x_puzzy-dakewzu.png')
         elif num == 8:
