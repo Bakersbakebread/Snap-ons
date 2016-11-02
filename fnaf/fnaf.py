@@ -76,11 +76,11 @@ class FNAF:
         quote['11'] = '**Phone Guy:** So, just be aware, the characters do tend to wander a bit. Uh, they\'re left in some kind of free roaming mode at night. Uh... Something about their servos locking up if they get turned off for too long. Uh, they used to be allowed to walk around during the day too. But then there was The Bite of \'87. Yeah. I-It\'s amazing that the human body can live without the frontal lobe, you know?'
         quote['12'] = '**Phone Guy:** Uh, the animatronic characters here do get a bit quirky at night, but do I blame them? No. If I were forced to sing those same stupid songs for twenty years and I never got a bath? I\'d probably be a bit irritable at night, too. So remember, these characters hold a special place in the hearts of children, and we need to show them a little respect, right?'
         quote['13'] = '**Phone Guy:** Hello, hello? Hey you\'re doing great! Most people do not last this long. I mean, you know, they usually move on to other things by now. I\'m not implying that they died. Th-th-that\'s not what I meant.'
-        quote['14'] = '**Phone Guy:** Hello, hello ... hello? Uh, well, if you\'re hearing this, then chances are you\'ve made ​​a very poor career choice.'
+        quote['14'] = '**Phone Guy:** Hello, hello ... hello? Uh, well, if you\'re hearing this, then chances are you\'ve made a very poor career choice.'
         quote['15'] = '**Phone Guy:** Uh, hello? Hello, hello! Uh, there\'s been a slight change of company policy concerning use of the suits. Um, don\'t.'
         quote['16'] = '**...:** He will come back. He always does. We have a place for him..'
         quote['17'] = '**...:** What is it that you think you see? What game do you think you are playing? What have you brought home?'
         quote['18'] = '**Ballora:** Get back on your stage. NOW.'
-        await self.bot.say('*{0}*'.format(random.choice([quote[i] for i in quote])))
+        await self.bot.say('{0}'.format(random.choice([quote[i] for i in quote])))
 def setup(bot):
     bot.add_cog(FNAF(bot))
