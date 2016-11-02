@@ -35,9 +35,9 @@ class FNAF:
         """Scoop your enemies. ;)"""
 
         if user.id == self.bot.user.id:
-            await self.bot.say("**ERROR:** Scooping Target not found. **RETRY:** Target located. Successfully scooped {0}.".format(context.message.author.mention))
+            await self.bot.say("**ERROR:** Scooping Target not found. **RETRY:** Target located. Successfully scooped {0}. {0}, your innards are now Ennard.".format(context.message.author.mention))
         else:
-            await self.bot.say("Successfully scooped {0}.".format(user.mention))
+            await self.bot.say("Successfully scooped {0}. {0}, your innards are now Ennard.".format(user.mention))
     @commands.command()
     async def bonbon(self):
         """Awaken Bonbon!"""
