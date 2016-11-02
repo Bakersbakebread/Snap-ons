@@ -43,6 +43,8 @@ class TrickOrTreat:
         suprise['28'] = 'treat: http://www.partycity.com/images/products/en_us/gateways/candy-2015/candy-by-type/candy-by-type-bubblegum.jpg'
         suprise['29'] = 'trick: http://i2.kym-cdn.com/photos/images/original/001/063/320/27c.jpg'
         suprise['30'] = 'treat: http://67.media.tumblr.com/268692a326296b9571409c235cc6ac44/tumblr_inline_nyws9cnoXd1tbiwft_1280.jpg'
+        suprise['31'] = 'trick: http://vignette2.wikia.nocookie.net/freddy-fazbears-pizza/images/0/0f/FNAFSL_Ennard_Model.png/revision/latest/'
+        suprise['32'] = 'treat: https://s-media-cache-ak0.pinimg.com/736x/84/eb/ce/84ebce7a284c1c40d20b4aa1dd13734c.jpg'
 
         await self.bot.say('{0} got a {1}'.format(trickortreater, random.choice([suprise[i] for i in suprise])))
 
