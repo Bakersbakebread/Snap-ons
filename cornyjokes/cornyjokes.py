@@ -30,7 +30,7 @@ class CornyJokes:
         joke['17'] = '"I tried to take a picture of some fog. I mist."'
         joke['18'] = 'Two antennas got married. The ceremony wasn\'t much but the reception was excellent.'
         joke['19'] = '"I have a lot of jokes about unemployed people, but none of them work."'
-        joke['20'] = '"An old lady at the bank asked me if I could help her check her balance.So I pushed her over."'
+        joke['20'] = '"An old lady at the bank asked me if I could help her check her balance. So I pushed her over."'
         joke['21'] = '"We don\'t have any vegetable jokes, if you get one lettuce know."'
 
         await self.bot.say('**{0}**'.format(random.choice([joke[i] for i in joke])))
