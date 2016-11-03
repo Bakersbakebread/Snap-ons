@@ -3,6 +3,7 @@ import random
 import discord
 
 class MartialArts:
+    """Perform Martial Arts with this cog! Challenge someone for a karate fight or attack them!"""
     def __init__(self, bot):
         self.bot = bot
 
