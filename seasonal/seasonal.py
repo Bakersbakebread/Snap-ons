@@ -199,6 +199,6 @@ class Seasonal:
         elif (cmonth == 12 and cday == 25):
             await self.bot.say('Merry Christmas! Your final gift is... https://www.cyberpowerpc.com/images/cs/obsidian750dair/blk_220.png')
         else:
-            await self.bot.say('It\'s not December! Come back later to use the Advent Calendar!')
+            await self.bot.say('**It\'s not December! Come back later to use the Advent Calendar!**')
 def setup(bot):
     bot.add_cog(Seasonal(bot))
