@@ -4,8 +4,8 @@ import discord
 import asyncio
 import datetime
 
-class Plant:
-    """Various commands involving plants. Ex.: grow, pvzwikia, plantdb"""
+class Plants:
+    """Grow your own plants! There are 10 of them!"""
     def __init__(self, bot):
         self.bot = bot
 
@@ -89,15 +89,5 @@ class Plant:
                 await self.bot.say('{0}, you have grown a: **Pizza Plant**! http://vignette2.wikia.nocookie.net/clubpenguin/images/1/13/Mine_Shack_pizza_plant.png/revision/latest?cb=20121224163241'.format(gardener))
         else:
             await self.bot.say('Seed not found: Pick a seed number from 1 to 10.')
-    @commands.command()
-    async def pvzwikia(self, character):
-        """Look up characters from Plants vs. Zombies! Remember to use underscores instead of spaces!"""
-
-        await self.bot.say('http://plantsvszombies.wikia.com/wiki/{0}'.format(character))
-    @commands.command()
-    async def plantdb(self, division, genus, species):
-        """Look up the plant database! Enter the first letter of the division, then the name of the genus and species."""
-
-        await self.bot.say('http://www.theplantlist.org/1.1/browse/{0}/{1}/{2}'.format(division, genus, species))
 def setup(bot):
-    bot.add_cog(Plant(bot))
+    bot.add_cog(Plants(bot))
