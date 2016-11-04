@@ -1,7 +1,7 @@
 {
     "AUTHOR" : "SnappyDragon",
-    "INSTALL_MSG" : "Grow awesome plants, Look through a plant database!",
+    "INSTALL_MSG" : "Grow awesome plants!",
     "NAME" : "Plants",
-    "SHORT" : "Various commands involving plants.",
-    "DESCRIPTION" : "Various commands involving plants. Ex.: grow, pvzwikia, plantdb"
+    "SHORT" : "Grow your own plants!",
+    "DESCRIPTION" : "Grow your own plants! There are 10 of them!"
 }
