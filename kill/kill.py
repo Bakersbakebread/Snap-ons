@@ -38,7 +38,7 @@ class Kill:
         technique['22'] = '{0} strikes {1} with the killing curse... *"Avada Kedavra!"*'.format(killer, victim)
         technique['23'] = '{0} ate an apple and turned out it was made out of wax. Someone died from wax poisoning later that day.'.format(victim)
         technique['24'] = '{0} was teleported to the timeline where Jurassic World was real and they were eaten alive by the Indominus Rex.'.format(victim)
-        technique['25'] = '{0} was charging their Samasung Galaxy Note 7...'.format(victim)
+        technique['25'] = '{0} was charging their Samsung Galaxy Note 7...'.format(victim)
 
         if member.id == self.bot.user.id:
             await self.bot.say('**{0}, how dare you try to kill me? DIE!**'.format(killer))
