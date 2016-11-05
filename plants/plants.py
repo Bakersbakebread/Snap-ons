@@ -33,7 +33,7 @@ class Plants:
         await self.bot.say('{0}, you have sown the seed! http://wow.zamimg.com/uploads/screenshots/small/571307.jpg'.format(gardener))
         await asyncio.sleep(1200)
         await self.bot.say('{0}, your plant need water! Do you want to water it? (yes/no)'.format(gardener))
-        answer = await self.bot.wait_for_message(timeout=15,
+        answer = await self.bot.wait_for_message(timeout=30,
                                                  author=context.message.author)
 
         if answer is None:
@@ -42,7 +42,7 @@ class Plants:
             await self.bot.say('You have successfully watered the plant.')
             await asyncio.sleep(1200)
             await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
-            answer = await self.bot.wait_for_message(timeout=15,
+            answer = await self.bot.wait_for_message(timeout=30,
                                                      author=context.message.author)
 
             if answer is None:
