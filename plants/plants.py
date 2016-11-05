@@ -31,7 +31,29 @@ class Plants:
         plant['15'] = '**Pod Plant**! http://vignette2.wikia.nocookie.net/memoryalpha/images/3/31/Omicron_Ceti_III_flower.jpg/revision/latest?cb=20050929090117&path-prefix=en'
 
         await self.bot.say('{0}, you have sown the seed! http://wow.zamimg.com/uploads/screenshots/small/571307.jpg'.format(gardener))
-        await asyncio.sleep(3600)
-        await self.bot.say('{0}, you have grown a: {1}'.format(gardener, random.choice([plant[i] for i in plant])))
+        await asyncio.sleep(1200)
+        await self.bot.say('{0}, your plant need water! Do you want to water it? (yes/no)'.format(gardener))
+        answer = await self.bot.wait_for_message(timeout=15,
+                                                 author=context.message.author)
+
+        if answer is None:
+            await self.bot.say('Your plant has died...')
+        elif answer.content.lower().strip() == "yes":
+            await self.bot.say('You have successfully watered the plant.')
+            await asyncio.sleep(1200)
+            await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
+            answer = await self.bot.wait_for_message(timeout=15,
+                                                     author=context.message.author)
+
+            if answer is None:
+                await self.bot.say('Your plant has died...')
+            elif answer.content.lower().strip() == "yes":
+                await self.bot.say('You have successfully fertilized the soil.')
+                await asyncio.sleep(1200)
+                await self.bot.say('{0}, you have grown a: {1}'.format(gardener, random.choice([plant[i] for i in plant])))
+            else:
+                await self.bot.say('Your plant has died...')
+        else:
+            await self.bot.say('Your plant has died...')
 def setup(bot):
     bot.add_cog(Plants(bot))
