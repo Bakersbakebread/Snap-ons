@@ -52,8 +52,8 @@ class Plants:
                 await asyncio.sleep(1200)
                 await self.bot.say('{0}, you have grown a: {1}'.format(gardener, random.choice([plant[i] for i in plant])))
             else:
-                await self.bot.say('Your plant has died...')
+                await self.bot.say('{0}, your plant has died...'.format(gardener))
         else:
-            await self.bot.say('Your plant has died...')
+            await self.bot.say('{0}, your plant has died...'.format(gardener))
 def setup(bot):
     bot.add_cog(Plants(bot))
