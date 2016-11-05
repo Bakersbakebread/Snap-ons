@@ -61,6 +61,17 @@ class Seasonal:
         else:
             await self.bot.say('**It\'s not Easter! Come back in April for the Easter Egg Hunt!**')
     @commands.command()
+    async def fool(self):
+        """Try it for yourselves fellas!"""
+        d = datetime.date.today()
+        cday = d.day
+        cmonth = d.month
+
+        if (cmonth == 4 and cday == 1):
+            await self.bot.say('**It\'s April 1... You actually waited to use this command. GET REKT SON! THIS DOES NOTHING! You\'ve just been... FOOLED!**')
+        else:
+            await self.bot.say('**Fool, come back on 1st April!**')
+    @commands.command()
     async def earthday(self):
         """Celebrate Earth Day with a Song!"""
         d = datetime.date.today()
