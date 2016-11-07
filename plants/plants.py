@@ -76,7 +76,7 @@ class Plants:
             await self.bot.say('{0}, your plant has died...'.format(gardener))
         elif answer.content.lower().strip() == "yes":
             await self.bot.say('You have successfully watered the plant.')
-            t2 = randint(1800, 3600))
+            t2 = randint(1800, 3600)
             await asyncio.sleep(t2)
             await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
             answer = await self.bot.wait_for_message(timeout=300,
