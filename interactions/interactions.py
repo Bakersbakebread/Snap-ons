@@ -6,7 +6,7 @@ class Interactions:
     def __init__(self, bot):
         self.bot = bot
 
-        #SFW version of kill commond by PaddoCogs. Thanks Kowlin, Twentysix, and Redjumpman for line 43.
+        #SFW version of kill commond by PaddoCogs. Thanks Kowlin, Twentysix, Redjumpman, and Ruby.
 
     @commands.command(pass_context=True)
     async def kill(self, context, member : discord.Member):
@@ -81,11 +81,38 @@ class Interactions:
         interaction['28'] = '{0} gives a candy bar to {1}.'.format(executer, user)
         interaction['29'] = '{0} throws a rock at {1}.'.format(executer, user)
         interaction['30'] = '{0} licks {1}.'.format(executer, user)
-
+        
         if member.id == self.bot.user.id:
-            await self.bot.say('**Error: Could not interact.**')
+            await self.bot.say('**Error: Could not interact. Get cleverbot.py from 26-cogs to interact with bot!**')
         else:
             await self.bot.say('**{0}**'.format(random.choice([interaction[i] for i in interaction])))
+    @commands.command(pass_context=True)
+    async def poke(self, context, member : discord.Member):
+        """Poke peeps! :3"""
+        pokedoer = context.message.author.mention
+        user = member.mention
 
+        poke = {}
+        poke['1'] = '{0} pokes {1}\'s eye.'.format(pokedoer, user)
+        poke['2'] = '{0} boops {1}\'s snoot.'.format(pokedoer, user)
+        poke['3'] = '{0} pokes {1} with a stick.'.format(pokedoer, user)
+        poke['4'] = '{0} pokes {1} with a pin.'.format(pokedoer, user)
+        poke['5'] = '{0} pokes {1} on facebook.'.format(pokedoer, user)
+
+        if member.id == self.bot.user.id:
+            await self.bot.say('**Awww, Don\'t poke me! It makes me laugh!**')
+        else:
+            await self.bot.say('**{0}**'.format(random.choice([poke[i] for i in poke])))
+    @commands.command(pass_context=True)
+    async def throw(self, context, member : discord.Member, *, item : str):
+        """Throw stuff at people!"""
+        thrower = context.message.author.mention
+        victim = member.mention
+        b0t = self.bot.user.mention
+
+        if member.id == self.bot.user.id:
+            await self.bot.say('**You\'re throwing stuff at me! {0} threw {1} at {2}!**'.format(b0t, item, thrower))
+        else:
+            await self.bot.say('**{0} threw {1} at {2}!**'.format(thrower, item, victim))
 def setup(bot):
     bot.add_cog(Interactions(bot))
