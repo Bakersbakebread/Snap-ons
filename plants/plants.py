@@ -13,44 +13,82 @@ class Plants:
         """Grow a plant!"""
         gardener = context.message.author.mention
 
-        plant = {}
-        plant['1'] = '**Truffula Tree**! http://image.prntscr.com/image/4f3a95bdc418414a83a9b12c90285df1.png'
-        plant['2'] = '**Peashooter**! http://vignette3.wikia.nocookie.net/plantsvszombies/images/c/ca/Peashooter2.png/revision/latest?cb=20130717035301&format=webp'
-        plant['3'] = '**Sunflora**! http://cdn.bulbagarden.net/upload/thumb/9/98/192Sunflora.png/250px-192Sunflora.png'
-        plant['4'] = '**Money Tree**! http://vignette2.wikia.nocookie.net/new-leaf/images/1/19/9image.jpg/revision/latest?cb=20130405102017'
-        plant['5'] = '**Pikmin**! http://vignette2.wikia.nocookie.net/pikmin/images/6/6e/PikRedPikWave.jpg/revision/latest?cb=20100105163552'
-        plant['6'] = '**Groot**! http://www.sideshowtoy.com/wp-content/uploads/2014/07/902220-product-silo.png'
-        plant['7'] = '**Starlight Rose**! http://media-azeroth.cursecdn.com/attachments/110/579/636091096044323300.png'
-        plant['8'] = '**Magic Beanstalk**! http://zynga2-a.akamaihd.net/farmville/assets/hashed/assets/decorations/44d54df054b03bb97878d5a45dbf9965.png'
-        plant['9'] = '**Radiant Roxy Rose**! http://vignette2.wikia.nocookie.net/moshimonsters/images/7/73/Radiant_Roxy_Rose_grown.png/revision/latest?cb=20161001205046'
-        plant['10'] = '**Pizza Plant**! http://vignette2.wikia.nocookie.net/clubpenguin/images/1/13/Mine_Shack_pizza_plant.png/revision/latest?cb=20121224163241'
-        plant['11'] = '**Whomping Willdow**! http://hogsmeade.pl/images/photoalbum/album_9/zima.jpg'
-        plant['12'] = '**Triffid**! http://triffids.guidesite.co.uk/images/triffids/triffidPoole.jpg'
-        plant['13'] = '**Goomba**! http://www.ssbwiki.com/images/5/5d/Goomba-Brawl.png'
-        plant['14'] = '**Athelas**! http://vignette2.wikia.nocookie.net/lotr/images/7/7e/Athelas.jpg/revision/latest?cb=20120505172036'
-        plant['15'] = '**Pod Plant**! http://vignette2.wikia.nocookie.net/memoryalpha/images/3/31/Omicron_Ceti_III_flower.jpg/revision/latest?cb=20050929090117&path-prefix=en'
+        plant = {} #No plants were harmed in making of this cog. (Well, if you kill them while using this cog...)
+        plant['1'] = 'a: **Dandelion** [COMMON] http://i.imgur.com/emqnQP2.jpg'
+        plant['2'] = 'a: **Poppy** [COMMON] http://i.imgur.com/S4hjyUX.jpg'
+        plant['3'] = 'a: **Daisy** [COMMON] http://i.imgur.com/lcFq4AB.jpg'
+        plant['4'] = 'a: **Daffodil** [COMMON] http://i.imgur.com/pnCCRsH.jpg'
+        plant['5'] = 'a: **Chrysanthemum** [COMMON] http://i.imgur.com/5jLtqWL.jpg'
+        plant['6'] = 'an: **Aster** [COMMON] http://i.imgur.com/1tN04Hl.jpg'
+        plant['7'] = 'a: **Pansy** [COMMON] http://i.imgur.com/f7TgD1b.jpg'
+        plant['8'] = 'a: **Lavender** [COMMON] http://i.imgur.com/g3OmOSK.jpg'
+        plant['9'] = 'a: **Lily** [COMMON] http://imgur.com/a/HTEgm'
+        plant['10'] = 'a: **Petunia** [COMMON] http://i.imgur.com/rJm8ISv.jpg'
+        plant['11'] = 'an: **Aloe Vera** [COMMON] http://i.imgur.com/WFAYIpx.jpg'
+        plant['12'] = 'a: **Tulip** [COMMON] http://i.imgur.com/kodIFjE.jpg'
+        plant['13'] = 'a: **Rose** [COMMON] http://i.imgur.com/sdTNiOH.jpg'
+        plant['14'] = 'a: **Sunflower** [COMMON] http://i.imgur.com/AzgzQK9.jpg'
+        plant['15'] = 'an: **Orchid** [COMMON] http://i.imgur.com/IQrQYDC.jpg'
+        plant['16'] = 'a: **Four-Leaved Clover*** [COMMON] http://i.imgur.com/0GSsABG.jpg'
+        plant['17'] = 'a: **Dragon Fruit** [UNCOMMON] http://i.imgur.com/pfngpDS.jpg'
+        plant['18'] = 'a: **Mango** [UNCOMMON] http://i.imgur.com/ybR78Oc.jpg'
+        plant['19'] = 'a: **Lychee** [UNCOMMON] http://i.imgur.com/w9LkfhX.jpg'
+        plant['20'] = 'a: **Durian** [UNCOMMON] http://i.imgur.com/jh249fz.jpg'
+        plant['21'] = 'a: **Fig** [UNCOMMON] http://i.imgur.com/YkhnpEV.jpg'
+        plant['22'] = 'a: **Jack Fruit** [UNCOMMON] http://i.imgur.com/2D79TlA.jpg'
+        plant['23'] = 'a: **Prickly Pear** [UNCOMMON] http://i.imgur.com/GrcGAGj.jpg'
+        plant['24'] = 'a: **Pineapple** [UNCOMMON] http://i.imgur.com/VopYQtr.jpg'
+        plant['25'] = 'a: **Citron** [UNCOMMON] http://i.imgur.com/zh7Dr23.jpg'
+        plant['26'] = 'a: **Cherimoya** [UNCOMMON] http://i.imgur.com/H62gQK6.jpg'
+        plant['27'] = 'a: **Mangosteen** [UNCOMMON] http://i.imgur.com/McNnMqa.jpg'
+        plant['28'] = 'a: **Apple** [UNCOMMON] http://i.imgur.com/QI3UTR3.jpg'
+        plant['29'] = 'a: **Bamboo** [UNCOMMON] http://i.imgur.com/gIQrMcN.jpg'
+        plant['30'] = 'a: **Orange** [UNCOMMON] http://i.imgur.com/lwjEJTm.jpg'
+        plant['31'] = 'a: **Guava** [UNCOMMON] http://i.imgur.com/iy8WgPt.jpg'
+        plant['32'] = 'a: **Franklin Tree** [RARE] http://i.imgur.com/hoh17hp.jpg'
+        plant['33'] = 'a: **Jade Vine** [RARE] http://i.imgur.com/h4fJo2R.jpg'
+        plant['34'] = 'a: **Koki\'o** [RARE] http://i.imgur.com/Dhw9ync.jpg'
+        plant['25'] = 'a: **Parrot\'s Beak** [RARE] http://i.imgur.com/lhSjfQY.jpg'
+        plant['26'] = 'a: **Chocolate Cosmos** [RARE] http://i.imgur.com/4ArSekX.jpg'
+        plant['27'] = 'a: **Venus Fly Trap** [RARE] http://i.imgur.com/NoSdxXh.jpg'
+        plant['28'] = 'a: **Pizza Plant** [SUPER RARE] http://i.imgur.com/ASZXr7C.png'
+        plant['29'] = 'a: **Radiant Roxy Rose** [SUPER RARE] http://i.imgur.com/aLe56mr.png'
+        plant['30'] = 'a: **Pod Plant** [SUPER RARE] http://i.imgur.com/ECAGMUM.jpg'
+        plant['31'] = 'a: **Pirahna Plant** [SUPER RARE] http://i.imgur.com/c03i9W7.jpg'
+        plant['32'] = 'a: **Peashooter** [SUPER RARE] http://imgur.com/a/IJBu2'
+        plant['33'] = 'a: **Starlight Rose** [EPIC] http://i.imgur.com/em8Kg5M.png'
+        plant['34'] = 'a: **Groot** [EPIC] http://i.imgur.com/9f5QzaW.jpg'
+        plant['35'] = 'a: **Triffid** [EPIC] http://i.imgur.com/WZlwqUt.jpg'
+        plant['36'] = 'an: **Athelas** [EPIC] http://i.imgur.com/PNNMEjB.jpg'
+        plant['37'] = 'a: **Pikmin** [EPIC] http://i.imgur.com/cFSmaHH.png'
+        plant['38'] = 'a: **Money Tree** [LEGENDARY] http://i.imgur.com/MIJQDLL.jpg'
+        plant['39'] = 'a: **Whomping Willow** [LEGENDARY] http://i.imgur.com/Ibwm2xY.jpg'
+        plant['40'] = 'a: **Truffula Tree* [LEGENDARY] http://i.imgur.com/cFSmaHH.png'
 
-        await self.bot.say('{0}, you have sown the seed! http://wow.zamimg.com/uploads/screenshots/small/571307.jpg'.format(gardener))
-        await asyncio.sleep(1200)
+        await self.bot.say('{0}, you have sown the seed! http://i.imgur.com/4uIktZQ.jpg'.format(gardener))
+        t1 = randint(1800, 3600)
+        await asyncio.sleep(t1)
         await self.bot.say('{0}, your plant need water! Do you want to water it? (yes/no)'.format(gardener))
-        answer = await self.bot.wait_for_message(timeout=30,
+        answer = await self.bot.wait_for_message(timeout=300,
                                                  author=context.message.author)
 
         if answer is None:
-            await self.bot.say('Your plant has died...')
+            await self.bot.say('{0}, your plant has died...'.format(gardener))
         elif answer.content.lower().strip() == "yes":
             await self.bot.say('You have successfully watered the plant.')
-            await asyncio.sleep(1200)
+            t2 = randint(1800, 3600))
+            await asyncio.sleep(t2)
             await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
-            answer = await self.bot.wait_for_message(timeout=30,
+            answer = await self.bot.wait_for_message(timeout=300,
                                                      author=context.message.author)
 
             if answer is None:
-                await self.bot.say('Your plant has died...')
+                await self.bot.say('{0}, your plant has died...'.format(gardener))
             elif answer.content.lower().strip() == "yes":
                 await self.bot.say('You have successfully fertilized the soil.')
-                await asyncio.sleep(1200)
-                await self.bot.say('{0}, you have grown a: {1}'.format(gardener, random.choice([plant[i] for i in plant])))
+                t3 = randint(1800, 3600)
+                await asyncio.sleep(t3)
+                await self.bot.say('{0}, you have grown {1}'.format(gardener, random.choice([plant[i] for i in plant])))
             else:
                 await self.bot.say('{0}, your plant has died...'.format(gardener))
         else:
