@@ -78,6 +78,9 @@ class Interactions:
         interaction['25'] = '{0} crawls on all fours to {1}.'.format(executer, user)
         interaction['26'] = '{0} stands wearing a latex maid uniform, offering a glass of wine to {1}.'.format(executer, user)
         interaction['27'] = '{0} waves their feet in the face of {1}.'.format(executer, user)
+        interaction['28'] = '{0} gives a candy bar to {1}.'.format(executer, user)
+        interaction['29'] = '{0} throws a rock at {1}.'.format(executer, user)
+        interaction['30'] = '{0} licks {1}.'.format(executer, user)
 
         if member.id == self.bot.user.id:
             await self.bot.say('**Error: Could not interact.**')
