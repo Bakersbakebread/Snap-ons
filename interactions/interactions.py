@@ -3,7 +3,6 @@ import random
 import discord
 
 class Interactions:
-    """Interact with other users! Time to get social!"""
     def __init__(self, bot):
         self.bot = bot
 
@@ -11,7 +10,7 @@ class Interactions:
 
     @commands.command(pass_context=True)
     async def kill(self, context, member : discord.Member):
-        """Wanna kill someone? Wanna be the troll kind? You've got the perfect command for the lulz! 25 unique and funny kill commands!"""
+        """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 25 unique and funny kill commands!"""
         killer = context.message.author.mention
         victim = member.mention
         technique = {}
@@ -57,7 +56,7 @@ class Interactions:
         interaction['3'] = '{0} shakes hands with {1}.'.format(executer, user)
         interaction['4'] = '{0} bows down to {1}.'.format(executer, user)
         interaction['5'] = '{0} pokes {1}.'.format(executer, user)
-        interaction['6'] = '{0} spanks {1}.'.format(executer, user)
+        interaction['6'] = '{0} tickles {1}.'.format(executer, user)
         interaction['7'] = '{0} slaps {1}.'.format(executer, user)
         interaction['8'] = '{0} scratches {1}.'.format(executer, user)
         interaction['9'] = '{0} bites {1}.'.format(executer, user)
@@ -68,7 +67,7 @@ class Interactions:
         interaction['14'] = '{0} kneels down to {1}.'.format(executer, user)
         interaction['15'] = '{0} gets the box of toys out from {1}.'.format(executer, user)
         interaction['16'] = '{0} ties up {1}.'.format(executer, user)
-        interaction['17'] = '{0} ties up and teases{1}.'.format(executer, user)
+        interaction['17'] = '{0} ties up and tickles {1}.'.format(executer, user)
         interaction['18'] = '{0} kisses {1}.'.format(executer, user)
         interaction['19'] = '{0} meows at {1}.'.format(executer, user)
         interaction['20'] = '{0} maow meeeeeeoooooows at {1}.'.format(executer, user)
@@ -77,7 +76,7 @@ class Interactions:
         interaction['23'] = '{0} wwwwuuuuuuuuuffff wwwwuuuuffffs at {1}.'.format(executer, user)
         interaction['24'] = '{0} sniffs {1}.'.format(executer, user)
         interaction['25'] = '{0} crawls on all fours to {1}.'.format(executer, user)
-        interaction['26'] = '{0} stands wearing a latex Maid uniform, offering a glass of wine to {1}.'.format(executer, user)
+        interaction['26'] = '{0} stands wearing a latex maid uniform, offering a glass of wine to {1}.'.format(executer, user)
         interaction['27'] = '{0} waves their feet in the face of {1}.'.format(executer, user)
 
         if member.id == self.bot.user.id:
