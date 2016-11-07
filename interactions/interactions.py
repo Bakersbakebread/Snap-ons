@@ -60,7 +60,7 @@ class Interactions:
         interaction['7'] = '{0} slaps {1}.'.format(executer, user)
         interaction['8'] = '{0} scratches {1}.'.format(executer, user)
         interaction['9'] = '{0} bites {1}.'.format(executer, user)
-        interaction['10'] = '{0} flogs {1}.'.format(executer, user)
+        interaction['10'] = '{0} sells {1} for a dime.'.format(executer, user)
         interaction['11'] = '{0} canes {1}.'.format(executer, user)
         interaction['12'] = '{0} whips {1}.'.format(executer, user)
         interaction['13'] = '{0} restrains {1}'.format(executer, user)
