@@ -66,7 +66,7 @@ class Plants:
         plant['40'] = 'a: **Truffula Tree* [LEGENDARY] http://i.imgur.com/cFSmaHH.png'
 
         await self.bot.say('{0}, you have sown the seed! http://i.imgur.com/4uIktZQ.jpg'.format(gardener))
-        t1 = random.randint(1800, 3600)
+        t1 = random.randint(1200, 3600)
         await asyncio.sleep(t1)
         await self.bot.say('{0}, your plant need water! Do you want to water it? (yes/no)'.format(gardener))
         answer = await self.bot.wait_for_message(timeout=300,
@@ -76,7 +76,7 @@ class Plants:
             await self.bot.say('{0}, your plant has died...'.format(gardener))
         elif answer.content.lower().strip() == "yes":
             await self.bot.say('You have successfully watered the plant.')
-            t2 = random.randint(1800, 3600)
+            t2 = random.randint(1200, 3600)
             await asyncio.sleep(t2)
             await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
             answer = await self.bot.wait_for_message(timeout=300,
@@ -86,7 +86,7 @@ class Plants:
                 await self.bot.say('{0}, your plant has died...'.format(gardener))
             elif answer.content.lower().strip() == "yes":
                 await self.bot.say('You have successfully fertilized the soil.')
-                t3 = random.randint(1800, 3600)
+                t3 = random.randint(1200, 3600)
                 await asyncio.sleep(t3)
                 await self.bot.say('{0}, you have grown {1}'.format(gardener, random.choice([plant[i] for i in plant])))
             else:
