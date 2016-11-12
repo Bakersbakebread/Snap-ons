@@ -4,70 +4,74 @@ import discord
 import asyncio
 
 class Plants:
-    """Grow your own plants! There are 15 of them!"""
+    """Grow your own plants! There are 40 of them!"""
     def __init__(self, bot):
         self.bot = bot
     
     @commands.command(pass_context=True)
     async def grow(self, context):
-        """Grow a plant!"""
+        """Grow a plant! Costs 100$ to plant one!"""
         gardener = context.message.author.mention
 
-        plant = {} #No plants were harmed in making of this cog. (Well, if you kill them while using this cog...)
-        plant['1'] = 'a: **Dandelion** [COMMON] http://i.imgur.com/emqnQP2.jpg'
-        plant['2'] = 'a: **Poppy** [COMMON] http://i.imgur.com/S4hjyUX.jpg'
-        plant['3'] = 'a: **Daisy** [COMMON] http://i.imgur.com/lcFq4AB.jpg'
-        plant['4'] = 'a: **Daffodil** [COMMON] http://i.imgur.com/pnCCRsH.jpg'
-        plant['5'] = 'a: **Chrysanthemum** [COMMON] http://i.imgur.com/5jLtqWL.jpg'
-        plant['6'] = 'an: **Aster** [COMMON] http://i.imgur.com/1tN04Hl.jpg'
-        plant['7'] = 'a: **Pansy** [COMMON] http://i.imgur.com/f7TgD1b.jpg'
-        plant['8'] = 'a: **Lavender** [COMMON] http://i.imgur.com/g3OmOSK.jpg'
-        plant['9'] = 'a: **Lily** [COMMON] http://imgur.com/a/HTEgm'
-        plant['10'] = 'a: **Petunia** [COMMON] http://i.imgur.com/rJm8ISv.jpg'
-        plant['11'] = 'an: **Aloe Vera** [COMMON] http://i.imgur.com/WFAYIpx.jpg'
-        plant['12'] = 'a: **Tulip** [COMMON] http://i.imgur.com/kodIFjE.jpg'
-        plant['13'] = 'a: **Rose** [COMMON] http://i.imgur.com/sdTNiOH.jpg'
-        plant['14'] = 'a: **Sunflower** [COMMON] http://i.imgur.com/AzgzQK9.jpg'
-        plant['15'] = 'an: **Orchid** [COMMON] http://i.imgur.com/IQrQYDC.jpg'
-        plant['16'] = 'a: **Four-Leaved Clover** [COMMON] http://i.imgur.com/0GSsABG.jpg'
-        plant['17'] = 'a: **Dragon Fruit** [UNCOMMON] http://i.imgur.com/pfngpDS.jpg'
-        plant['18'] = 'a: **Mango** [UNCOMMON] http://i.imgur.com/ybR78Oc.jpg'
-        plant['19'] = 'a: **Lychee** [UNCOMMON] http://i.imgur.com/w9LkfhX.jpg'
-        plant['20'] = 'a: **Durian** [UNCOMMON] http://i.imgur.com/jh249fz.jpg'
-        plant['21'] = 'a: **Fig** [UNCOMMON] http://i.imgur.com/YkhnpEV.jpg'
-        plant['22'] = 'a: **Jack Fruit** [UNCOMMON] http://i.imgur.com/2D79TlA.jpg'
-        plant['23'] = 'a: **Prickly Pear** [UNCOMMON] http://i.imgur.com/GrcGAGj.jpg'
-        plant['24'] = 'a: **Pineapple** [UNCOMMON] http://i.imgur.com/VopYQtr.jpg'
-        plant['25'] = 'a: **Citron** [UNCOMMON] http://i.imgur.com/zh7Dr23.jpg'
-        plant['26'] = 'a: **Cherimoya** [UNCOMMON] http://i.imgur.com/H62gQK6.jpg'
-        plant['27'] = 'a: **Mangosteen** [UNCOMMON] http://i.imgur.com/McNnMqa.jpg'
-        plant['28'] = 'a: **Apple** [UNCOMMON] http://i.imgur.com/QI3UTR3.jpg'
-        plant['29'] = 'a: **Bamboo** [UNCOMMON] http://i.imgur.com/gIQrMcN.jpg'
-        plant['30'] = 'a: **Orange** [UNCOMMON] http://i.imgur.com/lwjEJTm.jpg'
-        plant['31'] = 'a: **Guava** [UNCOMMON] http://i.imgur.com/iy8WgPt.jpg'
-        plant['32'] = 'a: **Franklin Tree** [RARE] http://i.imgur.com/hoh17hp.jpg'
-        plant['33'] = 'a: **Jade Vine** [RARE] http://i.imgur.com/h4fJo2R.jpg'
-        plant['34'] = 'a: **Koki\'o** [RARE] http://i.imgur.com/Dhw9ync.jpg'
-        plant['25'] = 'a: **Parrot\'s Beak** [RARE] http://i.imgur.com/lhSjfQY.jpg'
-        plant['26'] = 'a: **Chocolate Cosmos** [RARE] http://i.imgur.com/4ArSekX.jpg'
-        plant['27'] = 'a: **Venus Fly Trap** [RARE] http://i.imgur.com/NoSdxXh.jpg'
-        plant['28'] = 'a: **Pizza Plant** [SUPER RARE] http://i.imgur.com/ASZXr7C.png'
-        plant['29'] = 'a: **Radiant Roxy Rose** [SUPER RARE] http://i.imgur.com/aLe56mr.png'
-        plant['30'] = 'a: **Pod Plant** [SUPER RARE] http://i.imgur.com/ECAGMUM.jpg'
-        plant['31'] = 'a: **Pirahna Plant** [SUPER RARE] http://i.imgur.com/c03i9W7.jpg'
-        plant['32'] = 'a: **Peashooter** [SUPER RARE] http://imgur.com/a/IJBu2'
-        plant['33'] = 'a: **Starlight Rose** [EPIC] http://i.imgur.com/em8Kg5M.png'
-        plant['34'] = 'a: **Groot** [EPIC] http://i.imgur.com/9f5QzaW.jpg'
-        plant['35'] = 'a: **Triffid** [EPIC] http://i.imgur.com/WZlwqUt.jpg'
-        plant['36'] = 'an: **Athelas** [EPIC] http://i.imgur.com/PNNMEjB.jpg'
-        plant['37'] = 'a: **Pikmin** [EPIC] http://i.imgur.com/cFSmaHH.png'
-        plant['38'] = 'a: **Money Tree** [LEGENDARY] http://i.imgur.com/MIJQDLL.jpg'
-        plant['39'] = 'a: **Whomping Willow** [LEGENDARY] http://i.imgur.com/Ibwm2xY.jpg'
-        plant['40'] = 'a: **Truffula Tree* [LEGENDARY] http://i.imgur.com/cFSmaHH.png'
+        plant = [
+            {'name': 'Dandelion', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/emqnQP2.jpg', 'cash' : '500'},
+            {'name': 'Poppy', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/S4hjyUX.jpg', 'cash' : '500'},
+            {'name': 'Daisy', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/lcFq4AB.jpg', 'cash' : '500'},
+            {'name': 'Chrysanthemum', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/5jLtqWL.jpg', 'cash' : '500'},
+            {'name': 'Pansy', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/f7TgD1b.jpg', 'cash' : '500'},
+            {'name': 'Lavender', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/g3OmOSK.jpg', 'cash' : '500'},
+            {'name': 'Lily', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/0hzy7lO.jpg', 'cash' : '500'},
+            {'name': 'Petunia', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/rJm8ISv.jpg', 'cash' : '500'},
+            {'name': 'Sunflower', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/AzgzQK9.jpg', 'cash' : '500'},
+            {'name': 'Daffodil', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/pnCCRsH.jpg', 'cash' : '500'},
+            {'name': 'Clover', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/0GSsABG.jpg', 'cash' : '500'},
+            {'name': 'Tulip', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/kodIFjE.jpg', 'cash' : '500'},
+            {'name': 'Rose', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/sdTNiOH.jpg', 'cash' : '500'},
+            {'name': 'Aster', 'article' : 'an', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/1tN04Hl.jpg', 'cash' : '500'},
+            {'name': 'Aloe Vera', 'article' : 'an', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/WFAYIpx.jpg', 'cash' : '500'},
+            {'name': 'Orchid', 'article' : 'an', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/IQrQYDC.jpg', 'cash' : '500'},
+            {'name': 'Dragon Fruit Plant', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/pfngpDS.jpg', 'cash' : '1000'},
+            {'name': 'Mango Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/ybR78Oc.jpg', 'cash' : '1000'},
+            {'name': 'Lychee Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/w9LkfhX.jpg', 'cash' : '1000'},
+            {'name': 'Durian Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/jh249fz.jpg', 'cash' : '1000'},
+            {'name': 'Fig Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/YkhnpEV.jpg', 'cash' : '1000'},
+            {'name': 'Jack Fruit Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/2D79TlA.jpg', 'cash' : '1000'},
+            {'name': 'Prickly Pear Plant', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/GrcGAGj.jpg', 'cash' : '1000'},
+            {'name': 'Pineapple Plant', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/VopYQtr.jpg', 'cash' : '1000'},
+            {'name': 'Citron Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/zh7Dr23.jpg', 'cash' : '1000'},
+            {'name': 'Cherimoya Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/H62gQK6.jpg', 'cash' : '1000'},
+            {'name': 'Mangosteen Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/McNnMqa.jpg', 'cash' : '1000'},
+            {'name': 'Guava Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/iy8WgPt.jpg', 'cash' : '1000'},
+            {'name': 'Orange Tree', 'article' : 'an', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/lwjEJTm.jpg', 'cash' : '1000'},
+            {'name': 'Apple Tree', 'article' : 'an', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/QI3UTR3.jpg', 'cash' : '1000'},
+            {'name': 'Sapodilla Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/6BvO5Fu.jpg', 'cash' : '1000'},
+            {'name': 'Franklin Tree', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/hoh17hp.jpg', 'cash' : '2500'},
+            {'name': 'Parrot\'s Beak', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/lhSjfQY.jpg', 'cash' : '2500'},
+            {'name': 'Koki\'o', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/Dhw9ync.jpg', 'cash' : '2500'},
+            {'name': 'Jade Vine', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/h4fJo2R.jpg', 'cash' : '2500'},
+            {'name': 'Venus Fly Trap', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/NoSdxXh.jpg', 'cash' : '2500'},
+            {'name': 'Chocolate Cosmos', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/4ArSekX.jpg', 'cash' : '2500'},
+            {'name': 'Pizza Plant', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://i.imgur.com/ASZXr7C.png', 'cash' : '5000'},
+            {'name': 'Radiant Roxy Rose', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://i.imgur.com/aLe56mr.png', 'cash' : '5000'},
+            {'name': 'Pirahna Plant', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://i.imgur.com/c03i9W7.jpg', 'cash' : '5000'},
+            {'name': 'Pod Plant', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://i.imgur.com/ECAGMUM.jpg', 'cash' : '5000'},
+            {'name': 'Peashooter', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://imgur.com/a/IJBu2', 'cash' : '5000'},
+            {'name': 'Starlight Rose', 'article' : 'a', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/em8Kg5M.png', 'cash' : '7500'},
+            {'name': 'Pikmin', 'article' : 'a', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/cFSmaHH.png', 'cash' : '7500'},
+            {'name': 'Groot', 'article' : 'a', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/9f5QzaW.jpg', 'cash' : '7500'},
+            {'name': 'Triffid', 'article' : 'a', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/WZlwqUt.jpg', 'cash' : '7500'},
+            {'name': 'Athelas', 'article' : 'an', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/PNNMEjB.jpg', 'cash' : '7500'},
+            {'name': 'Money Tree', 'article' : 'a', 'time': 3600, 'rarity': 'legendary', 'link' : 'http://i.imgur.com/MIJQDLL.jpg', 'cash' : '10000'},
+            {'name': 'Truffula Tree', 'article' : 'a', 'time': 3600, 'rarity': 'legendary', 'link' : 'http://i.imgur.com/cFSmaHH.png', 'cash' : '10000'},
+            {'name': 'Whomping Willow', 'article' : 'a', 'time': 3600, 'rarity': 'legendary', 'link' : 'http://i.imgur.com/Ibwm2xY.jpg', 'cash' : '10000'}
+                ]
 
-        await self.bot.say('{0}, you have sown the seed! http://i.imgur.com/4uIktZQ.jpg'.format(gardener))
-        t1 = random.randint(1200, 3600)
-        await asyncio.sleep(t1)
+        used = random.choice(plant)
+
+        bank = self.bot.get_cog('Economy').bank
+        bank.withdraw_credits(context.message.author, 100)
+        await self.bot.say('{0}, you have sown the seed for 100$! http://i.imgur.com/4uIktZQ.jpg'.format(gardener))
+        await asyncio.sleep(used['time'])
         await self.bot.say('{0}, your plant need water! Do you want to water it? (yes/no)'.format(gardener))
         answer = await self.bot.wait_for_message(timeout=300,
                                                  author=context.message.author)
@@ -76,8 +80,7 @@ class Plants:
             await self.bot.say('{0}, your plant has died...'.format(gardener))
         elif answer.content.lower().strip() == "yes":
             await self.bot.say('You have successfully watered the plant.')
-            t2 = random.randint(1200, 3600)
-            await asyncio.sleep(t2)
+            await asyncio.sleep(used['time'])
             await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
             answer = await self.bot.wait_for_message(timeout=300,
                                                      author=context.message.author)
@@ -86,9 +89,10 @@ class Plants:
                 await self.bot.say('{0}, your plant has died...'.format(gardener))
             elif answer.content.lower().strip() == "yes":
                 await self.bot.say('You have successfully fertilized the soil.')
-                t3 = random.randint(1200, 3600)
-                await asyncio.sleep(t3)
-                await self.bot.say('{0}, you have grown {1}'.format(gardener, random.choice([plant[i] for i in plant])))
+                await asyncio.sleep(used['time'])
+                await self.bot.say('{0}, you have grown {1} **{2}** [{3}] {4}'.format(gardener, used['article'], user['name'], used['rarity'], used['link']))
+                bank.deposit_credits(context.message.author, used['cash'])
+                await self.bot.say('You have recieved {0}$ for growing a {1} plant.'.format(cash, rarity))
             else:
                 await self.bot.say('{0}, your plant has died...'.format(gardener))
         else:
