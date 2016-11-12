@@ -29,7 +29,7 @@ class Plants:
         plant['13'] = 'a: **Rose** [COMMON] http://i.imgur.com/sdTNiOH.jpg'
         plant['14'] = 'a: **Sunflower** [COMMON] http://i.imgur.com/AzgzQK9.jpg'
         plant['15'] = 'an: **Orchid** [COMMON] http://i.imgur.com/IQrQYDC.jpg'
-        plant['16'] = 'a: **Four-Leaved Clover*** [COMMON] http://i.imgur.com/0GSsABG.jpg'
+        plant['16'] = 'a: **Four-Leaved Clover** [COMMON] http://i.imgur.com/0GSsABG.jpg'
         plant['17'] = 'a: **Dragon Fruit** [UNCOMMON] http://i.imgur.com/pfngpDS.jpg'
         plant['18'] = 'a: **Mango** [UNCOMMON] http://i.imgur.com/ybR78Oc.jpg'
         plant['19'] = 'a: **Lychee** [UNCOMMON] http://i.imgur.com/w9LkfhX.jpg'
