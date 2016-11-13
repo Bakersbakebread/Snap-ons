@@ -90,9 +90,9 @@ class Plants:
             elif answer.content.lower().strip() == "yes":
                 await self.bot.say('You have successfully fertilized the soil.')
                 await asyncio.sleep(used['time'])
-                await self.bot.say('{0}, you have grown {1} **{2}** [{3}] {4}'.format(gardener, used['article'], user['name'], used['rarity'], used['link']))
+                await self.bot.say('{0}, you have grown {1} **{2}** [{3}] {4}'.format(gardener, used['article'], used['name'], used['rarity'], used['link']))
                 bank.deposit_credits(context.message.author, used['cash'])
-                await self.bot.say('You have recieved {0}$ for growing a {1} plant.'.format(cash, rarity))
+                await self.bot.say('You have recieved {0}$ for growing a {1} plant.'.format(used['cash'], used['rarity']))
             else:
                 await self.bot.say('{0}, your plant has died...'.format(gardener))
         else:
