@@ -39,7 +39,12 @@ class Interactions:
         technique['23'] = '{0} ate an apple and turned out it was made out of wax. Someone died from wax poisoning later that day.'.format(victim)
         technique['24'] = '{0} was teleported to the timeline where Jurassic World was real and they were eaten alive by the Indominus Rex.'.format(victim)
         technique['25'] = '{0} was charging their Samsung Galaxy Note 7...'.format(victim)
-
+        technique['26'] = '{0} shot {1} using the Starkiller Base!'.format(killer, victim)
+        technique['27'] = '{0} was a resident of Alderaan before Darth Vader destroyed the planet...'.format(victim)
+        technique['28'] = '{0} was scooped by {1} and their innards are now Ennard.'.format(victim, killer)
+        technique['29'] = '{0} Alt+F4\'d {1}.exe!'.format(killer, victim)
+        technique['30'] = '{0} was accused of stealing Neptune\'s crown...'.format(victim)
+        
         if member.id == self.bot.user.id:
             await self.bot.say('**{0}, how dare you try to kill me? DIE!**'.format(killer))
         else:
