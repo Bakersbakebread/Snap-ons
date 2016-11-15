@@ -9,10 +9,10 @@ class Interactions:
         #SFW version of kill commond by PaddoCogs. Thanks Kowlin, Twentysix, Redjumpman, and Ruby.
 
     @commands.command(pass_context=True)
-    async def kill(self, context, member : discord.Member):
+    async def kill(self, context, user : discord.Member):
         """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 25 unique and funny kill commands!"""
         killer = context.message.author.mention
-        victim = member.mention
+        victim = user.mention
         technique = {}
         technique['1'] = '{0} shoots  in {1}\'s mouth with rainbow laser, causing {1}\'s head to explode with rainbows and {1} is reborn as unicorn. :unicorn:'.format(killer, victim)
         technique['2'] = '{0} ate a piece of exotic butter. It was so amazing that it killed them.'.format(victim)
@@ -44,16 +44,16 @@ class Interactions:
         technique['28'] = '{0} was scooped by {1} and their innards are now Ennard.'.format(victim, killer)
         technique['29'] = '{0} Alt+F4\'d {1}.exe!'.format(killer, victim)
         technique['30'] = '{0} was accused of stealing Neptune\'s crown...'.format(victim)
-        
-        if member.id == self.bot.user.id:
+
+        if user.id == self.bot.user.id:
             await self.bot.say('**{0}, how dare you try to kill me? DIE!**'.format(killer))
         else:
             await self.bot.say('**{0}**'.format(random.choice([technique[i] for i in technique])))
     @commands.command(pass_context=True)
-    async def interact(self, context, member : discord.Member):
+    async def interact(self, context, user : discord.Member):
         """Interact with the user you mention."""
         executer = context.message.author.mention
-        user = member.mention
+        user = user.mention
         
         interaction = {}
         interaction['1'] = '{0} winks at {1}.'.format(executer, user)
@@ -87,15 +87,15 @@ class Interactions:
         interaction['29'] = '{0} throws a rock at {1}.'.format(executer, user)
         interaction['30'] = '{0} licks {1}.'.format(executer, user)
         
-        if member.id == self.bot.user.id:
+        if user.id == self.bot.user.id:
             await self.bot.say('**Error: Could not interact. Get cleverbot.py from 26-cogs to interact with bot!**')
         else:
             await self.bot.say('**{0}**'.format(random.choice([interaction[i] for i in interaction])))
     @commands.command(pass_context=True)
-    async def poke(self, context, member : discord.Member):
+    async def poke(self, context, user : discord.Member):
         """Poke peeps! :3"""
         pokedoer = context.message.author.mention
-        user = member.mention
+        user = user.mention
 
         poke = {}
         poke['1'] = '{0} pokes {1}\'s eye.'.format(pokedoer, user)
@@ -104,18 +104,19 @@ class Interactions:
         poke['4'] = '{0} pokes {1} with a pin.'.format(pokedoer, user)
         poke['5'] = '{0} pokes {1} on facebook.'.format(pokedoer, user)
 
-        if member.id == self.bot.user.id:
+        if user.id == self.bot.user.id:
             await self.bot.say('**Awww, Don\'t poke me! It makes me laugh!**')
         else:
             await self.bot.say('**{0}**'.format(random.choice([poke[i] for i in poke])))
     @commands.command(pass_context=True)
-    async def throw(self, context, member : discord.Member, *, item : str):
+    async def throw(self, context, user : discord.Member, *, item : str):
+
         """Throw stuff at people!"""
         thrower = context.message.author.mention
-        victim = member.mention
+        victim = user.mention
         b0t = self.bot.user.mention
 
-        if member.id == self.bot.user.id:
+        if user.id == self.bot.user.id:
             await self.bot.say('**You\'re throwing stuff at me! {0} threw {1} at {2}!**'.format(b0t, item, thrower))
         else:
             await self.bot.say('**{0} threw {1} at {2}!**'.format(thrower, item, victim))
