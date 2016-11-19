@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 class FictionalCurrency:
-    """Convert Real Life currencies into Victional Currencies and Vice Versa! Supported Currencies: ``pound (uk), dollar (us)"""
+    """Convert Real Life currencies into Fictional Currencies and Vice Versa! Supported Currencies: ``pound (uk), dollar (us)"""
 
     def __init__(self, bot):
         self.bot = bot
