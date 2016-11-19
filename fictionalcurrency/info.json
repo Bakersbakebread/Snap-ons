@@ -2,6 +2,6 @@
     "AUTHOR" : "SnappyDragon",
     "INSTALL_MSG" : "Currency Exchange for Fictional Worlds is now active!",
     "NAME" : "FictionalCurrency",
-    "SHORT" : "Convert Real Life currencies into Victional Currencies and Vice Versa!",
-    "DESCRIPTION" : "Convert Real Life currencies into Victional Currencies and Vice Versa! Supported Currencies: ``pound (uk), dollar (us)"
+    "SHORT" : "Convert Real Life currencies into Fictional Currencies and Vice Versa!",
+    "DESCRIPTION" : "Convert Real Life currencies into Fictional Currencies and Vice Versa! Supported Currencies: ``pound (uk), dollar (us)"
 }
