@@ -72,7 +72,7 @@ class Plants:
         bank.withdraw_credits(context.message.author, 100)
         await self.bot.say('{0}, you have sown the seed for 100$! http://i.imgur.com/4uIktZQ.jpg'.format(gardener))
         await asyncio.sleep(used['time'])
-        await self.bot.say('{0}, your plant need water! Do you want to water it? (yes/no)'.format(gardener))
+        await self.bot.say('{0}, your plant needs water! Do you want to water it? (yes/no)'.format(gardener))
         answer = await self.bot.wait_for_message(timeout=300,
                                                  author=context.message.author)
 
