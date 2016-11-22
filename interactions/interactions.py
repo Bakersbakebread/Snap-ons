@@ -53,7 +53,7 @@ class Interactions:
     async def interact(self, context, user : discord.Member):
         """Interact with the user you mention."""
         executer = context.message.author.mention
-        user = user.mention
+        victim = user.mention
         
         interaction = {}
         interaction['1'] = '{0} winks at {1}.'.format(executer, user)
@@ -87,7 +87,7 @@ class Interactions:
         interaction['29'] = '{0} throws a rock at {1}.'.format(executer, user)
         interaction['30'] = '{0} licks {1}.'.format(executer, user)
         
-        if discord.Member.id == self.bot.user.id:
+        if user.id == self.bot.user.id:
             await self.bot.say('**Error: Could not interact. Get cleverbot.py from 26-cogs to interact with bot!**')
         else:
             await self.bot.say('**{0}**'.format(random.choice([interaction[i] for i in interaction])))
@@ -95,7 +95,7 @@ class Interactions:
     async def poke(self, context, user : discord.Member):
         """Poke peeps! :3"""
         pokedoer = context.message.author.mention
-        user = user.mention
+        victim = user.mention
 
         poke = {}
         poke['1'] = '{0} pokes {1}\'s eye.'.format(pokedoer, user)
@@ -104,7 +104,7 @@ class Interactions:
         poke['4'] = '{0} pokes {1} with a pin.'.format(pokedoer, user)
         poke['5'] = '{0} pokes {1} on facebook.'.format(pokedoer, user)
 
-        if discord.Member.id == self.bot.user.id:
+        if user.id == self.bot.user.id:
             await self.bot.say('**Awww, Don\'t poke me! It makes me laugh!**')
         else:
             await self.bot.say('**{0}**'.format(random.choice([poke[i] for i in poke])))
