@@ -156,7 +156,7 @@ class Seasonal:
     async def adventcalendar(self):
         """Get gifts on each of the 25 days leading up to Christmas!"""
         d = datetime.date.today()
-        cday = d.month
+        cday = d.day
         cmonth = d.month
 
         if (cmonth == 12 and cday == 1):
