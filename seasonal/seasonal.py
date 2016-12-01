@@ -153,7 +153,7 @@ class Seasonal:
         else:
             await self.bot.say('**It\'s not time for Thanksgiving!**')
     @commands.command()
-    async def adventcalendar(self):
+    async def adventcalender(self):
         """Get gifts on each of the 25 days leading up to Christmas!"""
         d = datetime.date.today()
         cday = d.day
@@ -210,6 +210,6 @@ class Seasonal:
         elif (cmonth == 12 and cday == 25):
             await self.bot.say('Merry Christmas! Your final gift is... https://www.cyberpowerpc.com/images/cs/obsidian750dair/blk_220.png')
         else:
-            await self.bot.say('**It\'s not December! Come back later to use the Advent Calendar!**')
+            await self.bot.say('**It\'s not December! Come back later to use the Advent Calender!**')
 def setup(bot):
     bot.add_cog(Seasonal(bot))
