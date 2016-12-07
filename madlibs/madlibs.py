@@ -3,14 +3,14 @@ from discord.ext import commands
 import random
 
 class MadLibs:
-    """Play the old school book game, Mad Libs, now on discord!. Use "" to enter stuff that is two words or longer."""
+    """Play the old school book game, Mad Libs, now on discord!"""
 
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command()
     async def madlibs(self, name : str, verb_past : str, adjective : str, profession : str, food : str, location : str, number : int, thing_plural : str, body_part : str, famous_person : str):
-        """Play the old school book game, Mad Libs, now on discord!. Use "" to enter stuff that is two words or longer."""
+        """Play the old school book game, Mad Libs, now on discord! Use "" to enter stuff that is two words or longer."""
 
         #Data input reference:
         # {0} = 'name'
