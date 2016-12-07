@@ -31,7 +31,7 @@ class MadLibs:
         lib['4'] = '{0} {1} {9} because they were given a dare while playing Truth or Dare at {5} with the {3} and {9}. They had to do {6} {2} dares including {7} and {4}.'
         lib['5'] = '{9} held a halloween party at {5}. It was {2} and they invited me and {3} {0}. They served {6} {7} and {4} which had to be {1} using one\'s {8}.'
         lib['6'] = '{0} and {9} went on an easter egg hunt at the {3}\'s {5}. They {1} {2} {4}, {8} and {7} from the eggs.'
-        lib['7'] = '{0} became a {2} {3} after they were {2} by {9}. They now work at {8} {5} and have {4} with {6} {7} for lunch.'
+        lib['7'] = '{0} became a {2} {3} after they were {1} by {9}. They now work at {8} {5} and have {4} with {6} {7} for lunch.'
         lib['8'] = '{0} and Luigi {1} Bowser\'s {2} {8} to save {3} {9} from Bowser\'s {5}, which was actually made from {6} {7}. The gang had {4} after their win!'
         lib['9'] = 'I once visited {3} {8} {9}\'s {2} concert at {5}. I had to send {6} entries to get my tickets and I {1} my best friend, {0}. We had {4} and we were also given {7]!'
         lib['10'] = 'I {1} {9} in {5} and after {6} weeks, they sold them. Their {8} was missing after they were fed {4} and {2}  {7}! Of course the buyer, {3} {0} was ripped off!'
