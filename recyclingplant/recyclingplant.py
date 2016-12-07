@@ -64,8 +64,9 @@ class RecyclingPlant:
             {'object': 'Soda Bottle', 'action': 'recycle'}
               ]
         await self.bot.say('{0} has signed up for a shift at the Recycling Plant! Type ``exit`` to terminate it early.'.format(context.message.author.mention))
-        for x in range(0, 10):
+        while x in range(0, 10):
             used = random.choice(can)
+            reward = 0
             if used['action'] == 'trash':
                 opp = 'recycle'
             else:
@@ -76,10 +77,12 @@ class RecyclingPlant:
             if answer is None:
                 await self.bot.say('``{0}`` fell down the conveyor belt to be sorted again!'.format(used['object']))
             elif answer.content.lower().strip() == used['action']:
-                await self.bot.say('Congratulations! You put ``{0}`` down the correct chute!'.format(used['object']))
+                await self.bot.say('Congratulations! You put ``{0}`` down the correct chute! (**+50**)'.format(used['object']))
+                reward = reward + 50
                 x += 1
             elif answer.content.lower().strip() == opp:
-                await self.bot.say('{0}, you little brute, you put it down the wrong chute!'.format(context.message.author.mention))
+                await self.bot.say('{0}, you little brute, you put it down the wrong chute! (**-50**)'.format(context.message.author.mention))
+                reward = reward - reward
             elif answer.content.lower().strip() == 'exit':
                 await self.bot.say('{0} has been relived of their duty.'.format(context.message.author.mention))
                 break
@@ -87,7 +90,10 @@ class RecyclingPlant:
                 await self.bot.say('``{0}`` fell down the conveyor belt to be sorted again!'.format(used['object']))
         else:
             bank = self.bot.get_cog('Economy').bank
-            bank.deposit_credits(context.message.author, 500)
-            await self.bot.say('You have been rewarded **500$** for your services.')
+            if reward < 0:
+                bank.deposit_credits(context.message.author, 0)
+            else:
+                bank.deposit_credits(context.message.author, reward)
+            await self.bot.say('You have been given **{0}$** for your services.'.format(reward))
 def setup(bot):
     bot.add_cog(RecyclingPlant(bot))
