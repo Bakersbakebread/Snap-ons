@@ -3,7 +3,7 @@ from discord.ext import commands
 import random
 
 class MadLibs:
-    """Check if a website is down for everyone or just for you or check about a website's safety."""
+    """Play the old school book game, Mad Libs, now on discord!. Use "" to enter stuff that is two words or longer."""
 
     def __init__(self, bot):
         self.bot = bot
