@@ -31,12 +31,7 @@ class Unicode:
                 data = repr(c.decode(character, 'unicode-escape'))
                 data = data.strip("'")
             elif character[:2] == 'U+':
-                data = character[2:]
-                data = '\ ' + 'u' + data
-                data = data.strip('\ ')
-                data = repr(c.decode(data, 'unicode-escape'))
-                data = data.strip("'")
-                data = data + ' - Use this value with a backslash (The key below backspace) with ``[p]unicode decode`` to get the character.'
+                data = chr(int(character.lstrip('U+'), 16))
             else:
                 data = '<unknown>'
         except ValueError:
