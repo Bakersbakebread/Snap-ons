@@ -36,7 +36,7 @@ class Unicode:
                 data = data.strip('\ ')
                 data = repr(c.decode(data, 'unicode-escape'))
                 data = data.strip("'")
-                data = data + ' - Use this value with a backslash (The key below backspace with ``[p]unicode decode`` to get the character.'
+                data = data + ' - Use this value with a backslash (The key below backspace) with ``[p]unicode decode`` to get the character.'
             else:
                 data = '<unknown>'
         except ValueError:
