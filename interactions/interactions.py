@@ -6,7 +6,7 @@ class Interactions:
     def __init__(self, bot):
         self.bot = bot
 
-        #SFW version of kill commond by PaddoCogs. Thanks Kowlin, Twentysix, Redjumpman, and Ruby.
+        #SFW version of kill command by PaddoCogs. Thanks Kowlin, Twentysix, Redjumpman, and Ruby.
 
     @commands.command(pass_context=True)
     async def kill(self, context, user : discord.Member):
