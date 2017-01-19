@@ -4,6 +4,7 @@ from random import choice
 import asyncio
 import time
 import discord
+import os
 
 
 class Plants:
@@ -197,7 +198,21 @@ class Plants:
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
 
 
+def check_folder():
+    if not os.path.exists('data/plants'):
+        print('Creating data/plants folder...')
+        os.makedirs('data/plants')
+
+
+def check_file():
+    if not dataIO.is_valid_json('data/plants/gardeners.json'):
+        print('Creating default gardeners.json...')
+        dataIO.save_json('data/plants/gardeners.json', {})
+
+
 def setup(bot):
+    check_folder()
+    check_file
     cog = Plants(bot)
     loop = asyncio.get_event_loop()
     loop.create_task(cog.check_degration())
