@@ -27,7 +27,7 @@ class Plants:
                 now = int(time.time())
                 then = self.gardeners[author.id]['current']['timestamp']
                 to_grow = (self.gardeners[author.id]['current']['time'] - (now - then)) / 60
-                message = 'You\'re growing {0} **{1}**. Its health is **{2:.2f}%** and still has to grow for **{3:.0f}** minutes'.format(plant['article'], plant['name'], plant['health'], to_grow)
+                message = 'You\'re growing {0} **{1}**. Its health is **{2:.2f}%** and still has to grow for **{3:.1f}** minutes.'.format(plant['article'], plant['name'], plant['health'], to_grow)
             await self.bot.say(message)
 
     @_plant.command(pass_context=True, name='me')
@@ -61,7 +61,8 @@ class Plants:
             if gardener['current']:
                 modifiers = sum([self.products[product]['modifier'] for product in gardener['products'] if gardener['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener['badges']])
                 degradation = (100 / (gardener['current']['time'] / 60) * (self.defaults['points']['base_degradation'] + gardener['current']['degradation'])) + modifiers
-                em.set_footer(text='Total degradation: {0:.2f}/{1} min (100 / ({2} / 60) * (BaseDegr {3:.2f} + PlantDegr {4:.2f})) + ModDegr {5:.2f})'.format(degradation, self.defaults['timers']['degradation'], gardener['current']['time'], self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers))
+                die_in = int(gardener['current']['health'] / degradation)
+                em.set_footer(text='Total degradation: {0:.2f}% / {1} min (100 / ({2} / 60) * (BaseDegr {3:.2f} + PlantDegr {4:.2f})) + ModDegr {5:.2f}) Your plant will die in {6} minutes'.format(degradation, self.defaults['timers']['degradation'], gardener['current']['time'], self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers, die_in))
             await self.bot.say(embed=em)
         else:
             await self.bot.say('You haven\'t grown any plants yet.')
@@ -175,9 +176,13 @@ class Plants:
                     then = self.gardeners[gardener]['current']['timestamp']
                     health = self.gardeners[gardener]['current']['health']
                     grow_time = self.gardeners[gardener]['current']['time']
+                    badge = self.gardeners[gardener]['current']['badge']
+                    reward = self.gardeners[gardener]['current']['reward']
                     if (now - then) > grow_time:
                         self.gardeners[gardener]['points'] += self.defaults['points']['complete']
-                        message = 'Your plant made it!'
+                        self.gardeners[gardener]['badges'].append(badge)
+                        # self.bank.deposit_credits(discord.User(id=str(gardener)), reward)
+                        message = 'Your plant made it! You are rewarded with the **{}** badge and **{}** is added to your bank account!'.format(badge, reward)
                         delete = True
                     elif health < 0:
                         message = 'Your plant died!'
