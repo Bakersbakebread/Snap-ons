@@ -6,7 +6,7 @@
     "damage": 25,
     "poison": 50,
     "complete": 250,
-    "base_degradation": 5
+    "base_degradation": 1.5
   }, "timers": {
     "degradation": 1,
     "completion": 1

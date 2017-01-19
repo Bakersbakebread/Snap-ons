@@ -58,9 +58,10 @@ class Plants:
                 for product in gardener['products']:
                     products += '{} ({}) {}\n'.format(product.capitalize(), gardener['products'][product], [0 if gardener['products'][product] < 1 else self.products[product]['modifier']][0])
                 em.add_field(name='**Products**', value=products)
-            modifiers = sum([self.products[product]['modifier'] for product in gardener['products'] if gardener['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener['badges']])
-            degradation = self.defaults['points']['base_degradation'] + gardener['current']['degradation'] + modifiers
-            em.set_footer(text='Total degradation: {0:.2f}/{1} min (BaseDegr {2:.2f} + PlantDegr {3:.2f} + ModDegr {4:.2f})'.format(degradation, self.defaults['timers']['degradation'], self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers))
+            if gardener['current']:
+                modifiers = sum([self.products[product]['modifier'] for product in gardener['products'] if gardener['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener['badges']])
+                degradation = (100 / (gardener['current']['time'] / 60) * (self.defaults['points']['base_degradation'] + gardener['current']['degradation'])) + modifiers
+                em.set_footer(text='Total degradation: {0:.2f}/{1} min (100 / ({2} / 60) * (BaseDegr {3:.2f} + PlantDegr {4:.2f})) + ModDegr {5:.2f})'.format(degradation, self.defaults['timers']['degradation'], gardener['current']['time'], self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers))
             await self.bot.say(embed=em)
         else:
             await self.bot.say('You haven\'t grown any plants yet.')
@@ -156,7 +157,8 @@ class Plants:
             for gardener in self.gardeners:
                 if self.gardeners[gardener]['current']:
                     modifiers = sum([self.products[product]['modifier'] for product in self.gardeners[gardener]['products'] if self.gardeners[gardener]['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in self.gardeners[gardener]['badges']])
-                    self.gardeners[gardener]['current']['health'] -= self.defaults['points']['base_degradation'] + self.gardeners[gardener]['current']['degradation'] + modifiers
+                    degradation = (100 / (self.gardeners[gardener]['current']['time'] / 60) * (self.defaults['points']['base_degradation'] + self.gardeners[gardener]['current']['degradation'])) + modifiers
+                    self.gardeners[gardener]['current']['health'] -= degradation
                     self.gardeners[gardener]['points'] += self.defaults['points']['growing']
                     await self.save_gardeners()
                     if self.gardeners[gardener]['current']['health'] < 5:
