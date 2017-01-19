@@ -58,7 +58,7 @@ class FNAF:
                 await self.bot.say('You see ' + encounter['animatronic'] + ' ' + encounter['location'])
                 await asyncio.sleep(1)
                 await self.bot.say('You hear footsteps coming from the ' + chosen_entry)
-                await self.bot.say('What would you like to do? Enter the number corresponding to the option.)
+                await self.bot.say('What would you like to do? Enter the number corresponding to the option.')
                 print('1. Shine the torch in the vents and close the vent \n2. Close the left door \n3. Close the right door \n4. Watch Hotel Transylvania 2 \n5. Quit')
                 if chosen_entry == entry[0]:
                     ans = 2
