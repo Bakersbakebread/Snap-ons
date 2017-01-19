@@ -58,14 +58,14 @@ class FNAF:
                 await self.bot.say('You see ' + encounter['animatronic'] + ' ' + encounter['location'])
                 await asyncio.sleep(1)
                 await self.bot.say('You hear footsteps coming from the ' + chosen_entry)
-                await self.bot.say('What would you like to do? Enter the number corresponding to the option.')
+                await self.bot.say('What would you like to do? Enter the name of the number corresponding to the option.')
                 await self.bot.say('```1. Shine the torch in the vents and close the vent \n2. Close the left door \n3. Close the right door \n4. Watch Hotel Transylvania 2 \n5. Quit```')
                 if chosen_entry == entry[0]:
-                    ans = 2
+                    ans = "two"
                 elif chosen_entry == entry[1]:
-                    ans = 1
+                    ans = "one"
                 else:
-                    ans = 3
+                    ans = "three"
                 await asyncio.sleep(wait2)
                 answer = await self.bot.wait_for_message(timeout=10,
                                                          author=context.message.author)
@@ -74,7 +74,7 @@ class FNAF:
                     break
                 elif answer.content.lower().strip() == ans:
                     await self.bot.say('You shut out' + encounter['animatronic'] + 'successfully.')
-                elif answer.content.lower().strip() == 5:
+                elif answer.content.lower().strip() == "five":
                     await self.bot.say('You leave the premises through the back window.')
                     break
                 else:
