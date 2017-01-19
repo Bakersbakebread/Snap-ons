@@ -49,12 +49,12 @@ class Seasonal:
         d = datetime.date.today()
         cmonth = d.month
 
-        egg = {}
-        egg['1'] = '**peeps:** https://mymorningchocolate.files.wordpress.com/2010/04/marshmallow-peeps.jpg'
-        egg['2'] = '**stickers:** http://i.ebayimg.com/images/g/VDgAAOSwoBtW2Qk5/s-l300.jpg'
-        egg['3'] = '**mini-toys:** http://g03.a.alicdn.com/kf/HTB1YrkWLVXXXXa5XXXXq6xXFXXXx/1440-pcs-lot-Pokemon-Pikachu-Raichu-Charizard-Arceus-Mewtwo-mini-figures-Anime-Pocket-Monster-PVC-toys.jpg_640x640.jpg'
-        egg['4'] = '**chocolate eggs:** https://cdn.instructables.com/FML/J2OQ/GKI19F8T/FMLJ2OQGKI19F8T.RECT2100.jpg'
-        egg['5'] = '**money:** http://i.forbesimg.com/media/2009/12/16/1216_cash-dollars_650x455.jpg'
+        egg = []
+        egg[0] = '**peeps:** https://mymorningchocolate.files.wordpress.com/2010/04/marshmallow-peeps.jpg'
+        egg[1] = '**stickers:** http://i.ebayimg.com/images/g/VDgAAOSwoBtW2Qk5/s-l300.jpg'
+        egg[2] = '**mini-toys:** http://g03.a.alicdn.com/kf/HTB1YrkWLVXXXXa5XXXXq6xXFXXXx/1440-pcs-lot-Pokemon-Pikachu-Raichu-Charizard-Arceus-Mewtwo-mini-figures-Anime-Pocket-Monster-PVC-toys.jpg_640x640.jpg'
+        egg[3] = '**chocolate eggs:** https://cdn.instructables.com/FML/J2OQ/GKI19F8T/FMLJ2OQGKI19F8T.RECT2100.jpg'
+        egg[4] = '**money:** http://i.forbesimg.com/media/2009/12/16/1216_cash-dollars_650x455.jpg'
 
         if (cmonth == 4):
             await self.bot.say('**{0} found {1}**'.format(egghunter, random.choice([egg[i] for i in egg])))
@@ -102,39 +102,39 @@ class Seasonal:
         cday = d.day
         cmonth = d.month
     
-        surprise = {}
-        surprise['1'] = 'trick: https://i.ytimg.com/vi/lwgch2vrZxs/maxresdefault.jpg'
-        surprise['2'] = 'treat: https://cdn.shopify.com/s/files/1/0972/7116/products/harry-potter-chocolate-frog-unwrapped4_1024x1024.png?v=1459347352'
-        surprise['3'] = 'trick: https://s-media-cache-ak0.pinimg.com/236x/d4/75/5a/d4755aa7bb99a73b38592dd1c4d06df7.jpg'
-        surprise['4'] = 'treat: https://i.kinja-img.com/gawker-media/image/upload/s--8Xs1eS4c--/c_scale,fl_progressive,q_80,w_800/evwu1nukixart6mcn8vw.jpg'
-        surprise['5'] = 'trick: http://scontent.cdninstagram.com/t51.2885-15/e35/12965880_565667836948598_2099180853_n.jpg?ig_cache_key=MTIzNzgxNDM0OTUxMjMyNDk0MA%3D%3D.2'
-        surprise['6'] = 'treat: https://heathersweets.files.wordpress.com/2011/10/haribo-horror-mix-inside.jpg'
-        surprise['7'] = 'trick: https://s-media-cache-ak0.pinimg.com/236x/04/3a/68/043a68cbf7789a508d802be4809ed0f1.jpg'
-        surprise['8'] = 'treat: http://www.bakingdom.com/wp-content/uploads/2010/11/Delicious-Cauldron-Cakes.jpg'
-        surprise['9'] = 'trick: http://vignette4.wikia.nocookie.net/bigbangtheory/images/2/22/Vlcsnap-2011-11-20-15h18m17s164.png/revision/latest?cb=20111120111901'
-        surprise['10'] = 'treat :http://metanomicon.net/wp-content/uploads/2011/12/hansolo.jpg'
-        surprise['11'] = 'trick: http://cdn.mos.cms.futurecdn.net/k5MFr2h8GviPwuBnuKDzSN-970-80.jpg'
-        surprise['12'] = 'treat: http://www.ics.uci.edu/~eppstein/pix/t7bd/BottsBeans-m.jpg'
-        surprise['13'] = 'trick: https://i.ytimg.com/vi/4U7l9AvVT_E/hqdefault.jpg'
-        surprise['14'] = 'treat: http://2.bp.blogspot.com/_rzdB5a4kLAo/THbY9-VGbLI/AAAAAAAAVjY/INzjpgmJIk8/s1600/e59b_stay_puft_marshmallows.jpg'
-        surprise['15'] = 'trick: https://v.cdn.vine.co/r/avatars/678A1382AC1394436560929370112_10abb68344d.3.4.jpg?versionId=thOdcbEvqApSRbfgPk8WYGJYg5rwH3ZH'
-        surprise['16'] = 'treat: http://sweets.seriouseats.com/images/images/2011/10/20111011-candy-a-day-nerds.jpg'
-        surprise['17'] = 'trick: http://static2.hypable.com/wp-content/uploads/2015/05/Dementor-wasp-2.jpg'
-        surprise['18'] = 'treat: https://pioneerpartyandgift.com/image/cache/data/product/pioneer_party_eyeball_gumballs-500x500.jpg'
-        surprise['19'] = 'trick: http://i.imgur.com/nbcTtZC.gif'
-        surprise['20'] = 'treat: http://www.zombiegift.com/zombie-blog/wp-content/uploads/2014/01/zombie-bar-chocolate-bar-sugar-plum-chocolates-zombie-chocolate-bar-review11.jpg'
-        surprise['21'] = 'trick: http://media.tumblr.com/tumblr_lkqcixv4UN1qd3url.gif'
-        surprise['22'] = 'treat: https://cdn.instructables.com/FM3/X5MC/H88XIJR6/FM3X5MCH88XIJR6.MEDIUM.jpg'
-        surprise['23'] = 'trick: http://img00.deviantart.net/12db/i/2006/185/a/4/jack_skellington_by_kev2137.jpg'
-        surprise['24'] = 'treat: http://melvillecandy.com/assets/images/spooky_assortment.jpg'
-        surprise['25'] = 'trick: https://upload.wikimedia.org/wikipedia/commons/2/2f/Roachies.JPG'
-        surprise['26'] = 'treat: https://cdn.discordapp.com/attachments/237897212791619584/242635869884776451/download_31.jpg'
-        surprise['27'] = 'trick: http://akphoto4.ask.fm/887/424/258/910003021-1sall78-c0gn67b3hog258a/original/Riddlesolved.jpg'
-        surprise['28'] = 'treat: http://www.partycity.com/images/products/en_us/gateways/candy-2015/candy-by-type/candy-by-type-bubblegum.jpg'
-        surprise['29'] = 'trick: http://i2.kym-cdn.com/photos/images/original/001/063/320/27c.jpg'
-        surprise['30'] = 'treat: http://67.media.tumblr.com/268692a326296b9571409c235cc6ac44/tumblr_inline_nyws9cnoXd1tbiwft_1280.jpg'
-        surprise['31'] = 'trick: http://vignette2.wikia.nocookie.net/freddy-fazbears-pizza/images/0/0f/FNAFSL_Ennard_Model.png/revision/latest/'
-        surprise['32'] = 'treat: https://s-media-cache-ak0.pinimg.com/736x/84/eb/ce/84ebce7a284c1c40d20b4aa1dd13734c.jpg'
+        surprise = []
+        surprise[0] = 'trick: https://i.ytimg.com/vi/lwgch2vrZxs/maxresdefault.jpg'
+        surprise[1] = 'treat: https://cdn.shopify.com/s/files/1/0972/7116/products/harry-potter-chocolate-frog-unwrapped4_1024x1024.png?v=1459347352'
+        surprise[2] = 'trick: https://s-media-cache-ak0.pinimg.com/236x/d4/75/5a/d4755aa7bb99a73b38592dd1c4d06df7.jpg'
+        surprise[3] = 'treat: https://i.kinja-img.com/gawker-media/image/upload/s--8Xs1eS4c--/c_scale,fl_progressive,q_80,w_800/evwu1nukixart6mcn8vw.jpg'
+        surprise[4] = 'trick: http://scontent.cdninstagram.com/t51.2885-15/e35/12965880_565667836948598_2099180853_n.jpg?ig_cache_key=MTIzNzgxNDM0OTUxMjMyNDk0MA%3D%3D.2'
+        surprise[5] = 'treat: https://heathersweets.files.wordpress.com/2011/10/haribo-horror-mix-inside.jpg'
+        surprise[6] = 'trick: https://s-media-cache-ak0.pinimg.com/236x/04/3a/68/043a68cbf7789a508d802be4809ed0f1.jpg'
+        surprise[7] = 'treat: http://www.bakingdom.com/wp-content/uploads/2010/11/Delicious-Cauldron-Cakes.jpg'
+        surprise[8] = 'trick: http://vignette4.wikia.nocookie.net/bigbangtheory/images/2/22/Vlcsnap-2011-11-20-15h18m17s164.png/revision/latest?cb=20111120111901'
+        surprise[9] = 'treat :http://metanomicon.net/wp-content/uploads/2011/12/hansolo.jpg'
+        surprise[10] = 'trick: http://cdn.mos.cms.futurecdn.net/k5MFr2h8GviPwuBnuKDzSN-970-80.jpg'
+        surprise[11] = 'treat: http://www.ics.uci.edu/~eppstein/pix/t7bd/BottsBeans-m.jpg'
+        surprise[12] = 'trick: https://i.ytimg.com/vi/4U7l9AvVT_E/hqdefault.jpg'
+        surprise[13] = 'treat: http://2.bp.blogspot.com/_rzdB5a4kLAo/THbY9-VGbLI/AAAAAAAAVjY/INzjpgmJIk8/s1600/e59b_stay_puft_marshmallows.jpg'
+        surprise[14] = 'trick: https://v.cdn.vine.co/r/avatars/678A1382AC1394436560929370112_10abb68344d.3.4.jpg?versionId=thOdcbEvqApSRbfgPk8WYGJYg5rwH3ZH'
+        surprise[15] = 'treat: http://sweets.seriouseats.com/images/images/2011/10/20111011-candy-a-day-nerds.jpg'
+        surprise[16] = 'trick: http://static2.hypable.com/wp-content/uploads/2015/05/Dementor-wasp-2.jpg'
+        surprise[17] = 'treat: https://pioneerpartyandgift.com/image/cache/data/product/pioneer_party_eyeball_gumballs-500x500.jpg'
+        surprise[18] = 'trick: http://i.imgur.com/nbcTtZC.gif'
+        surprise[19] = 'treat: http://www.zombiegift.com/zombie-blog/wp-content/uploads/2014/01/zombie-bar-chocolate-bar-sugar-plum-chocolates-zombie-chocolate-bar-review11.jpg'
+        surprise[20] = 'trick: http://media.tumblr.com/tumblr_lkqcixv4UN1qd3url.gif'
+        surprise[21] = 'treat: https://cdn.instructables.com/FM3/X5MC/H88XIJR6/FM3X5MCH88XIJR6.MEDIUM.jpg'
+        surprise[22] = 'trick: http://img00.deviantart.net/12db/i/2006/185/a/4/jack_skellington_by_kev2137.jpg'
+        surprise[23] = 'treat: http://melvillecandy.com/assets/images/spooky_assortment.jpg'
+        surprise[24] = 'trick: https://upload.wikimedia.org/wikipedia/commons/2/2f/Roachies.JPG'
+        surprise[25] = 'treat: https://cdn.discordapp.com/attachments/237897212791619584/242635869884776451/download_31.jpg'
+        surprise[26] = 'trick: http://akphoto4.ask.fm/887/424/258/910003021-1sall78-c0gn67b3hog258a/original/Riddlesolved.jpg'
+        surprise[27] = 'treat: http://www.partycity.com/images/products/en_us/gateways/candy-2015/candy-by-type/candy-by-type-bubblegum.jpg'
+        surprise[28] = 'trick: http://i2.kym-cdn.com/photos/images/original/001/063/320/27c.jpg'
+        surprise[29] = 'treat: http://67.media.tumblr.com/268692a326296b9571409c235cc6ac44/tumblr_inline_nyws9cnoXd1tbiwft_1280.jpg'
+        surprise[30] = 'trick: http://vignette2.wikia.nocookie.net/freddy-fazbears-pizza/images/0/0f/FNAFSL_Ennard_Model.png/revision/latest/'
+        surprise[31] = 'treat: https://s-media-cache-ak0.pinimg.com/736x/84/eb/ce/84ebce7a284c1c40d20b4aa1dd13734c.jpg'
 
         if (cmonth == 10 and cday == 31):
             await self.bot.say('{0} got a {1}'.format(trickortreater, random.choice([surprise[i] for i in surprise])))
