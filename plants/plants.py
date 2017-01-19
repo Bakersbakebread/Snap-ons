@@ -62,7 +62,10 @@ class Plants:
                 modifiers = sum([self.products[product]['modifier'] for product in gardener['products'] if gardener['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener['badges']])
                 degradation = (100 / (gardener['current']['time'] / 60) * (self.defaults['points']['base_degradation'] + gardener['current']['degradation'])) + modifiers
                 die_in = int(gardener['current']['health'] / degradation)
-                em.set_footer(text='Total degradation: {0:.2f}% / {1} min (100 / ({2} / 60) * (BaseDegr {3:.2f} + PlantDegr {4:.2f})) + ModDegr {5:.2f}) Your plant will die in {6} minutes'.format(degradation, self.defaults['timers']['degradation'], gardener['current']['time'], self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers, die_in))
+                now = int(time.time())
+                then = self.gardeners[author.id]['current']['timestamp']
+                to_grow = (self.gardeners[author.id]['current']['time'] - (now - then)) / 60
+                em.set_footer(text='Total degradation: {0:.2f}% / {1} min (100 / ({2} / 60) * (BaseDegr {3:.2f} + PlantDegr {4:.2f})) + ModDegr {5:.2f}) Your plant will die in {6} minutes and {7} minutes to go for flowering.'.format(degradation, self.defaults['timers']['degradation'], gardener['current']['time'], self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers, die_in, to_grow))
             await self.bot.say(embed=em)
         else:
             await self.bot.say('You haven\'t grown any plants yet.')
