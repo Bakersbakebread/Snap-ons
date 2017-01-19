@@ -12,8 +12,8 @@ class Plants:
         self.gardeners = dataIO.load_json('data/plants/gardeners.json')
         self.plants = dataIO.load_json('data/plants/plants.json')
         self.products = dataIO.load_json('data/plants/products.json')
-        self.defaults = {'points': {'buy': 25, 'water': 25, 'fertilize': 50, 'growing': 15, 'damage': 25, 'poison': 50, 'complete': 250, 'base_degradation': 2}, 'timers': {'degradation': 60, 'completion': 60}}
-        self.badges = {'badges': {'Green Thumb': {'modifier': -0.05}}}
+        self.defaults = dataIO.load_json('data/plants/defaults.json')
+        self.badges = dataIO.load_json('data/plants/badges.json')
         self.bank = self.bot.get_cog('Economy').bank
 
     @commands.group(pass_context=True, name='plant')
@@ -24,40 +24,46 @@ class Plants:
                 message = 'You\'re currently not growing a plant.'
             else:
                 plant = self.gardeners[author.id]['current']
-                message = 'You\'re growing {} **{}**. Its health is {}%'.format(plant['article'], plant['name'], plant['health'])
+                now = int(time.time())
+                then = self.gardeners[author.id]['current']['timestamp']
+                to_grow = (self.gardeners[author.id]['current']['time'] - (now - then)) / 60
+                message = 'You\'re growing {0} **{1}**. Its health is **{2:.2f}%** and still has to grow for **{3:.0f}** minutes'.format(plant['article'], plant['name'], plant['health'], to_grow)
             await self.bot.say(message)
 
     @_plant.command(pass_context=True, name='me')
     async def _me(self, context):
         author = context.message.author
-        gardener = self.gardeners[author.id]
-        em = discord.Embed(color=discord.Color.green(), description='\a\n')
-        avatar = author.avatar_url if author.avatar else author.default_avatar_url
-        em.set_author(name='Gardening profile of {}'.format(author.name), icon_url=avatar)
-        em.add_field(name='**Points**', value=gardener['points'])
-        if not gardener['current']:
-            em.add_field(name='**Currently growing**', value='None')
+        if author.id in self.gardeners:
+            gardener = self.gardeners[author.id]
+            em = discord.Embed(color=discord.Color.green(), description='\a\n')
+            avatar = author.avatar_url if author.avatar else author.default_avatar_url
+            em.set_author(name='Gardening profile of {}'.format(author.name), icon_url=avatar)
+            em.add_field(name='**Points**', value=gardener['points'])
+            if not gardener['current']:
+                em.add_field(name='**Currently growing**', value='None')
+            else:
+                em.set_thumbnail(url=gardener['current']['image'])
+                em.add_field(name='**Currently growing**', value='{0} ({1:.2f}%)'.format(gardener['current']['name'], gardener['current']['health']))
+            if not gardener['badges']:
+                em.add_field(name='**Badges**', value='None')
+            else:
+                badges = ''
+                for badge in gardener['badges']:
+                    badges += '{} {}\n'.format(badge.capitalize(), self.badges['badges'][badge]['modifier'])
+                em.add_field(name='**Badges**', value=badges)
+            if not gardener['products']:
+                em.add_field(name='**Products**', value='None')
+            else:
+                products = ''
+                for product in gardener['products']:
+                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener['products'][product], [0 if gardener['products'][product] < 1 else self.products[product]['modifier']][0])
+                em.add_field(name='**Products**', value=products)
+            modifiers = sum([self.products[product]['modifier'] for product in gardener['products'] if gardener['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener['badges']])
+            degradation = self.defaults['points']['base_degradation'] + gardener['current']['degradation'] + modifiers
+            em.set_footer(text='Total degradation: {0:.2f}/{1} min (BaseDegr {2:.2f} + PlantDegr {3:.2f} + ModDegr {4:.2f})'.format(degradation, self.defaults['timers']['degradation'], self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers))
+            await self.bot.say(embed=em)
         else:
-            em.set_thumbnail(url=gardener['current']['image'])
-            em.add_field(name='**Currently growing**', value='{} ({}%)'.format(gardener['current']['name'], gardener['current']['health']))
-        if not gardener['badges']:
-            em.add_field(name='**Badges**', value='None')
-        else:
-            badges = ''
-            for badge in gardener['badges']:
-                badges += '{} {}\n'.format(badge.capitalize(), self.badges['badges'][badge]['modifier'])
-            em.add_field(name='**Badges**', value=badges)
-        if not gardener['products']:
-            em.add_field(name='**Products**', value='None')
-        else:
-            products = ''
-            for product in gardener['products']:
-                products += '{} ({}) {}\n'.format(product.capitalize(), gardener['products'][product], [0 if gardener['products'][product] < 1 else self.products[product]['modifier']][0])
-            em.add_field(name='**Products**', value=products)
-        modifiers = sum([self.products[product]['modifier'] for product in gardener['products'] if gardener['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener['badges']])
-        degradation = self.defaults['points']['base_degradation'] + gardener['current']['degradation'] + modifiers
-        em.set_footer(text='Total degradation: {} (BaseDegr {} + PlantDegr {} + ModDegr {})'.format(degradation, self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers))
-        await self.bot.say(embed=em)
+            await self.bot.say('You haven\'t grown any plants yet.')
 
     @commands.command(pass_context=True, name='buy')
     async def _buy(self, context, product, amount: int):
@@ -152,10 +158,11 @@ class Plants:
                     modifiers = sum([self.products[product]['modifier'] for product in self.gardeners[gardener]['products'] if self.gardeners[gardener]['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in self.gardeners[gardener]['badges']])
                     self.gardeners[gardener]['current']['health'] -= self.defaults['points']['base_degradation'] + self.gardeners[gardener]['current']['degradation'] + modifiers
                     self.gardeners[gardener]['points'] += self.defaults['points']['growing']
+                    await self.save_gardeners()
                     if self.gardeners[gardener]['current']['health'] < 5:
                         message = 'Your plant is looking a bit droopy. I would give it some water if I were you.'
                         await self.bot.send_message(discord.User(id=str(gardener)), message)
-            await asyncio.sleep(self.defaults['timers']['degradation'])
+            await asyncio.sleep(self.defaults['timers']['degradation'] * 60)
 
     async def check_completion(self):
         while 'Plants' in self.bot.cogs:
@@ -177,7 +184,7 @@ class Plants:
                     await self.bot.send_message(discord.User(id=str(gardener)), message)
                     self.gardeners[gardener]['current'] = False
                     await self.save_gardeners()
-            await asyncio.sleep(self.defaults['timers']['completion'])
+            await asyncio.sleep(self.defaults['timers']['completion'] * 60)
 
 
 def setup(bot):
