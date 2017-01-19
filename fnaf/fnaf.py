@@ -49,7 +49,7 @@ class FNAF:
         while loop in range(0, 6):
             wait1 = random.randint(15, 30)
             wait2 = random.randint(15, 30)
-            print('Time = ' + loop + ':00 AM')
+            await self.bot.say('Time = ' + loop + ':00 AM')
             loop  = loop + 1
             if loop < 6:
                 await asyncio.sleep(wait1)
@@ -70,14 +70,14 @@ class FNAF:
                 answer = await self.bot.wait_for_message(timeout=10,
                                                          author=context.message.author)
                 if answer is None:
-                    await self.bot.say(encounter['animatronic'] + " " + encounter["kill"])
+                    await self.bot.say(encounter['animatronic'] + " encounter["kill"])
                     break
                 elif answer.content.lower().strip() == ans:
                     await self.bot.say("You shut out" + encounter['animatronic'] + "successfully.")
                 elif answer.content.lower().strip() == "quit":
                     break
                 else:
-                    await self.bot.say(encounter['animatronic'] + " " + encounter["kill"])
+                    await self.bot.say(encounter['animatronic'] + ' ' + encounter["kill"])
                     break
             elif loop = 6:
                 bank = self.bot.get_cog('Economy').bank
