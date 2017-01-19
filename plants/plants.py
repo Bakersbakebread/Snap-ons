@@ -1,101 +1,188 @@
 from discord.ext import commands
-import random
-import discord
+from cogs.utils.dataIO import dataIO
+from random import choice
 import asyncio
+import time
+import discord
+
 
 class Plants:
-    """Grow your own plants! There are 40 of them!"""
     def __init__(self, bot):
         self.bot = bot
-    
-    @commands.command(pass_context=True)
-    async def grow(self, context):
-        """Grow a plant! Costs 100$ to plant one!"""
-        gardener = context.message.author.mention
+        self.gardeners = dataIO.load_json('data/plants/gardeners.json')
+        self.plants = dataIO.load_json('data/plants/plants.json')
+        self.products = dataIO.load_json('data/plants/products.json')
+        self.defaults = {'points': {'buy': 25, 'water': 25, 'fertilize': 50, 'growing': 15, 'damage': 25, 'poison': 50, 'complete': 250, 'base_degradation': 2}, 'timers': {'degradation': 60, 'completion': 60}}
+        self.badges = {'badges': {'Green Thumb': {'modifier': -0.05}}}
+        self.bank = self.bot.get_cog('Economy').bank
 
-        plant = [
-            {'name': 'Dandelion', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/emqnQP2.jpg', 'cash' : 500},
-            {'name': 'Poppy', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/S4hjyUX.jpg', 'cash' : 500},
-            {'name': 'Daisy', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/lcFq4AB.jpg', 'cash' : 500},
-            {'name': 'Chrysanthemum', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/5jLtqWL.jpg', 'cash' : 500},
-            {'name': 'Pansy', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/f7TgD1b.jpg', 'cash' : 500},
-            {'name': 'Lavender', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/g3OmOSK.jpg', 'cash' : 500},
-            {'name': 'Lily', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/0hzy7lO.jpg', 'cash' : 500},
-            {'name': 'Petunia', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/rJm8ISv.jpg', 'cash' : 500},
-            {'name': 'Sunflower', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/AzgzQK9.jpg', 'cash' : 500},
-            {'name': 'Daffodil', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/pnCCRsH.jpg', 'cash' : 500},
-            {'name': 'Clover', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/0GSsABG.jpg', 'cash' : 500},
-            {'name': 'Tulip', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/kodIFjE.jpg', 'cash' : 500},
-            {'name': 'Rose', 'article' : 'a', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/sdTNiOH.jpg', 'cash' : 500},
-            {'name': 'Aster', 'article' : 'an', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/1tN04Hl.jpg', 'cash' : 500},
-            {'name': 'Aloe Vera', 'article' : 'an', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/WFAYIpx.jpg', 'cash' : 500},
-            {'name': 'Orchid', 'article' : 'an', 'time': 300, 'rarity': 'common', 'link' : 'http://i.imgur.com/IQrQYDC.jpg', 'cash' : 500},
-            {'name': 'Dragon Fruit Plant', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/pfngpDS.jpg', 'cash' : 1000},
-            {'name': 'Mango Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/ybR78Oc.jpg', 'cash' : 1000},
-            {'name': 'Lychee Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/w9LkfhX.jpg', 'cash' : 1000},
-            {'name': 'Durian Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/jh249fz.jpg', 'cash' : 1000},
-            {'name': 'Fig Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/YkhnpEV.jpg', 'cash' : 1000},
-            {'name': 'Jack Fruit Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/2D79TlA.jpg', 'cash' : 1000},
-            {'name': 'Prickly Pear Plant', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/GrcGAGj.jpg', 'cash' : 1000},
-            {'name': 'Pineapple Plant', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/VopYQtr.jpg', 'cash' : 1000},
-            {'name': 'Citron Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/zh7Dr23.jpg', 'cash' : 1000},
-            {'name': 'Cherimoya Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/H62gQK6.jpg', 'cash' : 1000},
-            {'name': 'Mangosteen Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/McNnMqa.jpg', 'cash' : 1000},
-            {'name': 'Guava Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/iy8WgPt.jpg', 'cash' : 1000},
-            {'name': 'Orange Tree', 'article' : 'an', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/lwjEJTm.jpg', 'cash' : 1000},
-            {'name': 'Apple Tree', 'article' : 'an', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/QI3UTR3.jpg', 'cash' : 1000},
-            {'name': 'Sapodilla Tree', 'article' : 'a', 'time': 600, 'rarity': 'uncommon', 'link' : 'http://i.imgur.com/6BvO5Fu.jpg', 'cash' : 1000},
-            {'name': 'Franklin Tree', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/hoh17hp.jpg', 'cash' : 2500},
-            {'name': 'Parrot\'s Beak', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/lhSjfQY.jpg', 'cash' : 2500},
-            {'name': 'Koki\'o', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/Dhw9ync.jpg', 'cash' : 2500},
-            {'name': 'Jade Vine', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/h4fJo2R.jpg', 'cash' : 2500},
-            {'name': 'Venus Fly Trap', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/NoSdxXh.jpg', 'cash' : 2500},
-            {'name': 'Chocolate Cosmos', 'article' : 'a', 'time': 1200, 'rarity': 'rare', 'link' : 'http://i.imgur.com/4ArSekX.jpg', 'cash' : 2500},
-            {'name': 'Pizza Plant', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://i.imgur.com/ASZXr7C.png', 'cash' : 5000},
-            {'name': 'Radiant Roxy Rose', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://i.imgur.com/aLe56mr.png', 'cash' : 5000},
-            {'name': 'Pirahna Plant', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://i.imgur.com/c03i9W7.jpg', 'cash' : 5000},
-            {'name': 'Pod Plant', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://i.imgur.com/ECAGMUM.jpg', 'cash' : 5000},
-            {'name': 'Peashooter', 'article' : 'a', 'time': 1800, 'rarity': 'super rare', 'link' : 'http://imgur.com/a/IJBu2', 'cash' : 5000},
-            {'name': 'Starlight Rose', 'article' : 'a', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/em8Kg5M.png', 'cash' : 7500},
-            {'name': 'Pikmin', 'article' : 'a', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/cFSmaHH.png', 'cash' : 7500},
-            {'name': 'Groot', 'article' : 'a', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/9f5QzaW.jpg', 'cash' : 7500},
-            {'name': 'Triffid', 'article' : 'a', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/WZlwqUt.jpg', 'cash' : 7500},
-            {'name': 'Athelas', 'article' : 'an', 'time': 2400, 'rarity': 'epic', 'link' : 'http://i.imgur.com/PNNMEjB.jpg', 'cash' : 7500},
-            {'name': 'Money Tree', 'article' : 'a', 'time': 3600, 'rarity': 'legendary', 'link' : 'http://i.imgur.com/MIJQDLL.jpg', 'cash' : 10000},
-            {'name': 'Truffula Tree', 'article' : 'a', 'time': 3600, 'rarity': 'legendary', 'link' : 'http://i.imgur.com/cFSmaHH.png', 'cash' : 10000},
-            {'name': 'Whomping Willow', 'article' : 'a', 'time': 3600, 'rarity': 'legendary', 'link' : 'http://i.imgur.com/Ibwm2xY.jpg', 'cash' : 10000}
-                ]
-
-        used = random.choice(plant)
-
-        bank = self.bot.get_cog('Economy').bank
-        bank.withdraw_credits(context.message.author, 100)
-        await self.bot.say('{0}, you have sown the seed for 100$! http://i.imgur.com/4uIktZQ.jpg'.format(gardener))
-        await asyncio.sleep(used['time'])
-        await self.bot.say('{0}, your plant needs water! Do you want to water it? (yes/no)'.format(gardener))
-        answer = await self.bot.wait_for_message(timeout=300,
-                                                 author=context.message.author)
-
-        if answer is None:
-            await self.bot.say('{0}, your plant has died...'.format(gardener))
-        elif answer.content.lower().strip() == "yes":
-            await self.bot.say('You have successfully watered the plant.')
-            await asyncio.sleep(used['time'])
-            await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
-            answer = await self.bot.wait_for_message(timeout=300,
-                                                     author=context.message.author)
-
-            if answer is None:
-                await self.bot.say('{0}, your plant has died...'.format(gardener))
-            elif answer.content.lower().strip() == "yes":
-                await self.bot.say('You have successfully fertilized the soil.')
-                await asyncio.sleep(used['time'])
-                await self.bot.say('{0}, you have grown {1} **{2}** [{3}] {4}'.format(gardener, used['article'], used['name'], used['rarity'], used['link']))
-                bank.deposit_credits(context.message.author, used['cash'])
-                await self.bot.say('You have recieved {0}$ for growing a {1} plant.'.format(used['cash'], used['rarity']))
+    @commands.group(pass_context=True, name='plant')
+    async def _plant(self, context):
+        if context.invoked_subcommand is None:
+            author = context.message.author
+            if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
+                message = 'You\'re currently not growing a plant.'
             else:
-                await self.bot.say('{0}, your plant has died...'.format(gardener))
+                plant = self.gardeners[author.id]['current']
+                message = 'You\'re growing {} **{}**. Its health is {}%'.format(plant['article'], plant['name'], plant['health'])
+            await self.bot.say(message)
+
+    @_plant.command(pass_context=True, name='me')
+    async def _me(self, context):
+        author = context.message.author
+        gardener = self.gardeners[author.id]
+        em = discord.Embed(color=discord.Color.green(), description='\a\n')
+        avatar = author.avatar_url if author.avatar else author.default_avatar_url
+        em.set_author(name='Gardening profile of {}'.format(author.name), icon_url=avatar)
+        em.add_field(name='**Points**', value=gardener['points'])
+        if not gardener['current']:
+            em.add_field(name='**Currently growing**', value='None')
         else:
-            await self.bot.say('{0}, your plant has died...'.format(gardener))
+            em.set_thumbnail(url=gardener['current']['image'])
+            em.add_field(name='**Currently growing**', value='{} ({}%)'.format(gardener['current']['name'], gardener['current']['health']))
+        if not gardener['badges']:
+            em.add_field(name='**Badges**', value='None')
+        else:
+            badges = ''
+            for badge in gardener['badges']:
+                badges += '{} {}\n'.format(badge.capitalize(), self.badges['badges'][badge]['modifier'])
+            em.add_field(name='**Badges**', value=badges)
+        if not gardener['products']:
+            em.add_field(name='**Products**', value='None')
+        else:
+            products = ''
+            for product in gardener['products']:
+                products += '{} ({}) {}\n'.format(product.capitalize(), gardener['products'][product], [0 if gardener['products'][product] < 1 else self.products[product]['modifier']][0])
+            em.add_field(name='**Products**', value=products)
+        modifiers = sum([self.products[product]['modifier'] for product in gardener['products'] if gardener['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener['badges']])
+        degradation = self.defaults['points']['base_degradation'] + gardener['current']['degradation'] + modifiers
+        em.set_footer(text='Total degradation: {} (BaseDegr {} + PlantDegr {} + ModDegr {})'.format(degradation, self.defaults['points']['base_degradation'], gardener['current']['degradation'], modifiers))
+        await self.bot.say(embed=em)
+
+    @commands.command(pass_context=True, name='buy')
+    async def _buy(self, context, product, amount: int):
+        author = context.message.author
+        if author.id not in self.gardeners:
+            message = 'You\'re currently not growing a plant.'
+        else:
+            if product.lower() in self.products:
+                try:
+                    if product.lower() not in self.gardeners[author.id]['products']:
+                        self.gardeners[author.id]['products'][product.lower()] = 0
+                    self.gardeners[author.id]['products'][product.lower()] += amount
+                    self.bank.withdraw_credits(author, self.products[product.lower()]['cost'] * amount)
+                    self.gardeners[author.id]['points'] += self.defaults['points']['buy']
+                    await self.save_gardeners()
+                    message = 'You bought some {}'.format(product.lower())
+                except:
+                    message = 'You don\'t have enough money to buy {} {}!'.format(amount, product.lower())
+            else:
+                message = 'I don\'t have this product.'
+        await self.bot.say(message)
+
+    @commands.command(pass_context=True, name='poison')
+    async def _poison(self, context):
+        author = context.message.author
+        if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
+            message = 'You\'re currently not growing a plant.'
+        else:
+            self.gardeners[author.id]['current'] = False
+            message = 'You poisoned your plant! Why?'
+            self.gardeners[author.id]['points'] -= self.defaults['points']['poison']
+            if self.gardeners[author.id]['points'] < 0:
+                self.gardeners[author.id]['points'] = 0
+            await self.save_gardeners()
+        await self.bot.say(message)
+
+    @commands.command(pass_context=True, name='water')
+    async def _water(self, context):
+        author = context.message.author
+        if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
+            message = 'You\'re currently not growing a plant.'
+        else:
+            if 'water' in self.gardeners[author.id]['products']:
+                if self.gardeners[author.id]['products']['water'] > 0:
+                    self.gardeners[author.id]['current']['health'] += self.products['water']['health']
+                    self.gardeners[author.id]['products']['water'] -= 1
+                    message = 'Your plant got some health back!'
+                    if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
+                        self.gardeners[author.id]['current']['health'] -= self.products['water']['damage']
+                        message = 'You gave too much water! Your plant lost some health. :wilted_rose:'
+                    self.gardeners[author.id]['points'] += self.defaults['points']['water']
+                    await self.save_gardeners()
+                else:
+                    message = 'You have no water. Go buy some!'
+            else:
+                message = 'You have no water. Go buy some!'
+        await self.bot.say(message)
+
+    @commands.command(pass_context=True, name='grow')
+    async def _grow(self, context):
+        author = context.message.author
+        if author.id not in self.gardeners:
+            self.gardeners[author.id] = {}
+            self.gardeners[author.id]['current'] = False
+            self.gardeners[author.id]['points'] = 0
+            self.gardeners[author.id]['badges'] = []
+            self.gardeners[author.id]['products'] = {}
+        if not self.gardeners[author.id]['current']:
+            plant = choice(self.plants['plants'])
+            plant['timestamp'] = int(time.time())
+
+            message = 'During one of your many heroic adventures, you came across a mysterious bag that said "pick one". '
+            message += 'To your surprise it had all kinds of different seeds in them. And now that you\'re home, you want to plant it. '
+            message += 'You went to a local farmer to identify the seed, and the farmer said it was {} **{} ({})** seed.\n\n'.format(plant['article'], plant['name'], plant['rarity'])
+            message += 'Take good care of your seed and water it frequently. Once it blooms, something nice might come from it. If it dies, however, you will get nothing.'
+
+            self.gardeners[author.id]['current'] = plant
+            await self.save_gardeners()
+
+            await self.bot.say(message)
+        else:
+            plant = self.gardeners[author.id]['current']
+            await self.bot.say('You\'re already growing {} **{}**, silly.'.format(plant['article'], plant['name']))
+
+    async def save_gardeners(self):
+        dataIO.save_json('data/plants/gardeners.json', self.gardeners)
+
+    async def check_degration(self):
+        while 'Plants' in self.bot.cogs:
+            for gardener in self.gardeners:
+                if self.gardeners[gardener]['current']:
+                    modifiers = sum([self.products[product]['modifier'] for product in self.gardeners[gardener]['products'] if self.gardeners[gardener]['products'][product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in self.gardeners[gardener]['badges']])
+                    self.gardeners[gardener]['current']['health'] -= self.defaults['points']['base_degradation'] + self.gardeners[gardener]['current']['degradation'] + modifiers
+                    self.gardeners[gardener]['points'] += self.defaults['points']['growing']
+                    if self.gardeners[gardener]['current']['health'] < 5:
+                        message = 'Your plant is looking a bit droopy. I would give it some water if I were you.'
+                        await self.bot.send_message(discord.User(id=str(gardener)), message)
+            await asyncio.sleep(self.defaults['timers']['degradation'])
+
+    async def check_completion(self):
+        while 'Plants' in self.bot.cogs:
+            now = int(time.time())
+            delete = False
+            for gardener in self.gardeners:
+                if self.gardeners[gardener]['current']:
+                    then = self.gardeners[gardener]['current']['timestamp']
+                    health = self.gardeners[gardener]['current']['health']
+                    grow_time = self.gardeners[gardener]['current']['time']
+                    if (now - then) > grow_time:
+                        self.gardeners[gardener]['points'] += self.defaults['points']['complete']
+                        message = 'Your plant made it!'
+                        delete = True
+                    elif health < 0:
+                        message = 'Your plant died!'
+                        delete = True
+                if delete:
+                    await self.bot.send_message(discord.User(id=str(gardener)), message)
+                    self.gardeners[gardener]['current'] = False
+                    await self.save_gardeners()
+            await asyncio.sleep(self.defaults['timers']['completion'])
+
+
 def setup(bot):
-    bot.add_cog(Plants(bot))
+    cog = Plants(bot)
+    loop = asyncio.get_event_loop()
+    loop.create_task(cog.check_degration())
+    loop.create_task(cog.check_completion())
+    bot.add_cog(cog)
