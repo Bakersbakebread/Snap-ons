@@ -14,19 +14,19 @@ class FNAF:
         """Play as a night guard at Freddy Fazbear's Pizzera. Type exit to quit."""
         user = context.message.author
         entry = [
-            'left hallway'
-            'vents'
+            'left hallway',
+            'vents',
             'right hallway'
             ]
         events = [
             {
                 'animatronic' : 'Freddy',
-                'location' : 'On the Stage',
+                'location' : 'on the Stage',
                 'kill' : 'drains all your power'
             },
             {
                 'animatronic' : 'Bonnie',
-                'location' : 'On the Stage',
+                'location' : 'on the Stage',
                 'kill' : 'smashes your head with his guitar'
             },
             {
@@ -42,7 +42,7 @@ class FNAF:
             ]
         loop = 0
 
-        await self.bot.say('Welcome to Freddy Fazbear\'s Pizzeria, ' + user.name)
+        await self.bot.say('Welcome to Freddy Fazbear\'s Pizzeria, ' + user.name + '.')
         await asyncio.sleep(2)
         await self.bot.say('You have to survive, I mean work, as a night guard at the pizzeria.')
         
@@ -74,7 +74,8 @@ class FNAF:
                     break
                 elif answer.content.lower().strip() == ans:
                     await self.bot.say('You shut out' + encounter['animatronic'] + 'successfully.')
-                elif answer.content.lower().strip() == "quit":
+                elif answer.content.lower().strip() == 5:
+                    await self.bot.say('You leave the premises through the back window.')
                     break
                 else:
                     await self.bot.say(encounter['animatronic'] + ' ' + encounter['kill'])
