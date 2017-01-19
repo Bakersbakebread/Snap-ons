@@ -21,23 +21,23 @@ class FNAF:
         events = [
             {
                 'animatronic' : 'Freddy',
-                'location' : 'on the Stage',
-                'kill' : 'drains all your power'
+                'location' : 'on the Stage.',
+                'kill' : 'drains all your power.'
             },
             {
                 'animatronic' : 'Bonnie',
-                'location' : 'on the Stage',
-                'kill' : 'smashes your head with his guitar'
+                'location' : 'on the Stage.',
+                'kill' : 'smashes your head with his guitar.'
             },
             {
                 'animatronic' : 'Chica',
-                'location' : 'on the Stage',
-                'kill' : 'throws her chomping cupcake on you'
+                'location' : 'on the Stage.',
+                'kill' : 'throws her chomping cupcake on you.'
             },
             {
                 'animatronic' : 'Foxy',
                 'location' : 'at the Pirate Cove',
-                'kill' : 'hits you with his hook'
+                'kill' : 'hits you with his hook.'
             }
             ]
         loop = 0
