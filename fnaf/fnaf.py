@@ -49,7 +49,7 @@ class FNAF:
         while loop in range(0, 6):
             wait1 = random.randint(15, 30)
             wait2 = random.randint(15, 30)
-            await self.bot.say('Time = ' + loop + ':00 AM')
+            await self.bot.say('Time = {0}:00 AM'.format(loop))
             loop  = loop + 1
             if loop < 6:
                 await asyncio.sleep(wait1)
