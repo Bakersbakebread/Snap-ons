@@ -1,4 +1,3 @@
-
 from discord.ext import commands
 import random
 import discord
@@ -74,36 +73,29 @@ class Plants:
         await self.bot.say('{0}, you have sown the seed for 100$! http://i.imgur.com/4uIktZQ.jpg'.format(gardener))
         await asyncio.sleep(used['time'])
         await self.bot.say('{0}, your plant needs water! Do you want to water it? (yes/no)'.format(gardener))
-        x = 0
-        y = 0
-        while x in range(0, 1):
+        answer = await self.bot.wait_for_message(timeout=300,
+                                                 author=context.message.author)
+
+        if answer is None:
+            await self.bot.say('{0}, your plant has died...'.format(gardener))
+        elif answer.content.lower().strip() == "yes":
+            await self.bot.say('You have successfully watered the plant.')
+            await asyncio.sleep(used['time'])
+            await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
             answer = await self.bot.wait_for_message(timeout=300,
                                                      author=context.message.author)
 
             if answer is None:
                 await self.bot.say('{0}, your plant has died...'.format(gardener))
-                x = 10
             elif answer.content.lower().strip() == "yes":
-                x = 10
-                await self.bot.say('You have successfully watered the plant.')
+                await self.bot.say('You have successfully fertilized the soil.')
                 await asyncio.sleep(used['time'])
-                await self.bot.say('{0}, the soil needs fertilizer! Do you want to fertilize it? (yes/no)'.format(gardener))
-                while y in range(0, 1):
-                    answer = await self.bot.wait_for_message(timeout=300,
-                                                             author=context.message.author)
-                    if answer is None:
-                        await self.bot.say('{0}, your plant has died...'.format(gardener))
-                        x = 10
-                    elif answer.content.lower().strip() == "yes"
-                        x = 10
-                        await self.bot.say('You have successfully fertilized the soil.')
-                        await asyncio.sleep(used['time'])
-                        await self.bot.say('{0}, you have grown {1} **{2}** [{3}] {4}'.format(gardener, used['article'], used['name'], used['rarity'], used['link']))
-                        bank.deposit_credits(context.message.author, used['cash'])
-                        await self.bot.say('You have recieved {0}$ for growing a {1} plant.'.format(used['cash'], used['rarity']))
-                    else:
-                        x = 0
+                await self.bot.say('{0}, you have grown {1} **{2}** [{3}] {4}'.format(gardener, used['article'], used['name'], used['rarity'], used['link']))
+                bank.deposit_credits(context.message.author, used['cash'])
+                await self.bot.say('You have recieved {0}$ for growing a {1} plant.'.format(used['cash'], used['rarity']))
             else:
-                x = 0
+                await self.bot.say('{0}, your plant has died...'.format(gardener))
+        else:
+            await self.bot.say('{0}, your plant has died...'.format(gardener))
 def setup(bot):
     bot.add_cog(Plants(bot))
