@@ -70,14 +70,14 @@ class FNAF:
                 answer = await self.bot.wait_for_message(timeout=10,
                                                          author=context.message.author)
                 if answer is None:
-                    await self.bot.say(encounter['animatronic'] + " encounter["kill"])
+                    await self.bot.say(encounter['animatronic'] + ' ' + encounter['kill'])
                     break
                 elif answer.content.lower().strip() == ans:
-                    await self.bot.say("You shut out" + encounter['animatronic'] + "successfully.")
+                    await self.bot.say('You shut out' + encounter['animatronic'] + 'successfully.')
                 elif answer.content.lower().strip() == "quit":
                     break
                 else:
-                    await self.bot.say(encounter['animatronic'] + ' ' + encounter["kill"])
+                    await self.bot.say(encounter['animatronic'] + ' ' + encounter['kill'])
                     break
             elif loop = 6:
                 bank = self.bot.get_cog('Economy').bank
