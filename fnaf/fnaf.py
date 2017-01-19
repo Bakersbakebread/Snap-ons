@@ -79,7 +79,7 @@ class FNAF:
                 else:
                     await self.bot.say(encounter['animatronic'] + ' ' + encounter['kill'])
                     break
-            elif loop = 6:
+            elif loop == 6:
                 bank = self.bot.get_cog('Economy').bank
                 bank.deposit_credits(context.message.author, 120)
                 await self.bot.say('Congratulations! You have completed your shift. Enjoy some time at your home!')
