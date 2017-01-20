@@ -14,7 +14,7 @@ class Gardening:
         self.bot = bot
         self.gardeners = dataIO.load_json('data/gardening/gardeners.json')
         self.plants = dataIO.load_json('data/gardening/plants.json')
-        self.products = dataIO.load_json('data/gardening/products.json')
+        self._save_gardeners() = dataIO.load_json('data/gardening/products.json')
         self.defaults = dataIO.load_json('data/gardening/defaults.json')
         self.badges = dataIO.load_json('data/gardening/badges.json')
 
@@ -192,10 +192,10 @@ class Gardening:
         tick_tock = 0
         for product in self.products:
             if tick_tock == 0:
-                tick += '**{}**\n'.format(product.capitalize())
+                tick += '**{} {} pts (+{} health -{}% damage)**\n'.format(product.capitalize(), self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'])
                 tick_tock = 1
             else:
-                tock += '**{}**\n'.format(product.capitalize())
+                tock += '**{} {} pts (+{} health -{}% damage)**\n'.format(product.capitalize(), self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'])
                 tick_tock = 0
         em = discord.Embed(title='All gardening supplies you can buy', color=discord.Color.green())
         em.add_field(name='\a', value=tick)
