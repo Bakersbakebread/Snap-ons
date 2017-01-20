@@ -328,6 +328,11 @@ class Gardening:
                     await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
 
+    def __unload(self):
+        self.completion_task.cancel()
+        self.degradation_task.cancel()
+        self._save_gardeners()
+
 
 def check_folder():
     if not os.path.exists('data/gardening'):
@@ -345,7 +350,4 @@ def setup(bot):
     check_folder()
     check_file()
     cog = Gardening(bot)
-    # loop = asyncio.get_event_loop()
-    # loop.create_task(cog.check_degration())
-    # loop.create_task(cog.check_completion())
     bot.add_cog(cog)
