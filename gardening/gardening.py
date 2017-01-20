@@ -187,7 +187,7 @@ class Gardening:
     @_gardening.command(pass_context=True, name='products')
     async def _products(self, context):
         """Look at the list of the available gardening supplies."""
-        em = discord.Embed(title='All gardening supplies you can buy', color=discord.Color.green())
+        em = discord.Embed(title='All gardening supplies you can buy', description='\a\n', color=discord.Color.green())
         for product in self.products:
                 em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage']))
         await self.bot.say(embed=em)
