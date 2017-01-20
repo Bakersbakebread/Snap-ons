@@ -55,9 +55,7 @@ class Gardening:
     async def _gardening(self, context):
         """Gardening commands."""
         if context.invoked_subcommand is None:
-            description = '**Gardening!**\nHere be help and description soon'
-            em = discord.Embed(description=description, color=discord.Color.green())
-            await self.bot.say(embed=em)
+            await self.bot.send_cmd_help(context)
 
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
@@ -130,7 +128,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='plants')
     async def _plants(self, context):
-        """Look at the list of the available plamts."""
+        """Look at the list of the available plants."""
         tick = ''
         tock = ''
         tick_tock = 0
@@ -149,6 +147,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='plant')
     async def _plant(self, context, *plant):
+        """Look at the details of a plant."""
         plant = ' '.join(plant)
         for p in self.plants['plants']:
             if p['name'].lower() == plant.lower():
@@ -194,7 +193,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='buy')
     async def _buy(self, context, product, amount: int):
-        """Buy gardening supplies"""
+        """Buy gardening supplies."""
         author = context.message.author
         if author.id not in self.gardeners:
             message = 'You\'re currently not growing a plant.'
@@ -207,7 +206,7 @@ class Gardening:
                     self.gardeners[author.id]['products'][product.lower()] += amount
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
-                    message = 'You bought some {}'.format(product.lower())
+                    message = 'You bought some {}.'.format(product.lower())
                 else:
                     message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], self.products[product.lower()]['cost'] * amount)
 
@@ -224,7 +223,6 @@ class Gardening:
         else:
             self.gardeners[author.id]['current'] = False
             message = 'You poisoned your plant! Why?'
-            self.gardeners[author.id]['points'] -= self.defaults['points']['poison']
             if self.gardeners[author.id]['points'] < 0:
                 self.gardeners[author.id]['points'] = 0
             await self._save_gardeners()
@@ -260,14 +258,14 @@ class Gardening:
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
         else:
-            if fertilizer.lower() in self.products and fertilizer.lower() != 'water':
+            if fertilizer.lower() in self.products and fertilizer.lower() != 'water' and fertlizer.lower() != 'pesticide' and fertilizer.lower() != 'pruner':
                 if fertilizer.lower() in self.gardeners[author.id]['products']:
-                    if self.gardeners[author.id]['products'][fertilizer] > 0:
-                        self.gardeners[author.id]['current']['health'] += self.products['water']['health']
-                        self.gardeners[author.id]['products'][fertilizer] -= 1
+                    if self.gardeners[author.id]['products'][fertilizer.lower()] > 0:
+                        self.gardeners[author.id]['current']['health'] += self.products[fertilizer.lower()]['health']
+                        self.gardeners[author.id]['products'][fertilizer.lower()] -= 1
                         message = 'Your plant got some health back!'
                         if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
-                            self.gardeners[author.id]['current']['health'] -= self.products['water']['damage']
+                            self.gardeners[author.id]['current']['health'] -= self.products[fertilizer.lower()]['damage']
                             message = 'You gave too much fertilizer! Your plant lost some health. :wilted_rose:'
                         self.gardeners[author.id]['points'] += self.defaults['points']['fertilize']
                         await self._save_gardeners()
@@ -276,7 +274,30 @@ class Gardening:
                 else:
                     message = 'You have no {}. Go buy some!'.format(fertilizer.capitalize())
             else:
-                message = 'There is no {}.'.format(fertilizer.capitalize())
+                message = 'Are you sure that you are using fertilizer?'
+        await self.bot.say(message)
+        
+    @commands.command(pass_context=True, name='pesticide')
+    async def _pesticide(self, context):
+        """Spray pesticide on your plant."""
+        author = context.message.author
+        if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
+            message = 'You\'re currently not growing a plant.'
+        else:
+            if 'pesticide' in self.gardeners[author.id]['products']:
+                if self.gardeners[author.id]['products']['pesticide'] > 0:
+                    self.gardeners[author.id]['current']['health'] += self.products['pesticide']['health']
+                    self.gardeners[author.id]['products']['pesticide'] -= 1
+                    message = 'Your plant is free of pests!'
+                    if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
+                        self.gardeners[author.id]['current']['health'] -= self.products['pesticide']['damage']
+                        message = 'You sprayed too much pesticide! Your plant lost some health. :wilted_rose:'
+                    self.gardeners[author.id]['points'] += self.defaults['points']['pesticide']
+                    await self._save_gardeners()
+                else:
+                    message = 'You have no pesticide. Go buy some!'
+            else:
+                message = 'You have no pesticide. Go buy some!'
         await self.bot.say(message)
 
     async def check_degradation(self):

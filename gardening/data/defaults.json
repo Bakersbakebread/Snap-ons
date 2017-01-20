@@ -3,6 +3,8 @@
     "buy": 5,
     "water": 5,
     "fertilize": 10,
+    "prune": 20,
+    "pesticide": 25,
     "growing": 5,
     "damage": 25,
     "poison": 50,
