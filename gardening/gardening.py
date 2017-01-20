@@ -55,9 +55,7 @@ class Gardening:
     async def _gardening(self, context):
         """Gardening commands."""
         if context.invoked_subcommand is None:
-            description = '**Gardening!**\nHere be help and description soon'
-            em = discord.Embed(description=description, color=discord.Color.green())
-            await self.bot.say(embed=em)
+            await self.bot.send_cmd_help(context)
 
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
@@ -224,7 +222,6 @@ class Gardening:
         else:
             self.gardeners[author.id]['current'] = False
             message = 'You poisoned your plant! Why?'
-            self.gardeners[author.id]['points'] -= self.defaults['points']['poison']
             if self.gardeners[author.id]['points'] < 0:
                 self.gardeners[author.id]['points'] = 0
             await self._save_gardeners()
