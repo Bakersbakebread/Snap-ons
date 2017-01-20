@@ -308,7 +308,7 @@ class Gardening:
                             self.gardeners[id]['badges'].append(badge)
                         message = 'Your plant made it! You are rewarded with the **{}** badge and you have recieved **{}** points.'.format(badge, reward)
                         delete = True
-                    elif health < 0:
+                    if health < 0:
                         message = 'Your plant died!'
                         delete = True
                 if delete:
