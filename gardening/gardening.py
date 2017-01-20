@@ -48,7 +48,7 @@ class Gardening:
     @commands.group(pass_context=True, name='gardening')
     async def _gardening(self, context):
         if context.invoked_subcommand is None:
-            await self.bot.say('Help be here.')
+            await self.bot.send_cmd_help(context)
 
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
@@ -251,7 +251,7 @@ class Gardening:
                         message = 'Your plant got some health back!'
                         if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
                             self.gardeners[author.id]['current']['health'] -= self.products['water']['damage']
-                            message = 'You gave too much water! Your plant lost some health. :wilted_rose:'
+                            message = 'You gave too much fertilizer! Your plant lost some health. :wilted_rose:'
                         self.gardeners[author.id]['points'] += self.defaults['points']['fertilize']
                         await self._save_gardeners()
                     else:
@@ -274,7 +274,7 @@ class Gardening:
                     if gardener.current['health'] < 0:
                         pass
                     elif gardener.current['health'] < 5:
-                        message = 'Your plant is looking a bit droopy. I would give it some water if I were you.'
+                        message = 'Your plant is looking a bit droopy. I would look after it if I were you.'
                         await self.bot.send_message(discord.User(id=str(id)), message)
             await asyncio.sleep(self.defaults['timers']['degradation'] * 60)
 
@@ -295,7 +295,7 @@ class Gardening:
                         if badge not in self.gardeners[id]['badges']:
                             self.gardeners[id]['badges'].append(badge)
                         # self.bank.deposit_credits(discord.User(id=str(gardener)), reward)
-                        message = 'Your plant made it! You are rewarded with the **{}** badge and **{}** is added to your bank account!'.format(badge, reward)
+                        message = 'Your plant made it! You are rewarded with the **{}** badge and you have recieved **{}** points.'.format(badge, reward)
                         delete = True
                     elif health < 0:
                         message = 'Your plant died!'
