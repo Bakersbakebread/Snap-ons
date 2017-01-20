@@ -1,5 +1,10 @@
 {
   "badges": {
-    "Green Thumb": {"modifier": -0.05}
+    "Flower Power": {"modifier": -0.05},
+    "Fruit Brute": {"modifier": -0.075},
+    "Sporadic": {"modifier": -0.1},
+    "Odd-pod": {"modifier": -0.25},
+    "Greenfingers": {"modifier": -0.5},
+    "Nobel Peas Prize": {"modifier": -1}
   }
 }
