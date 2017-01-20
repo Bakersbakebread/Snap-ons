@@ -328,7 +328,7 @@ class Gardening:
                     await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
 
-    def __unload(self):
+    async def __unload(self):
         self.completion_task.cancel()
         self.degradation_task.cancel()
         await self._save_gardeners()
