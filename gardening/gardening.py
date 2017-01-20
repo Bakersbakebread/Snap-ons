@@ -147,7 +147,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='plant')
     async def _plant(self, context, *plant):
-        """Take a look at the plant that you are growing."""
+        """Look at the details of a plant."""
         plant = ' '.join(plant)
         for p in self.plants['plants']:
             if p['name'].lower() == plant.lower():
