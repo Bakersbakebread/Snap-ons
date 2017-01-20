@@ -130,7 +130,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='plants')
     async def _plants(self, context):
-        """Look at the list of the available plamts."""
+        """Look at the list of the available plants."""
         tick = ''
         tock = ''
         tick_tock = 0
@@ -194,7 +194,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='buy')
     async def _buy(self, context, product, amount: int):
-        """Buy gardening supplies"""
+        """Buy gardening supplies."""
         author = context.message.author
         if author.id not in self.gardeners:
             message = 'You\'re currently not growing a plant.'
