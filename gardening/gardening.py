@@ -187,20 +187,9 @@ class Gardening:
     @_gardening.command(pass_context=True, name='products')
     async def _products(self, context):
         """Look at the list of the available gardening supplies."""
-        tick = ''
-        tock = ''
-        tick_tock = 0
-        for product in self.products:
-            if tick_tock == 0:
-                tick += '**{} {} pts (+{} health -{}% damage)**\n'.format(product.capitalize(), self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'])
-                tick_tock = 1
-            else:
-                tock += '**{} {} pts (+{} health -{}% damage)**\n'.format(product.capitalize(), self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'])
-                tick_tock = 0
         em = discord.Embed(title='All gardening supplies you can buy', color=discord.Color.green())
-        em.add_field(name='\a', value=tick)
-        em.add_field(name='\a', value='\a')
-        em.add_field(name='\a', value=tock)
+        for product in self.products:
+                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage']))
         await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='buy')
