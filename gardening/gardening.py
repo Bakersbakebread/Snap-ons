@@ -50,10 +50,8 @@ class Gardening:
     async def _gardening(self, context):
         """Gardening commands."""
         if context.invoked_subcommand is None:
-            prefix = context.prefix
             description = '**Gardening!**\nHere be help and description soon'
             em = discord.Embed(description=description, color=discord.Color.green())
-            # em.set_thumbnail(url='https://upload.wikimedia.org/wikipedia/en/0/07/Atom_Ant.png')
             await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='seed')
@@ -257,7 +255,7 @@ class Gardening:
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
         else:
-            if fertilizer.lower() in self.products:
+            if fertilizer.lower() in self.products and fertilizer.lower() != 'water':
                 if fertilizer.lower() in self.gardeners[author.id]['products']:
                     if self.gardeners[author.id]['products'][fertilizer] > 0:
                         self.gardeners[author.id]['current']['health'] += self.products['water']['health']
