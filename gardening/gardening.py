@@ -18,6 +18,9 @@ class Gardening:
         self.defaults = dataIO.load_json('data/gardening/defaults.json')
         self.badges = dataIO.load_json('data/gardening/badges.json')
 
+        self.completion_task = bot.loop.create_task(self.check_completion())
+        self.degradation_task = bot.loop.create_task(self.check_degradation())
+
     async def _save_gardeners(self):
         dataIO.save_json('data/gardening/gardeners.json', self.gardeners)
 
@@ -189,10 +192,10 @@ class Gardening:
         tick_tock = 0
         for product in self.products:
             if tick_tock == 0:
-                tick += '**{}**\n'.format(product)
+                tick += '**{}**\n'.format(product.capitalize())
                 tick_tock = 1
             else:
-                tock += '**{}**\n'.format(product)
+                tock += '**{}**\n'.format(product.capitalize())
                 tick_tock = 0
         em = discord.Embed(title='All gardening supplies you can buy', color=discord.Color.green())
         em.add_field(name='\a', value=tick)
@@ -287,7 +290,7 @@ class Gardening:
                 message = 'There is no {}.'.format(fertilizer.capitalize())
         await self.bot.say(message)
 
-    async def check_degration(self):
+    async def check_degradation(self):
         while 'Gardening' in self.bot.cogs:
             for id in self.gardeners:
                 gardener = await self._gardener(id)
@@ -342,7 +345,7 @@ def setup(bot):
     check_folder()
     check_file()
     cog = Gardening(bot)
-    loop = asyncio.get_event_loop()
-    loop.create_task(cog.check_degration())
-    loop.create_task(cog.check_completion())
+    # loop = asyncio.get_event_loop()
+    # loop.create_task(cog.check_degration())
+    # loop.create_task(cog.check_completion())
     bot.add_cog(cog)
