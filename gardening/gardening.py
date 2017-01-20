@@ -182,6 +182,8 @@ class Gardening:
     @_gardening.command(pass_context=True, name='buy')
     async def _buy(self, context, product, amount: int):
         author = context.message.author
+        if product and amount is None:
+            await.self.bot.say("```=== Gardening Supplies === \n1. Water \t 10 \n2. Manure \t 20 \n3. Vermicompost \t 40 \n4. Nitrates \t 100 \n=== Gardening Supplies ===```")
         if author.id not in self.gardeners:
             message = 'You\'re currently not growing a plant.'
         else:
