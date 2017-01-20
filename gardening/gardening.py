@@ -8,10 +8,6 @@ import os
 import collections
 
 
-class InsufficientBalance(Exception):
-    pass
-
-
 class Gardening:
     def __init__(self, bot):
         self.bot = bot
@@ -20,7 +16,6 @@ class Gardening:
         self.products = dataIO.load_json('data/gardening/products.json')
         self.defaults = dataIO.load_json('data/gardening/defaults.json')
         self.badges = dataIO.load_json('data/gardening/badges.json')
-        self.bank = self.bot.get_cog('Economy').bank
 
     async def _save_gardeners(self):
         dataIO.save_json('data/gardening/gardeners.json', self.gardeners)
@@ -176,6 +171,14 @@ class Gardening:
             message = 'You\'re growing {0} **{1}**. Its health is **{2:.2f}%** and still has to grow for **{3:.1f}** minutes. It is losing **{4:.2f}%** per minute and will die in **{5:.1f}** minutes.'.format(plant['article'], plant['name'], plant['health'], to_grow, degradation.degradation, die_in)
         await self.bot.say(message)
 
+    async def _withdraw_points(self, id, amount):
+        points = self.gardeners[id]['points']
+        if (points - amount) < 0:
+            return False
+        else:
+            self.gardeners[id]['points'] -= amount
+            return True
+
     @_gardening.command(pass_context=True, name='buy')
     async def _buy(self, context, product, amount: int):
         author = context.message.author
@@ -183,16 +186,17 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if product.lower() in self.products:
-                try:
-                    self.bank.withdraw_credits(author, self.products[product.lower()]['cost'] * amount)
+                withdraw_points = await self._withdraw_points(author.id, self.products[product.lower()]['cost'] * amount)
+                if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
                         self.gardeners[author.id]['products'][product.lower()] = 0
                     self.gardeners[author.id]['products'][product.lower()] += amount
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
                     message = 'You bought some {}'.format(product.lower())
-                except:
-                    message = 'You don\'t have enough money to buy {} {}!'.format(amount, product.lower())
+                else:
+                    message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], self.products[product.lower()]['cost'] * amount)
+
             else:
                 message = 'I don\'t have this product.'
         await self.bot.say(message)
