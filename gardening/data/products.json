@@ -2,5 +2,5 @@
   "water": {"cost": 5, "health": 5, "damage": 45, "modifier": 0},
   "manure": {"cost": 8, "health": 8, "damage": 55, "modifier": -0.2},
   "vermicompost": {"cost": 10, "health": 10, "damage": 60, "modifier": -0.2},
-  "npk supplement": {"cost": 15, "health": 15, "damage": 75, "modifier": -0.2)
+  "npk supplement": {"cost": 15, "health": 15, "damage": 75, "modifier": -0.2}
 }
