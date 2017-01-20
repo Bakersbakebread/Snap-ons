@@ -9,6 +9,7 @@ import collections
 
 
 class Gardening:
+    """Grow your own plants!"""
     def __init__(self, bot):
         self.bot = bot
         self.gardeners = dataIO.load_json('data/gardening/gardeners.json')
@@ -47,11 +48,13 @@ class Gardening:
 
     @commands.group(pass_context=True, name='gardening')
     async def _gardening(self, context):
+        """Gardening commands."""
         if context.invoked_subcommand is None:
             await self.bot.send_cmd_help(context)
 
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
+        """Sow the seed to grow the plant."""
         author = context.message.author
         if author.id not in self.gardeners:
             self.gardeners[author.id] = {}
@@ -79,6 +82,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='profile')
     async def _profile(self, context, *, member: discord.Member=None):
+        """Check your gardening profile."""
         if member:
             author = member
         else:
@@ -119,6 +123,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='plants')
     async def _plants(self, context):
+        """Look at the list of the available plamts."""
         tick = ''
         tock = ''
         tick_tock = 0
@@ -159,6 +164,7 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='state')
     async def _state(self, context):
+        """Check the state of your plant."""
         author = context.message.author
         gardener = await self._gardener(author.id)
         if author.id not in self.gardeners or not gardener.current:
@@ -181,9 +187,8 @@ class Gardening:
 
     @_gardening.command(pass_context=True, name='buy')
     async def _buy(self, context, product, amount: int):
+        """Buy gardening supplies: water, manure, vermicompost, nitrates."""
         author = context.message.author
-        if product is None:
-            await self.bot.say("```=== Gardening Supplies === \n1. Water \t 10 \n2. Manure \t 20 \n3. Vermicompost \t 40 \n4. Nitrates \t 100 \n=== Gardening Supplies ===```")
         if author.id not in self.gardeners:
             message = 'You\'re currently not growing a plant.'
         else:
@@ -205,6 +210,7 @@ class Gardening:
 
     @commands.command(pass_context=True, name='poison')
     async def _poison(self, context):
+        """Kill your plant by poisoning it."""
         author = context.message.author
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
@@ -219,6 +225,7 @@ class Gardening:
 
     @commands.command(pass_context=True, name='water')
     async def _water(self, context):
+        """Water your plant."""
         author = context.message.author
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
@@ -241,6 +248,7 @@ class Gardening:
 
     @commands.command(pass_context=True, name='fertilize')
     async def _fertilize(self, context, fertilizer):
+        """Fertilize the soil."""
         author = context.message.author
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
