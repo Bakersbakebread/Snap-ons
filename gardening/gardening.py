@@ -331,7 +331,7 @@ class Gardening:
     def __unload(self):
         self.completion_task.cancel()
         self.degradation_task.cancel()
-        self._save_gardeners()
+        await self._save_gardeners()
 
 
 def check_folder():
