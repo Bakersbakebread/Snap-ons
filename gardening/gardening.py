@@ -14,7 +14,7 @@ class Gardening:
         self.bot = bot
         self.gardeners = dataIO.load_json('data/gardening/gardeners.json')
         self.plants = dataIO.load_json('data/gardening/plants.json')
-        self._save_gardeners() = dataIO.load_json('data/gardening/products.json')
+        self.products = dataIO.load_json('data/gardening/products.json')
         self.defaults = dataIO.load_json('data/gardening/defaults.json')
         self.badges = dataIO.load_json('data/gardening/badges.json')
 
