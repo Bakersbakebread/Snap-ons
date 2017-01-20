@@ -1,12 +1,12 @@
 {
   "points": {
-    "buy": 25,
-    "water": 25,
-    "fertilize": 50,
-    "growing": 15,
+    "buy": 5,
+    "water": 5,
+    "fertilize": 10,
+    "growing": 5,
     "damage": 25,
     "poison": 50,
-    "complete": 250,
+    "complete": 150,
     "base_degradation": 1.5
   }, "timers": {
     "degradation": 1,
