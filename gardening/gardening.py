@@ -262,9 +262,9 @@ class Gardening:
         else:
             if fertilizer.lower() in self.products and fertilizer.lower() != 'water' and fertlizer.lower() != 'pesticide' and fertilizer.lower() != 'pruner':
                 if fertilizer.lower() in self.gardeners[author.id]['products']:
-                    if self.gardeners[author.id]['products']['fertilizer'] > 0:
+                    if self.gardeners[author.id]['products'][fertilizer.lower()] > 0:
                         self.gardeners[author.id]['current']['health'] += self.products[fertilizer.lower()]['health']
-                        self.gardeners[author.id]['products']['fertilizer'] -= 1
+                        self.gardeners[author.id]['products'][fertilizer.lower()] -= 1
                         message = 'Your plant got some health back!'
                         if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
                             self.gardeners[author.id]['current']['health'] -= self.products[fertilizer.lower()]['damage']
