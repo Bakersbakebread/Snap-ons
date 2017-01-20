@@ -260,14 +260,14 @@ class Gardening:
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
         else:
-            if fertilizer.lower() in self.products and fertilizer.lower() != 'water':
+            if fertilizer.lower() in self.products and fertilizer.lower() != 'water' and fertlizer.lower() != 'pesticide' and fertilizer.lower() != 'pruner':
                 if fertilizer.lower() in self.gardeners[author.id]['products']:
                     if self.gardeners[author.id]['products'][fertilizer] > 0:
-                        self.gardeners[author.id]['current']['health'] += self.products['water']['health']
+                        self.gardeners[author.id]['current']['health'] += self.products[fertilizer.lower()]['health']
                         self.gardeners[author.id]['products'][fertilizer] -= 1
                         message = 'Your plant got some health back!'
                         if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
-                            self.gardeners[author.id]['current']['health'] -= self.products['water']['damage']
+                            self.gardeners[author.id]['current']['health'] -= self.products[fertilizer.lower()]['damage']
                             message = 'You gave too much fertilizer! Your plant lost some health. :wilted_rose:'
                         self.gardeners[author.id]['points'] += self.defaults['points']['fertilize']
                         await self._save_gardeners()
@@ -276,7 +276,30 @@ class Gardening:
                 else:
                     message = 'You have no {}. Go buy some!'.format(fertilizer.capitalize())
             else:
-                message = 'There is no {}.'.format(fertilizer.capitalize())
+                message = 'Are you sure that you are using fertilizer?'
+        await self.bot.say(message)
+        
+    @commands.command(pass_context=True, name='pesticide')
+    async def _pesticide(self, context):
+        """Spray pesticide on your plant."""
+        author = context.message.author
+        if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
+            message = 'You\'re currently not growing a plant.'
+        else:
+            if 'water' in self.gardeners[author.id]['products']:
+                if self.gardeners[author.id]['products']['pesticide'] > 0:
+                    self.gardeners[author.id]['current']['health'] += self.products['pesticide']['health']
+                    self.gardeners[author.id]['products']['pesticide'] -= 1
+                    message = 'Your plant is free of pests!'
+                    if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
+                        self.gardeners[author.id]['current']['health'] -= self.products['pesticide']['damage']
+                        message = 'You sprayed too much pesticide! Your plant lost some health. :wilted_rose:'
+                    self.gardeners[author.id]['points'] += self.defaults['points']['pesticide']
+                    await self._save_gardeners()
+                else:
+                    message = 'You have no pesticide. Go buy some!'
+            else:
+                message = 'You have no pesticide. Go buy some!'
         await self.bot.say(message)
 
     async def check_degradation(self):
