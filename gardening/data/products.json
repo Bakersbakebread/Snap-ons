@@ -2,5 +2,5 @@
   "water": {"cost": 10, "health": 15, "damage": 45, "modifier": 0},
   "manure": {"cost": 20, "health": 20, "damage": 55, "modifier": -0.2},
   "vermicompost": {"cost": 40, "health": 30, "damage": 60, "modifier": -0.2},
-  "nitrates": {"cost": 100, "health": 45, "damage": 75, "modifier": -0.2},
+  "nitrates": {"cost": 100, "health": 45, "damage": 75, "modifier": -0.2}
 }
