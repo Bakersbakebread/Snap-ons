@@ -18,6 +18,9 @@ class Gardening:
         self.defaults = dataIO.load_json('data/gardening/defaults.json')
         self.badges = dataIO.load_json('data/gardening/badges.json')
 
+        self.completion_task = bot.loop.create_task(self.check_completion())
+        self.degradation_task = bot.loop.create_task(self.check_degradation())
+
     async def _save_gardeners(self):
         dataIO.save_json('data/gardening/gardeners.json', self.gardeners)
 
@@ -40,17 +43,21 @@ class Gardening:
     async def _die_in(self, gardener, degradation):
         return int(gardener.current['health'] / degradation.degradation)
 
-    async def _get_badges(self, gardener):
-        pass
-
-    async def _get_products(self, gardener):
-        pass
+    async def _withdraw_points(self, id, amount):
+        points = self.gardeners[id]['points']
+        if (points - amount) < 0:
+            return False
+        else:
+            self.gardeners[id]['points'] -= amount
+            return True
 
     @commands.group(pass_context=True, name='gardening')
     async def _gardening(self, context):
         """Gardening commands."""
         if context.invoked_subcommand is None:
-            await self.bot.send_cmd_help(context)
+            description = '**Gardening!**\nHere be help and description soon'
+            em = discord.Embed(description=description, color=discord.Color.green())
+            await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
@@ -177,17 +184,17 @@ class Gardening:
             message = 'You\'re growing {0} **{1}**. Its health is **{2:.2f}%** and still has to grow for **{3:.1f}** minutes. It is losing **{4:.2f}%** per minute and will die in **{5:.1f}** minutes.'.format(plant['article'], plant['name'], plant['health'], to_grow, degradation.degradation, die_in)
         await self.bot.say(message)
 
-    async def _withdraw_points(self, id, amount):
-        points = self.gardeners[id]['points']
-        if (points - amount) < 0:
-            return False
-        else:
-            self.gardeners[id]['points'] -= amount
-            return True
+    @_gardening.command(pass_context=True, name='products')
+    async def _products(self, context):
+        """Look at the list of the available gardening supplies."""
+        em = discord.Embed(title='All gardening supplies you can buy', description='\a\n', color=discord.Color.green())
+        for product in self.products:
+                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage']))
+        await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='buy')
     async def _buy(self, context, product, amount: int):
-        """Buy gardening supplies: water, manure, vermicompost, nitrates."""
+        """Buy gardening supplies"""
         author = context.message.author
         if author.id not in self.gardeners:
             message = 'You\'re currently not growing a plant.'
@@ -253,7 +260,7 @@ class Gardening:
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
         else:
-            if fertilizer.lower() in self.products:
+            if fertilizer.lower() in self.products and fertilizer.lower() != 'water':
                 if fertilizer.lower() in self.gardeners[author.id]['products']:
                     if self.gardeners[author.id]['products'][fertilizer] > 0:
                         self.gardeners[author.id]['current']['health'] += self.products['water']['health']
@@ -272,7 +279,7 @@ class Gardening:
                 message = 'There is no {}.'.format(fertilizer.capitalize())
         await self.bot.say(message)
 
-    async def check_degration(self):
+    async def check_degradation(self):
         while 'Gardening' in self.bot.cogs:
             for id in self.gardeners:
                 gardener = await self._gardener(id)
@@ -281,11 +288,6 @@ class Gardening:
                     self.gardeners[id]['current']['health'] -= degradation.degradation
                     self.gardeners[id]['points'] += self.defaults['points']['growing']
                     await self._save_gardeners()
-                    if gardener.current['health'] < 0:
-                        pass
-                    elif gardener.current['health'] < 5:
-                        message = 'Your plant is looking a bit droopy. I would look after it if I were you.'
-                        await self.bot.send_message(discord.User(id=str(id)), message)
             await asyncio.sleep(self.defaults['timers']['degradation'] * 60)
 
     async def check_completion(self):
@@ -304,7 +306,6 @@ class Gardening:
                         self.gardeners[id]['points'] += self.defaults['points']['complete']
                         if badge not in self.gardeners[id]['badges']:
                             self.gardeners[id]['badges'].append(badge)
-                        # self.bank.deposit_credits(discord.User(id=str(gardener)), reward)
                         message = 'Your plant made it! You are rewarded with the **{}** badge and you have recieved **{}** points.'.format(badge, reward)
                         delete = True
                     elif health < 0:
@@ -315,6 +316,11 @@ class Gardening:
                     self.gardeners[id]['current'] = False
                     await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
+
+    async def __unload(self):
+        self.completion_task.cancel()
+        self.degradation_task.cancel()
+        await self._save_gardeners()
 
 
 def check_folder():
@@ -333,7 +339,4 @@ def setup(bot):
     check_folder()
     check_file()
     cog = Gardening(bot)
-    loop = asyncio.get_event_loop()
-    loop.create_task(cog.check_degration())
-    loop.create_task(cog.check_completion())
     bot.add_cog(cog)
