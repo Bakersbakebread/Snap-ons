@@ -403,6 +403,7 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if 'pruner' in self.gardeners[author.id]['products']:
+                print(self.gardeners[author.id]['products'])
                 if self.gardeners[author.id]['products']['pruner']['uses'] > 0:
                     if (self.gardeners[author.id]['products']['pruner']['uses'] + 1) == 0:
                         self.gardeners[author.id]['products']['pruner']['uses'] -= 1
