@@ -404,6 +404,7 @@ class Gardening:
         else:
             if 'pruner' in self.gardeners[author.id]['products']:
                 if self.gardeners[author.id]['products']['pruner']['quantity'] > 0:
+                    print(self.gardeners[author.id]['products']['pruner']['uses'])
                     if (self.gardeners[author.id]['products']['pruner']['uses'] + 1) == 0:
                         self.gardeners[author.id]['products']['pruner']['quantity'] -= 1
                         message == 'Your pruner broke, please buy a new one.'
