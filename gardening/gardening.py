@@ -267,7 +267,7 @@ class Gardening:
         """Look at the list of the available gardening supplies."""
         em = discord.Embed(title='All gardening supplies you can buy', description='\a\n', color=discord.Color.green())
         for product in self.products:
-                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage\nCategory: {}'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'], self.products[product]['category']))
+                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage\n-{} uses\nCategory: {}'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'], self.products[product][uses], self.products[product]['category']))
         await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='buy')
@@ -404,11 +404,16 @@ class Gardening:
         else:
             if 'pruner' in self.gardeners[author.id]['products']:
                 if self.gardeners[author.id]['products']['pruner'] > 0:
-                    self.gardeners[author.id]['current']['health'] += self.products['pruner']['health']
-                    message = 'You pruned your plant!'
-                    if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
-                        self.gardeners[author.id]['current']['health'] -= self.products['pruner']['damage']
-                        message = 'You pruned off too many leaves! Your plant lost some health. :wilted_rose:'
+                    if (self.gardeners[author.id]['products']['pruner']['uses'] + 1) == 0:
+                        self.gardeners[author.id]['products']['pruner'] -= 1
+                        message == 'Your pruner broke, please buy a new one.'
+                    else:
+                        self.gardeners[author.id]['current']['health'] += self.products['pruner']['health']
+                        self.gardeners[author.id]['products']['pruner']['uses'] -= 1
+                        message = 'You pruned your plant!'
+                        if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
+                            self.gardeners[author.id]['current']['health'] -= self.products['pruner']['damage']
+                            message = 'You pruned off too many leaves! Your plant lost some health. :wilted_rose:'
                     self.gardeners[author.id]['points'] += self.defaults['points']['pruning']
                     await self._save_gardeners()
                 else:
