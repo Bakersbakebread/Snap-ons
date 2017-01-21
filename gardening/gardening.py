@@ -301,8 +301,8 @@ class Gardening:
                     self.gardeners[author.id]['products'][product.lower()] += amount
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
-                    message = 'You bought some {}.'.format(product.lower())
-                else:
+                    message = 'You bought {}.'.format(product.lower())
+                else:g
                     message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], self.products[product.lower()]['cost'] * amount)
 
             else:
