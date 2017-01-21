@@ -298,7 +298,7 @@ class Gardening:
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
                         self.gardeners[author.id]['products'][product.lower()] = {}
-                    self.gardeners[author.id]['products'][product.lower()] += self.products[product.lower()]
+                    self.gardeners[author.id]['products'][product.lower()] = self.products[product.lower()]
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
                     message = 'You bought {}.'.format(product.lower())
