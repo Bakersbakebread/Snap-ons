@@ -297,8 +297,8 @@ class Gardening:
                 withdraw_points = await self._withdraw_points(author.id, cost)
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
-                        self.gardeners[author.id]['products'][product.lower()] = 0
-                    self.gardeners[author.id]['products'][product.lower()] += amount
+                        self.gardeners[author.id]['products'][product.lower()] = {}
+                    self.gardeners[author.id]['products'][product.lower()] += self.products[product.lower()]
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
                     message = 'You bought {}.'.format(product.lower())
@@ -403,7 +403,6 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if 'pruner' in self.gardeners[author.id]['products']:
-                print(self.gardeners[author.id]['products']['pruner']['uses'])
                 if self.gardeners[author.id]['products']['pruner']['uses'] > 0:
                     if (self.gardeners[author.id]['products']['pruner']['uses'] + 1) == 0:
                         self.gardeners[author.id]['products']['pruner']['uses'] -= 1
