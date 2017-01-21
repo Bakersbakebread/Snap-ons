@@ -194,7 +194,7 @@ class Gardening:
             else:
                 products = ''
                 for product in gardener.products:
-                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener.products[product], [0 if gardener.products[product]['uses'] < 1 else self.products[product]['modifier']][0])
+                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener.products[product]['uses'], [0 if gardener.products[product]['uses'] < 1 else self.products[product]['modifier']][0])
                 em.add_field(name='**Products**', value=products)
             if gardener.current:
                 degradation = await self._degradation(gardener)
