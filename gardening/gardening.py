@@ -394,7 +394,29 @@ class Gardening:
             else:
                 message = 'You have no pesticide. Go buy some!'
         await self.bot.say(message)
-
+        
+    @commands.command(pass_context=True, name='prune')
+    async def _prune(self, context):
+        """Prune your plant."""
+        author = context.message.author
+        if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
+            message = 'You\'re currently not growing a plant.'
+        else:
+            if 'pruner' in self.gardeners[author.id]['products']:
+                if self.gardeners[author.id]['products']['pruner'] > 0:
+                    self.gardeners[author.id]['current']['health'] += self.products['pruner']['health']
+                    message = 'You pruned your plant!'
+                    if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
+                        self.gardeners[author.id]['current']['health'] -= self.products['pruner']['damage']
+                        message = 'You pruned off too many leaves! Your plant lost some health. :wilted_rose:'
+                    self.gardeners[author.id]['points'] += self.defaults['points']['pruning']
+                    await self._save_gardeners()
+                else:
+                    message = 'You don\'t have a pruner. Go buy one!'
+            else:
+                message = 'You don\'t have a pruner. Go buy one!'
+        await self.bot.say(message)
+    
     async def check_degradation(self):
         while 'Gardening' in self.bot.cogs:
             for id in self.gardeners:
