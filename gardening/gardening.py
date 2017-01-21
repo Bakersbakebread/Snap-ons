@@ -331,9 +331,9 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if 'water' in self.gardeners[author.id]['products']:
-                if self.gardeners[author.id]['products']['water']['quantity'] > 0:
+                if self.gardeners[author.id]['products']['water']['uses'] > 0:
                     self.gardeners[author.id]['current']['health'] += self.products['water']['health']
-                    self.gardeners[author.id]['products']['water']['quantity'] -= 1
+                    self.gardeners[author.id]['products']['water']['uses'] -= 1
                     message = 'Your plant got some health back!'
                     if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
                         self.gardeners[author.id]['current']['health'] -= self.products['water']['damage']
@@ -355,9 +355,9 @@ class Gardening:
         else:
             if fertilizer.lower() in self.products and self.products[fertilizer.lower()]['category'] == 'fertilizer':
                 if fertilizer.lower() in self.gardeners[author.id]['products']:
-                    if self.gardeners[author.id]['products'][fertilizer.lower()]['quantity'] > 0:
+                    if self.gardeners[author.id]['products'][fertilizer.lower()]['uses'] > 0:
                         self.gardeners[author.id]['current']['health'] += self.products[fertilizer.lower()]['health']
-                        self.gardeners[author.id]['products'][fertilizer.lower()]['quantity'] -= 1
+                        self.gardeners[author.id]['products'][fertilizer.lower()]['uses'] -= 1
                         message = 'Your plant got some health back!'
                         if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
                             self.gardeners[author.id]['current']['health'] -= self.products[fertilizer.lower()]['damage']
@@ -380,9 +380,9 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if 'pesticide' in self.gardeners[author.id]['products']:
-                if self.gardeners[author.id]['products']['pesticide']['quantity'] > 0:
+                if self.gardeners[author.id]['products']['pesticide']['uses'] > 0:
                     self.gardeners[author.id]['current']['health'] += self.products['pesticide']['health']
-                    self.gardeners[author.id]['products']['pesticide']['quantity'] -= 1
+                    self.gardeners[author.id]['products']['pesticide']['uses'] -= 1
                     message = 'Your plant is free of pests!'
                     if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
                         self.gardeners[author.id]['current']['health'] -= self.products['pesticide']['damage']
@@ -403,12 +403,12 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if 'pruner' in self.gardeners[author.id]['products']:
-                print(self.gardeners[author.id]['products']['pruner']['quantity'])
-                if self.gardeners[author.id]['products']['pruner']['quantity'] > 0:
+                print(self.gardeners[author.id]['products']['pruner']['uses'])
+                if self.gardeners[author.id]['products']['pruner']['uses'] > 0:
                     if (self.gardeners[author.id]['products']['pruner']['uses'] + 1) == 0:
-                        self.gardeners[author.id]['products']['pruner']['quantity'] -= 1
+                        self.gardeners[author.id]['products']['pruner']['uses'] -= 1
                         message == 'Your pruner broke, please buy a new one.'
-                        if self.gardeners[author.id]['products']['pruner']['quantity'] > 0:
+                        if self.gardeners[author.id]['products']['pruner']['uses'] > 0:
                             self.gardeners[author.id]['products']['pruner']['uses'] = 1
                     else:
                         self.gardeners[author.id]['current']['health'] += self.products['pruner']['health']
