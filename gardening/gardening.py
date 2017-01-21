@@ -267,7 +267,7 @@ class Gardening:
         """Look at the list of the available gardening supplies."""
         em = discord.Embed(title='All gardening supplies you can buy', description='\a\n', color=discord.Color.green())
         for product in self.products:
-                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage\nCategory: {}'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'], self.products[product]['category']))
+                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage\nUses: {}\nCategory: {}'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'], self.products[product]['uses'], self.products[product]['category']))
         await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='buy')
@@ -331,9 +331,9 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if 'water' in self.gardeners[author.id]['products']:
-                if self.gardeners[author.id]['products']['water'] > 0:
+                if self.gardeners[author.id]['products']['water']['quantity'] > 0:
                     self.gardeners[author.id]['current']['health'] += self.products['water']['health']
-                    self.gardeners[author.id]['products']['water'] -= 1
+                    self.gardeners[author.id]['products']['water']['quantity'] -= 1
                     message = 'Your plant got some health back!'
                     if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
                         self.gardeners[author.id]['current']['health'] -= self.products['water']['damage']
@@ -353,11 +353,11 @@ class Gardening:
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
         else:
-            if fertilizer.lower() in self.products and fertilizer.lower() != 'water' and fertilizer.lower() != 'pesticide' and fertilizer.lower() != 'pruner':
+            if fertilizer.lower() in self.products and self.products[fertilizer.lower()]['category'] == 'fertilizer':
                 if fertilizer.lower() in self.gardeners[author.id]['products']:
-                    if self.gardeners[author.id]['products'][fertilizer.lower()] > 0:
+                    if self.gardeners[author.id]['products'][fertilizer.lower()]['quantity'] > 0:
                         self.gardeners[author.id]['current']['health'] += self.products[fertilizer.lower()]['health']
-                        self.gardeners[author.id]['products'][fertilizer.lower()] -= 1
+                        self.gardeners[author.id]['products'][fertilizer.lower()]['quantity'] -= 1
                         message = 'Your plant got some health back!'
                         if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
                             self.gardeners[author.id]['current']['health'] -= self.products[fertilizer.lower()]['damage']
@@ -380,9 +380,9 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if 'pesticide' in self.gardeners[author.id]['products']:
-                if self.gardeners[author.id]['products']['pesticide'] > 0:
+                if self.gardeners[author.id]['products']['pesticide']['quantity'] > 0:
                     self.gardeners[author.id]['current']['health'] += self.products['pesticide']['health']
-                    self.gardeners[author.id]['products']['pesticide'] -= 1
+                    self.gardeners[author.id]['products']['pesticide']['quantity'] -= 1
                     message = 'Your plant is free of pests!'
                     if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
                         self.gardeners[author.id]['current']['health'] -= self.products['pesticide']['damage']
@@ -403,12 +403,19 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if 'pruner' in self.gardeners[author.id]['products']:
-                if self.gardeners[author.id]['products']['pruner'] > 0:
-                    self.gardeners[author.id]['current']['health'] += self.products['pruner']['health']
-                    message = 'You pruned your plant!'
-                    if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
-                        self.gardeners[author.id]['current']['health'] -= self.products['pruner']['damage']
-                        message = 'You pruned off too many leaves! Your plant lost some health. :wilted_rose:'
+                if self.gardeners[author.id]['products']['pruner']['quantity'] > 0:
+                    if (self.gardeners[author.id]['products']['pruner']['uses'] + 1) == 0:
+                        self.gardeners[author.id]['products']['pruner']['quantity'] -= 1
+                        message == 'Your pruner broke, please buy a new one.'
+                        if self.gardeners[author.id]['products']['pruner']['quantity'] > 0:
+                            self.gardeners[author.id]['products']['pruner']['uses'] = 1
+                    else:
+                        self.gardeners[author.id]['current']['health'] += self.products['pruner']['health']
+                        self.gardeners[author.id]['products']['pruner']['uses'] -= 1
+                        message = 'You pruned your plant!'
+                        if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
+                            self.gardeners[author.id]['current']['health'] -= self.products['pruner']['damage']
+                            message = 'You pruned off too many leaves! Your plant lost some health. :wilted_rose:'
                     self.gardeners[author.id]['points'] += self.defaults['points']['pruning']
                     await self._save_gardeners()
                 else:

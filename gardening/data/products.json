@@ -1,8 +1,8 @@
 {
-  "water": {"cost": 10, "health": 15, "damage": 45, "modifier": 0, "category": "Water"},
-  "manure": {"cost": 20, "health": 20, "damage": 55, "modifier": -0.2, "category": "Fertilizer"},
-  "vermicompost": {"cost": 40, "health": 30, "damage": 60, "modifier": -0.3, "category": "Fertilizer"},
-  "nitrates": {"cost": 100, "health": 45, "damage": 75, "modifier": -0.4, "category": "Fertilizer"},
-  "pruner": {"cost": 500, "health": 25, "damage": 90, "modifier": -0.75, "category": "Tool"},
-  "pesticide": {"cost": 250, "health": 50, "damage": 80, "modifier": 0.1, "category": "Pesticide"}
+  "water": {"cost": 10, "health": 15, "damage": 45, "modifier": 0, "category": "water", "uses": 1},
+  "manure": {"cost": 20, "health": 20, "damage": 55, "modifier": -0.2, "category": "fertilizer", "uses": 1},
+  "vermicompost": {"cost": 40, "health": 30, "damage": 60, "modifier": -0.3, "category": "fertilizer", "uses": 1},
+  "nitrates": {"cost": 100, "health": 45, "damage": 75, "modifier": -0.4, "category": "fertilizer", "uses": 1},
+  "pruner": {"cost": 500, "health": 25, "damage": 90, "modifier": -0.75, "category": "tool", "uses": 10},
+  "pesticide": {"cost": 250, "health": 50, "damage": 80, "modifier": 0.1, "category": "pesticide", "uses": 1}
 }
