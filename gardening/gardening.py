@@ -421,6 +421,10 @@ class Gardening:
             else:
                 message = 'You don\'t have a pruner. Go buy one!'
         await self.bot.say(message)
+        
+    @commands.command(pass_context=True, name='test')
+    async def _test(self, context):
+        print(self.gardeners)
 
     async def check_degradation(self):
         while 'Gardening' in self.bot.cogs:
