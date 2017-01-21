@@ -239,7 +239,23 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if product.lower() in self.products:
-                withdraw_points = await self._withdraw_points(author.id, self.products[product.lower()]['cost'] * amount)
+                cost = self.products[product.lower()]['cost'] * amount
+
+                # TODO
+                #
+                # Economy preparation. I might build in a check to see
+                # if the user has an economy bank account. When it
+                # hasn't, default to rewarding points.
+                #
+                # member = self.bot.get_server(gardener.current['origin_server']).get_user(gardener.current['member_id'])
+                #
+                # if self.bank.account_exists(member):
+                #       self.bank.withdraw_credits(member, cost)
+                # else:
+                #       self.gardeners[id]['points'] -= cost
+                #
+
+                withdraw_points = await self._withdraw_points(author.id, cost)
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
                         self.gardeners[author.id]['products'][product.lower()] = 0
