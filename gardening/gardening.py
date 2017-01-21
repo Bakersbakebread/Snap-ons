@@ -1,23 +1,31 @@
-from discord.ext import commands
 from cogs.utils.dataIO import dataIO
+from discord.ext import commands
 from random import choice
+import collections
+import discord
 import asyncio
 import time
-import discord
 import os
-import collections
 
 
 class Gardening:
     """Grow your own plants!"""
     def __init__(self, bot):
         self.bot = bot
+
+        #
+        # Loading all data
+        #
+
         self.gardeners = dataIO.load_json('data/gardening/gardeners.json')
         self.plants = dataIO.load_json('data/gardening/plants.json')
         self.products = dataIO.load_json('data/gardening/products.json')
         self.defaults = dataIO.load_json('data/gardening/defaults.json')
         self.badges = dataIO.load_json('data/gardening/badges.json')
 
+        #
+        # Starting loops
+        #
         self.completion_task = bot.loop.create_task(self.check_completion())
         self.degradation_task = bot.loop.create_task(self.check_degradation())
 
@@ -29,28 +37,59 @@ class Gardening:
         #
 
     async def _save_gardeners(self):
+
+        #
+        # This function saves the state of all gardeners.
+        #
+
         dataIO.save_json('data/gardening/gardeners.json', self.gardeners)
 
     async def _gardener(self, id):
+
+        #
+        # This function returns an individual gardener namedtuple
+        #
+
         g = self.gardeners[id]
         gardener = collections.namedtuple('gardener', 'badges points products current')
         return gardener(badges=g['badges'], points=g['points'], products=g['products'], current=g['current'])
 
     async def _grow_time(self, gardener):
+
+        #
+        # Calculating the remaining grow time for a plant
+        #
+
         now = int(time.time())
         then = gardener.current['timestamp']
         return (gardener.current['time'] - (now - then)) / 60
 
     async def _degradation(self, gardener):
+
+        #
+        # Calculating the rate of degradation per check_completion() cycle.
+        #
+
         modifiers = sum([self.products[product]['modifier'] for product in gardener.products if gardener.products[product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener.badges])
         degradation = (100 / (gardener.current['time'] / 60) * (self.defaults['points']['base_degradation'] + gardener.current['degradation'])) + modifiers
         d = collections.namedtuple('degradation', 'degradation time modifiers')
         return d(degradation=degradation, time=gardener.current['time'], modifiers=modifiers)
 
     async def _die_in(self, gardener, degradation):
+
+        #
+        # Calculating how much time in minutes remains until the plant's health hits 0
+        #
+
         return int(gardener.current['health'] / degradation.degradation)
 
     async def _withdraw_points(self, id, amount):
+
+        # TO BE DEPRECATED soon
+        #
+        # Substract points from the gardener
+        #
+
         points = self.gardeners[id]['points']
         if (points - amount) < 0:
             return False
