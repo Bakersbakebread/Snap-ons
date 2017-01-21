@@ -258,7 +258,7 @@ class Gardening:
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
         else:
-            if fertilizer.lower() in self.products and fertilizer.lower() != 'water' and fertlizer.lower() != 'pesticide' and fertilizer.lower() != 'pruner':
+            if fertilizer.lower() in self.products and fertilizer.lower() != 'water' and fertilizer.lower() != 'pesticide' and fertilizer.lower() != 'pruner':
                 if fertilizer.lower() in self.gardeners[author.id]['products']:
                     if self.gardeners[author.id]['products'][fertilizer.lower()] > 0:
                         self.gardeners[author.id]['current']['health'] += self.products[fertilizer.lower()]['health']
@@ -276,7 +276,7 @@ class Gardening:
             else:
                 message = 'Are you sure that you are using fertilizer?'
         await self.bot.say(message)
-        
+
     @commands.command(pass_context=True, name='pesticide')
     async def _pesticide(self, context):
         """Spray pesticide on your plant."""
@@ -329,7 +329,7 @@ class Gardening:
                             self.gardeners[id]['badges'].append(badge)
                         message = 'Your plant made it! You are rewarded with the **{}** badge and you have recieved **{}** points.'.format(badge, reward)
                         delete = True
-                    elif health < 0:
+                    if health < 0:
                         message = 'Your plant died!'
                         delete = True
                 if delete:
