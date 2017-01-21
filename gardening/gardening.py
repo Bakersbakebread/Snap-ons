@@ -1,49 +1,95 @@
-from discord.ext import commands
 from cogs.utils.dataIO import dataIO
+from discord.ext import commands
 from random import choice
+import collections
+import discord
 import asyncio
 import time
-import discord
 import os
-import collections
 
 
 class Gardening:
     """Grow your own plants!"""
     def __init__(self, bot):
         self.bot = bot
+
+        #
+        # Loading all data
+        #
+
         self.gardeners = dataIO.load_json('data/gardening/gardeners.json')
         self.plants = dataIO.load_json('data/gardening/plants.json')
         self.products = dataIO.load_json('data/gardening/products.json')
         self.defaults = dataIO.load_json('data/gardening/defaults.json')
         self.badges = dataIO.load_json('data/gardening/badges.json')
 
+        #
+        # Starting loops
+        #
         self.completion_task = bot.loop.create_task(self.check_completion())
         self.degradation_task = bot.loop.create_task(self.check_degradation())
 
+        # TODO
+        #
+        # In preparation for economy
+        #
+        # self.bank = bot.get_cog('Economy').bank
+        #
+
     async def _save_gardeners(self):
+
+        #
+        # This function saves the state of all gardeners.
+        #
+
         dataIO.save_json('data/gardening/gardeners.json', self.gardeners)
 
     async def _gardener(self, id):
+
+        #
+        # This function returns an individual gardener namedtuple
+        #
+
         g = self.gardeners[id]
         gardener = collections.namedtuple('gardener', 'badges points products current')
         return gardener(badges=g['badges'], points=g['points'], products=g['products'], current=g['current'])
 
     async def _grow_time(self, gardener):
+
+        #
+        # Calculating the remaining grow time for a plant
+        #
+
         now = int(time.time())
         then = gardener.current['timestamp']
         return (gardener.current['time'] - (now - then)) / 60
 
     async def _degradation(self, gardener):
+
+        #
+        # Calculating the rate of degradation per check_completion() cycle.
+        #
+
         modifiers = sum([self.products[product]['modifier'] for product in gardener.products if gardener.products[product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener.badges])
         degradation = (100 / (gardener.current['time'] / 60) * (self.defaults['points']['base_degradation'] + gardener.current['degradation'])) + modifiers
         d = collections.namedtuple('degradation', 'degradation time modifiers')
         return d(degradation=degradation, time=gardener.current['time'], modifiers=modifiers)
 
     async def _die_in(self, gardener, degradation):
+
+        #
+        # Calculating how much time in minutes remains until the plant's health hits 0
+        #
+
         return int(gardener.current['health'] / degradation.degradation)
 
     async def _withdraw_points(self, id, amount):
+
+        # TO BE DEPRECATED soon
+        #
+        # Substract points from the gardener
+        #
+
         points = self.gardeners[id]['points']
         if (points - amount) < 0:
             return False
@@ -57,10 +103,22 @@ class Gardening:
         if context.invoked_subcommand is None:
             await self.bot.send_cmd_help(context)
 
+            # TODO
+            #
+            # Dammit, leave it here, I got plans for it.
+            # The help thingy is going to look really pretty with Embed! 🙃
+            #
+            # prefix = context.prefix
+            # description = '**Gardening!**\nHere be help and description soon'
+            # em = discord.Embed(description=description, color=discord.Color.green())
+            # em.set_thumbnail(url='')
+            # await self.bot.say(embed=em)
+
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
         """Sow the seed to grow the plant."""
         author = context.message.author
+        # server = context.message.server
         if author.id not in self.gardeners:
             self.gardeners[author.id] = {}
             self.gardeners[author.id]['current'] = False
@@ -70,6 +128,27 @@ class Gardening:
         if not self.gardeners[author.id]['current']:
             plant = choice(self.plants['plants'])
             plant['timestamp'] = int(time.time())
+
+            # TODO
+            #
+            # We're going to do an economy implementation,
+            # saving the server id to retrieve the Member object through:
+            # bot.get_server(Server.id).get_member(Member.id)
+            #
+            # Server ID will be stored in the `current` key as following:
+            # plant['origin_server'] = server.id
+            #
+            # And also adding a member ID, just to be sure:
+            # plant['member_id'] = author.id
+            #
+            # You can only grow one plant across all servers.
+            #
+            # For debugging purposes I insert a session id that is
+            # based on the current integer timestamp.
+            #
+            # plant['session_id'] = int(context.message.timestamp.timestamp())
+            #
+
             message = 'During one of your many heroic adventures, you came across a mysterious bag that said "pick one". '
             message += 'To your surprise it had all kinds of different seeds in them. And now that you\'re home, you want to plant it. '
             message += 'You went to a local farmer to identify the seed, and the farmer said it was {} **{} ({})** seed.\n\n'.format(plant['article'], plant['name'], plant['rarity'])
@@ -199,7 +278,23 @@ class Gardening:
             message = 'You\'re currently not growing a plant.'
         else:
             if product.lower() in self.products:
-                withdraw_points = await self._withdraw_points(author.id, self.products[product.lower()]['cost'] * amount)
+                cost = self.products[product.lower()]['cost'] * amount
+
+                # TODO
+                #
+                # Economy preparation. I might build in a check to see
+                # if the user has an economy bank account. When it
+                # hasn't, default to rewarding points.
+                #
+                # member = self.bot.get_server(gardener.current['origin_server']).get_user(gardener.current['member_id'])
+                #
+                # if self.bank.account_exists(member):
+                #       self.bank.withdraw_credits(member, cost)
+                # else:
+                #       self.gardeners[id]['points'] -= cost
+                #
+
+                withdraw_points = await self._withdraw_points(author.id, cost)
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
                         self.gardeners[author.id]['products'][product.lower()] = 0
@@ -324,6 +419,21 @@ class Gardening:
                     badge = gardener.current['badge']
                     reward = gardener.current['reward']
                     if (now - then) > grow_time:
+
+                        # TODO
+                        #
+                        # Economy preparation. I might build in a check to see
+                        # if the user has an economy bank account. When it
+                        # hasn't, default to rewarding points.
+                        #
+                        # member = self.bot.get_server(gardener.current['origin_server']).get_user(gardener.current['member_id'])
+                        #
+                        # if self.bank.account_exists(member):
+                        #       self.bank.deposit_credits(member, reward)
+                        # else:
+                        #       self.gardeners[id]['points'] += reward
+                        #
+
                         self.gardeners[id]['points'] += self.defaults['points']['complete']
                         if badge not in self.gardeners[id]['badges']:
                             self.gardeners[id]['badges'].append(badge)
