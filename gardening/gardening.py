@@ -302,7 +302,7 @@ class Gardening:
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
                     message = 'You bought {}.'.format(product.lower())
-                else:g
+                else:
                     message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], self.products[product.lower()]['cost'] * amount)
 
             else:
@@ -394,7 +394,7 @@ class Gardening:
             else:
                 message = 'You have no pesticide. Go buy some!'
         await self.bot.say(message)
-        
+
     @commands.command(pass_context=True, name='prune')
     async def _prune(self, context):
         """Prune your plant."""
@@ -416,7 +416,7 @@ class Gardening:
             else:
                 message = 'You don\'t have a pruner. Go buy one!'
         await self.bot.say(message)
-    
+
     async def check_degradation(self):
         while 'Gardening' in self.bot.cogs:
             for id in self.gardeners:
@@ -470,10 +470,10 @@ class Gardening:
                     await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
 
-    async def __unload(self):
+    def __unload(self):
         self.completion_task.cancel()
         self.degradation_task.cancel()
-        await self._save_gardeners()
+        self._save_gardeners()
 
 
 def check_folder():
