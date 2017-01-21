@@ -70,7 +70,7 @@ class Gardening:
         # Calculating the rate of degradation per check_completion() cycle.
         #
 
-        modifiers = sum([self.products[product]['modifier'] for product in gardener.products if gardener.products[product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener.badges])
+        modifiers = sum([self.products[product]['modifier'] for product in gardener.products if gardener.products[product]['uses'] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener.badges])
         degradation = (100 / (gardener.current['time'] / 60) * (self.defaults['points']['base_degradation'] + gardener.current['degradation'])) + modifiers
         d = collections.namedtuple('degradation', 'degradation time modifiers')
         return d(degradation=degradation, time=gardener.current['time'], modifiers=modifiers)
