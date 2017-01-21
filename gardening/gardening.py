@@ -21,6 +21,13 @@ class Gardening:
         self.completion_task = bot.loop.create_task(self.check_completion())
         self.degradation_task = bot.loop.create_task(self.check_degradation())
 
+        # TODO
+        #
+        # In preparation for economy
+        #
+        # self.bank = bot.get_cog('Economy').bank
+        #
+
     async def _save_gardeners(self):
         dataIO.save_json('data/gardening/gardeners.json', self.gardeners)
 
@@ -57,10 +64,22 @@ class Gardening:
         if context.invoked_subcommand is None:
             await self.bot.send_cmd_help(context)
 
+            # TODO
+            #
+            # Dammit, leave it here, I got plans for it.
+            # The help thingy is going to look really pretty with Embed! 🙃
+            #
+            # prefix = context.prefix
+            # description = '**Gardening!**\nHere be help and description soon'
+            # em = discord.Embed(description=description, color=discord.Color.green())
+            # em.set_thumbnail(url='')
+            # await self.bot.say(embed=em)
+
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
         """Sow the seed to grow the plant."""
         author = context.message.author
+        # server = context.message.server
         if author.id not in self.gardeners:
             self.gardeners[author.id] = {}
             self.gardeners[author.id]['current'] = False
@@ -70,6 +89,27 @@ class Gardening:
         if not self.gardeners[author.id]['current']:
             plant = choice(self.plants['plants'])
             plant['timestamp'] = int(time.time())
+
+            # TODO
+            #
+            # We're going to do an economy implementation,
+            # saving the server id to retrieve the Member object through:
+            # bot.get_server(Server.id).get_member(Member.id)
+            #
+            # Server ID will be stored in the `current` key as following:
+            # plant['origin_server'] = server.id
+            #
+            # And also adding a member ID, just to be sure:
+            # plant['member_id'] = author.id
+            #
+            # You can only grow one plant across all servers.
+            #
+            # For debugging purposes I insert a session id that is
+            # based on the current integer timestamp.
+            #
+            # plant['session_id'] = int(context.message.timestamp.timestamp())
+            #
+
             message = 'During one of your many heroic adventures, you came across a mysterious bag that said "pick one". '
             message += 'To your surprise it had all kinds of different seeds in them. And now that you\'re home, you want to plant it. '
             message += 'You went to a local farmer to identify the seed, and the farmer said it was {} **{} ({})** seed.\n\n'.format(plant['article'], plant['name'], plant['rarity'])
@@ -324,6 +364,21 @@ class Gardening:
                     badge = gardener.current['badge']
                     reward = gardener.current['reward']
                     if (now - then) > grow_time:
+
+                        # TODO
+                        #
+                        # Economy preparation. I might build in a check to see
+                        # if the user has an economy bank account. When it
+                        # hasn't, default to rewarding points.
+                        #
+                        # member = self.bot.get_server(gardener.current['origin_server']).get_user(gardener.current['member_id'])
+                        #
+                        # if self.bank.account_exists(member):
+                        #       self.bank.deposit_credits(member, reward)
+                        # else:
+                        #       self.gardeners[id]['points'] += reward
+                        #
+
                         self.gardeners[id]['points'] += self.defaults['points']['complete']
                         if badge not in self.gardeners[id]['badges']:
                             self.gardeners[id]['badges'].append(badge)
