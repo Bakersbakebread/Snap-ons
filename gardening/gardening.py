@@ -373,9 +373,10 @@ class Gardening:
         product_category = 'water'
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
+            await self._send_message(channel, message)
         else:
             await self._add_health(channel, author.id, product, product_category)
-        await self._send_message(channel, message)
+
 
     @commands.command(pass_context=True, name='fertilize')
     async def _fertilize(self, context, fertilizer):
@@ -386,9 +387,9 @@ class Gardening:
         product_category = 'fertilizer'
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
+            await self._send_message(channel, message)
         else:
             await self._add_health(channel, author.id, product, product_category)
-        await self._send_message(channel, message)
 
     # TODO
     #
