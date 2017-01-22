@@ -154,8 +154,8 @@ class Gardening:
             message += 'You went to a local farmer to identify the seed, and the farmer said it was {} **{} ({})** seed.\n\n'.format(plant['article'], plant['name'], plant['rarity'])
             message += 'Take good care of your seed and water it frequently. Once it blooms, something nice might come from it. If it dies, however, you will get nothing.'
             if 'water' not in self.gardeners[author.id]['products']:
-                self.gardeners[author.id]['products']['water'] = 0
-            self.gardeners[author.id]['products']['water'] += 5
+                self.gardeners[author.id]['products']['water'] = {"cost": 10, "health": 15, "damage": 45, "modifier": 0, "category": "water", "uses": 1}
+            self.gardeners[author.id]['products']['water'] = {"cost": 10, "health": 15, "damage": 45, "modifier": 0, "category": "water", "uses": 1}
             self.gardeners[author.id]['current'] = plant
             await self._save_gardeners()
 
