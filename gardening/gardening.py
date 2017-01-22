@@ -113,6 +113,41 @@ class Gardening:
         member = await self._get_member(user_id)
         await self.bot.send_message(member, message)
 
+    async def _send_message(self, channel, message):
+
+        #
+        # Sends a message
+        #
+
+        await self.bot.send_message(channel, message)
+
+    async def _add_health(self, channel, id, product, product_category):
+
+        #
+        # The function to add health
+        #
+
+        product = product.lower()
+        product_category = product_category.lower()
+        if product in self.products and self.products[product]['category'] == product_category:
+            if product in self.gardeners[id]['products']:
+                if self.gardeners[id]['products'][product]['uses'] > 0:
+                    self.gardeners[id]['current']['health'] += self.products[product]['health']
+                    self.gardeners[id]['products'][product]['uses'] -= 1
+                    message = 'Your plant got some health back!'
+                    if self.gardeners[id]['current']['health'] > self.gardeners[id]['current']['threshold']:
+                        self.gardeners[id]['current']['health'] -= self.products[product]['damage']
+                        message = 'You gave too much {}! Your plant lost some health. :wilted_rose:'.format(product)
+                    self.gardeners[id]['points'] += self.defaults['points']['add_health']
+                    await self._save_gardeners()
+                else:
+                    message = 'You have no {}. Go buy some!'.format(product)
+            else:
+                message = 'You have no {}. Go buy some!'.format(product)
+        else:
+            message = 'Are you sure you are using {}?'.format(product_category)
+        await self._send_message(channel, message)
+
     @commands.group(pass_context=True, name='gardening')
     async def _gardening(self, context):
         """Gardening commands."""
@@ -339,31 +374,6 @@ class Gardening:
             await self._save_gardeners()
         await self.bot.say(message)
 
-    async def _send_message(self, channel, message):
-        await self.bot.send_message(channel, message)
-
-    async def _add_health(self, channel, id, product, product_category):
-        product = product.lower()
-        product_category = product_category.lower()
-        if product in self.products and self.products[product]['category'] == product_category:
-            if product in self.gardeners[id]['products']:
-                if self.gardeners[id]['products'][product]['uses'] > 0:
-                    self.gardeners[id]['current']['health'] += self.products[product]['health']
-                    self.gardeners[id]['products'][product]['uses'] -= 1
-                    message = 'Your plant got some health back!'
-                    if self.gardeners[id]['current']['health'] > self.gardeners[id]['current']['threshold']:
-                        self.gardeners[id]['current']['health'] -= self.products[product]['damage']
-                        message = 'You gave too much {}! Your plant lost some health. :wilted_rose:'.format(product)
-                    self.gardeners[id]['points'] += self.defaults['points']['add_health']
-                    await self._save_gardeners()
-                else:
-                    message = 'You have no {}. Go buy some!'.format(product)
-            else:
-                message = 'You have no {}. Go buy some!'.format(product)
-        else:
-            message = 'Are you sure you are using {}?'.format(product_category)
-        await self._send_message(channel, message)
-
     @commands.command(pass_context=True, name='water')
     async def _water(self, context):
         """Water your plant."""
@@ -376,7 +386,6 @@ class Gardening:
             await self._send_message(channel, message)
         else:
             await self._add_health(channel, author.id, product, product_category)
-
 
     @commands.command(pass_context=True, name='fertilize')
     async def _fertilize(self, context, fertilizer):
