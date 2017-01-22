@@ -1,17 +1,18 @@
 {
   "points": {
     "buy": 5,
-    "water": 5,
+    "add_health": 5,
     "fertilize": 10,
     "pruning": 20,
     "pesticide": 25,
     "growing": 5,
     "damage": 25,
     "poison": 50,
-    "complete": 150,
-    "base_degradation": 1.5
+    "complete": 150
   }, "timers": {
     "degradation": 1,
     "completion": 1
+  }, "degradation": {
+    "base_degradation": 1.5
   }
 }
