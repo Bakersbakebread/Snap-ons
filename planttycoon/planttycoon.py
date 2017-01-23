@@ -247,7 +247,7 @@ class PlantTycoon:
             else:
                 products = ''
                 for product in gardener.products:
-                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener.products[product]['uses'], [0 if gardener.products[product]['uses'] < 1 else self.products[product]['modifier']][0])
+                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener.products[product]['uses'], self.products[product]['modifier'])
                 em.add_field(name='**Products**', value=products)
             if gardener.current:
                 degradation = await self._degradation(gardener)
@@ -349,7 +349,8 @@ class PlantTycoon:
                 withdraw_points = await self._withdraw_points(author.id, cost)
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
-                        self.gardeners[author.id]['products'][product.lower()] = {}
+                        self.gardeners[author.id]['products'][product.lower()] = self.products[product.lower()]
+                        self.gardeners[author.id]['products'][product.lower()]['uses'] = 0
                     self.gardeners[author.id]['products'][product.lower()]['uses'] += amount
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
