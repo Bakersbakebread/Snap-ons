@@ -134,6 +134,8 @@ class PlantTycoon:
                 if self.gardeners[id]['products'][product]['uses'] > 0:
                     self.gardeners[id]['current']['health'] += self.products[product]['health']
                     self.gardeners[id]['products'][product]['uses'] -= 1
+                    if self.gardeners[id]['products'][product]['uses'] == 0:
+                        del[self.gardeners[id]['products'][product.lower()]]
                     message = 'Your plant got some health back!'
                     if self.gardeners[id]['current']['health'] > self.gardeners[id]['current']['threshold']:
                         self.gardeners[id]['current']['health'] -= self.products[product]['damage']
@@ -340,7 +342,6 @@ class PlantTycoon:
                 # member = self.bot.get_server(gardener.current['origin_server']).get_user(gardener.current['member_id'])
                 #
                 # if self.bank.account_exists(member):
-                #       self.bank.withdraw_credits(member, cost)
                 # else:
                 #       self.gardeners[id]['points'] -= cost
                 #
@@ -349,7 +350,7 @@ class PlantTycoon:
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
                         self.gardeners[author.id]['products'][product.lower()] = {}
-                    self.gardeners[author.id]['products'][product.lower()] = self.products[product.lower()]
+                    self.gardeners[author.id]['products'][product.lower()]['uses'] += amount
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
                     message = 'You bought {}.'.format(product.lower())
