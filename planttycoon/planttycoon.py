@@ -8,7 +8,7 @@ import time
 import os
 
 
-class Gardening:
+class PlantTycoon:
     """Grow your own plants!"""
     def __init__(self, bot):
         self.bot = bot
@@ -514,5 +514,5 @@ def check_file():
 def setup(bot):
     check_folder()
     check_file()
-    cog = Gardening(bot)
+    cog = PlantTycoon(bot)
     bot.add_cog(cog)
