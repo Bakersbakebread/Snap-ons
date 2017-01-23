@@ -17,11 +17,11 @@ class PlantTycoon:
         # Loading all data
         #
 
-        self.gardeners = dataIO.load_json('data/gardening/gardeners.json')
-        self.plants = dataIO.load_json('data/gardening/plants.json')
-        self.products = dataIO.load_json('data/gardening/products.json')
-        self.defaults = dataIO.load_json('data/gardening/defaults.json')
-        self.badges = dataIO.load_json('data/gardening/badges.json')
+        self.gardeners = dataIO.load_json('data/planttycoon/gardeners.json')
+        self.plants = dataIO.load_json('data/planttycoon/plants.json')
+        self.products = dataIO.load_json('data/planttycoon/products.json')
+        self.defaults = dataIO.load_json('data/planttycoon/defaults.json')
+        self.badges = dataIO.load_json('data/planttycoon/badges.json')
 
         #
         # Starting loops
@@ -42,7 +42,7 @@ class PlantTycoon:
         # This function saves the state of all gardeners.
         #
 
-        dataIO.save_json('data/gardening/gardeners.json', self.gardeners)
+        dataIO.save_json('data/planttycoon/gardeners.json', self.gardeners)
 
     async def _gardener(self, id):
 
@@ -441,7 +441,7 @@ class PlantTycoon:
     #    await self.bot.say(message)
 
     async def check_degradation(self):
-        while 'Gardening' in self.bot.cogs:
+        while 'PlantTycoon' in self.bot.cogs:
             for id in self.gardeners:
                 gardener = await self._gardener(id)
                 if gardener.current:
@@ -452,7 +452,7 @@ class PlantTycoon:
             await asyncio.sleep(self.defaults['timers']['degradation'] * 60)
 
     async def check_completion(self):
-        while 'Gardening' in self.bot.cogs:
+        while 'PlantTycoon' in self.bot.cogs:
             now = int(time.time())
             delete = False
             for id in self.gardeners:
@@ -500,15 +500,15 @@ class PlantTycoon:
 
 
 def check_folder():
-    if not os.path.exists('data/gardening'):
-        print('Creating data/gardening folder...')
-        os.makedirs('data/gardening')
+    if not os.path.exists('data/planttycoon'):
+        print('Creating data/planttycoon folder...')
+        os.makedirs('data/planttycoon')
 
 
 def check_file():
-    if not dataIO.is_valid_json('data/gardening/gardeners.json'):
+    if not dataIO.is_valid_json('data/planttycoon/gardeners.json'):
         print('Creating default gardeners.json...')
-        dataIO.save_json('data/gardening/gardeners.json', {})
+        dataIO.save_json('data/planttycoon/gardeners.json', {})
 
 
 def setup(bot):
