@@ -328,7 +328,7 @@ class Gardening:
         if author.id not in self.gardeners:
             message = 'You\'re currently not growing a plant.'
         else:
-            if product.lower() in self.products:
+            if product.lower() in self.products and amount > 0:
                 cost = self.products[product.lower()]['cost'] * amount
 
                 # TODO
@@ -439,8 +439,6 @@ class Gardening:
     #        else:
     #            message = 'You have no pesticide. Go buy some!'
     #    await self.bot.say(message)
-
-
 
     async def check_degradation(self):
         while 'Gardening' in self.bot.cogs:
