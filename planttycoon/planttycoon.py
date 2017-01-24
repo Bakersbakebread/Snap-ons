@@ -206,10 +206,7 @@ class PlantTycoon:
             message += 'To your surprise it had all kinds of different seeds in them. And now that you\'re home, you want to plant it. '
             message += 'You went to a local farmer to identify the seed, and the farmer said it was {} **{} ({})** seed.\n\n'.format(plant['article'], plant['name'], plant['rarity'])
             message += 'Take good care of your seed and water it frequently. Once it blooms, something nice might come from it. If it dies, however, you will get nothing.'
-            if 'water' not in self.gardeners[author.id]['products']:
-                self.gardeners[author.id]['products']['water'] = {"cost": 10, "health": 15, "damage": 45, "modifier": 0, "category": "water", "uses": 1}
-            self.gardeners[author.id]['products']['water'] = {"cost": 10, "health": 15, "damage": 45, "modifier": 0, "category": "water", "uses": 1}
-            self.gardeners[author.id]['current'] = plant
+            plant = self.gardeners[author.id]['current']
             await self._save_gardeners()
 
             await self.bot.say(message)
@@ -349,8 +346,7 @@ class PlantTycoon:
                 withdraw_points = await self._withdraw_points(author.id, cost)
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
-                        self.gardeners[author.id]['products'][product.lower()] = self.products[product.lower()]
-                        self.gardeners[author.id]['products'][product.lower()]['uses'] = 0
+                        self.gardeners[author.id]['products'][product.lower()] = {'uses': 0}
                     self.gardeners[author.id]['products'][product.lower()]['uses'] += amount
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
