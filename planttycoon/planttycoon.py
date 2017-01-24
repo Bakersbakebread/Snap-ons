@@ -70,7 +70,7 @@ class PlantTycoon:
         # Calculating the rate of degradation per check_completion() cycle.
         #
 
-        modifiers = sum([self.products[product]['modifier'] for product in gardener.products if gardener.products[product]['uses'] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener.badges])
+        modifiers = sum([self.products[product]['modifier'] for product in gardener.products if gardener.products[product] > 0] + [self.badges['badges'][badge]['modifier'] for badge in gardener.badges])
         degradation = (100 / (gardener.current['time'] / 60) * (self.defaults['degradation']['base_degradation'] + gardener.current['degradation'])) + modifiers
         d = collections.namedtuple('degradation', 'degradation time modifiers')
         return d(degradation=degradation, time=gardener.current['time'], modifiers=modifiers)
@@ -131,10 +131,10 @@ class PlantTycoon:
         product_category = product_category.lower()
         if product in self.products and self.products[product]['category'] == product_category:
             if product in self.gardeners[id]['products']:
-                if self.gardeners[id]['products'][product]['uses'] > 0:
+                if self.gardeners[id]['products'][product] > 0:
                     self.gardeners[id]['current']['health'] += self.products[product]['health']
-                    self.gardeners[id]['products'][product]['uses'] -= 1
-                    if self.gardeners[id]['products'][product]['uses'] == 0:
+                    self.gardeners[id]['products'][product] -= 1
+                    if self.gardeners[id]['products'][product] == 0:
                         del[self.gardeners[id]['products'][product.lower()]]
                     message = 'Your plant got some health back!'
                     if self.gardeners[id]['current']['health'] > self.gardeners[id]['current']['threshold']:
@@ -244,7 +244,7 @@ class PlantTycoon:
             else:
                 products = ''
                 for product in gardener.products:
-                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener.products[product]['uses'], self.products[product]['modifier'])
+                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener.products[product], self.products[product]['modifier'])
                 em.add_field(name='**Products**', value=products)
             if gardener.current:
                 degradation = await self._degradation(gardener)
@@ -346,8 +346,8 @@ class PlantTycoon:
                 withdraw_points = await self._withdraw_points(author.id, cost)
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
-                        self.gardeners[author.id]['products'][product.lower()] = {'uses': 0}
-                    self.gardeners[author.id]['products'][product.lower()]['uses'] += amount
+                        self.gardeners[author.id]['products'][product.lower()] = 0
+                    self.gardeners[author.id]['products'][product.lower()] += amount
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
                     await self._save_gardeners()
                     message = 'You bought {}.'.format(product.lower())
