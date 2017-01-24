@@ -244,7 +244,7 @@ class PlantTycoon:
             else:
                 products = ''
                 for product in gardener.products:
-                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener.products[product], self.products[product]['modifier'])
+                    products += '{} ({}) {}\n'.format(product.capitalize(), gardener.products[product]/self.products[product.lower()]['uses'], self.products[product]['modifier'])
                 em.add_field(name='**Products**', value=products)
             if gardener.current:
                 degradation = await self._degradation(gardener)
