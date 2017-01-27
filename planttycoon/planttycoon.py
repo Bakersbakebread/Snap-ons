@@ -36,7 +36,7 @@ class PlantTycoon:
         # self.bank = bot.get_cog('Economy').bank
         #
 
-    def _save_gardeners(self):
+    async def _save_gardeners(self):
 
         #
         # This function saves the state of all gardeners.
@@ -141,7 +141,7 @@ class PlantTycoon:
                         self.gardeners[id]['current']['health'] -= self.products[product]['damage']
                         message = 'You gave too much {}! Your plant lost some health. :wilted_rose:'.format(product)
                     self.gardeners[id]['points'] += self.defaults['points']['add_health']
-                    self._save_gardeners()
+                    await self._save_gardeners()
                 else:
                     message = 'You have no {}. Go buy some!'.format(product)
             else:
@@ -207,7 +207,7 @@ class PlantTycoon:
             message += 'You went to a local farmer to identify the seed, and the farmer said it was {} **{} ({})** seed.\n\n'.format(plant['article'], plant['name'], plant['rarity'])
             message += 'Take good care of your seed and water it frequently. Once it blooms, something nice might come from it. If it dies, however, you will get nothing.'
             self.gardeners[author.id]['current'] = plant
-            self._save_gardeners()
+            await self._save_gardeners()
 
             await self.bot.say(message)
         else:
@@ -349,7 +349,7 @@ class PlantTycoon:
                         self.gardeners[author.id]['products'][product.lower()] = 0
                     self.gardeners[author.id]['products'][product.lower()] += amount
                     self.gardeners[author.id]['points'] += self.defaults['points']['buy']
-                    self._save_gardeners()
+                    await self._save_gardeners()
                     message = 'You bought {}.'.format(product.lower())
                 else:
                     message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], self.products[product.lower()]['cost'] * amount)
@@ -369,7 +369,7 @@ class PlantTycoon:
             message = 'You poisoned your plant! Why?'
             if self.gardeners[author.id]['points'] < 0:
                 self.gardeners[author.id]['points'] = 0
-            self._save_gardeners()
+            await self._save_gardeners()
         await self.bot.say(message)
 
     @commands.command(pass_context=True, name='water')
@@ -431,7 +431,7 @@ class PlantTycoon:
     #                    self.gardeners[author.id]['current']['health'] -= self.products['pesticide']['damage']
     #                    message = 'You sprayed too much pesticide! Your plant lost some health. :wilted_rose:'
     #                self.gardeners[author.id]['points'] += self.defaults['points']['pesticide']
-    #                await self._save_gardeners()
+    #                await await self._save_gardeners()
     #            else:
     #                message = 'You have no pesticide. Go buy some!'
     #        else:
@@ -446,7 +446,7 @@ class PlantTycoon:
                     degradation = await self._degradation(gardener)
                     self.gardeners[id]['current']['health'] -= degradation.degradation
                     self.gardeners[id]['points'] += self.defaults['points']['growing']
-                    self._save_gardeners()
+                    await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['degradation'] * 60)
 
     async def check_completion(self):
@@ -490,7 +490,7 @@ class PlantTycoon:
                 if delete:
                     await self._send_notification(id, message)
                     self.gardeners[id]['current'] = False
-                    self._save_gardeners()
+                    await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
 
     async def debug(self, message):
