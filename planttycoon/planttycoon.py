@@ -442,6 +442,7 @@ class PlantTycoon:
         while 'PlantTycoon' in self.bot.cogs:
             for id in self.gardeners:
                 gardener = await self._gardener(id)
+                await self.debug('check_degradation(): {}'.format(id))
                 if gardener.current:
                     degradation = await self._degradation(gardener)
                     self.gardeners[id]['current']['health'] -= degradation.degradation
