@@ -139,7 +139,11 @@ class PlantTycoon:
                     message = 'Your plant got some health back!'
                     if self.gardeners[id]['current']['health'] > self.gardeners[id]['current']['threshold']:
                         self.gardeners[id]['current']['health'] -= self.products[product]['damage']
-                        message = 'You gave too much {}! Your plant lost some health. :wilted_rose:'.format(product)
+                        if product_category == "tool":
+                            verb = "used"
+                        else:
+                            verb = "gave"
+                        message = 'You {} too much {}! Your plant lost some health. :wilted_rose:'.format(verb, product)
                     self.gardeners[id]['points'] += self.defaults['points']['add_health']
                     await self._save_gardeners()
                 else:
@@ -358,15 +362,15 @@ class PlantTycoon:
                 message = 'I don\'t have this product.'
         await self.bot.say(message)
 
-    @commands.command(pass_context=True, name='poison')
-    async def _poison(self, context):
-        """Kill your plant by poisoning it."""
+    @commands.command(pass_context=True, name='shovel')
+    async def _shovel(self, context):
+        """Remove your plant using a shovel."""
         author = context.message.author
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
         else:
             self.gardeners[author.id]['current'] = False
-            message = 'You poisoned your plant! Why?'
+            message = 'You successfuly shoveled your plant out.'
             if self.gardeners[author.id]['points'] < 0:
                 self.gardeners[author.id]['points'] = 0
             await self._save_gardeners()
@@ -431,7 +435,7 @@ class PlantTycoon:
     #                    self.gardeners[author.id]['current']['health'] -= self.products['pesticide']['damage']
     #                    message = 'You sprayed too much pesticide! Your plant lost some health. :wilted_rose:'
     #                self.gardeners[author.id]['points'] += self.defaults['points']['pesticide']
-    #                await await self._save_gardeners()
+    #                await self._save_gardeners()
     #            else:
     #                message = 'You have no pesticide. Go buy some!'
     #        else:
@@ -442,7 +446,6 @@ class PlantTycoon:
         while 'PlantTycoon' in self.bot.cogs:
             for id in self.gardeners:
                 gardener = await self._gardener(id)
-                await self.debug('check_degradation(): {}'.format(id))
                 if gardener.current:
                     degradation = await self._degradation(gardener)
                     self.gardeners[id]['current']['health'] -= degradation.degradation
@@ -456,16 +459,14 @@ class PlantTycoon:
             delete = False
             for id in self.gardeners:
                 gardener = await self._gardener(id)
-                await self.debug('Looping')
                 if gardener.current:
                     then = gardener.current['timestamp']
                     health = gardener.current['health']
                     grow_time = gardener.current['time']
                     badge = gardener.current['badge']
                     reward = gardener.current['reward']
-                    await self.debug('check_completion() for {}: INLOOP | {} - {}'.format(self.bot.get_user(id).display_name), (now - then), grow_time)
                     if (now - then) > grow_time:
-                        await self.debug('check_completion() for {}: DONE GROWING'.format(self.bot.get_user(id).display_name))
+
                         # TODO
                         #
                         # Economy preparation. I might build in a check to see
@@ -494,12 +495,10 @@ class PlantTycoon:
                     await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
 
-    async def debug(self, message):
-        print(message)
-
     def __unload(self):
         self.completion_task.cancel()
         self.degradation_task.cancel()
+        self._save_gardeners()
 
 
 def check_folder():
