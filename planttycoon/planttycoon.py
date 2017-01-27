@@ -461,8 +461,9 @@ class PlantTycoon:
                     grow_time = gardener.current['time']
                     badge = gardener.current['badge']
                     reward = gardener.current['reward']
+                    await self.debug('check_completion() for {}: INLOOP | {} - {}'.format(self.bot.get_user(id).display_name), (now - then), grow_time)
                     if (now - then) > grow_time:
-
+                        await self.debug('check_completion() for {}: DONE GROWING'.format(self.bot.get_user(id).display_name))
                         # TODO
                         #
                         # Economy preparation. I might build in a check to see
@@ -490,6 +491,9 @@ class PlantTycoon:
                     self.gardeners[id]['current'] = False
                     await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
+
+    async def debug(self, message):
+        print(message)
 
     def __unload(self):
         self.completion_task.cancel()
