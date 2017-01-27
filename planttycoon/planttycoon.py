@@ -455,6 +455,7 @@ class PlantTycoon:
             delete = False
             for id in self.gardeners:
                 gardener = await self._gardener(id)
+                await self.debug('Looping')
                 if gardener.current:
                     then = gardener.current['timestamp']
                     health = gardener.current['health']
