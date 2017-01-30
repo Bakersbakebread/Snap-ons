@@ -225,6 +225,7 @@ class PlantTycoon:
             #
 
             plant = choice(self.plants['plants'])
+            plant['timestamp'] = int(time.time())
             if event_plant is True:
                 del[self.plants['plants'][40]]
                 
