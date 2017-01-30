@@ -378,7 +378,7 @@ class PlantTycoon:
             message = 'You\'re currently not growing a plant.'
         else:
             if product.lower() in self.products and amount > 0:
-                cost = self.products[product.lower()]['cost'] * amount
+                cost = self.products[product.lower()]['cost'] * amount * self.products[product.lower()]['uses']
 
                 # TODO
                 #
