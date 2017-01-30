@@ -85,6 +85,7 @@ class PlantTycoon:
 
     async def _withdraw_points(self, id, amount):
 
+        # TO BE DEPRECATED soon
         #
         # Substract points from the gardener
         #
@@ -139,11 +140,11 @@ class PlantTycoon:
                     message = 'Your plant got some health back!'
                     if self.gardeners[id]['current']['health'] > self.gardeners[id]['current']['threshold']:
                         self.gardeners[id]['current']['health'] -= self.products[product]['damage']
-                        if product_category == "tool":
-                            verb = "used"
+                        if product_category == 'tool':
+                            damage_msg = 'You used {} too many times!'.format(product)
                         else:
-                            verb = "gave"
-                        message = 'You {} too much {}! Your plant lost some health. :wilted_rose:'.format(verb, product)
+                            damage_msg = 'You gave {} too much.'.format(product)
+                        message = '{} Your plant lost some health. :wilted_rose:'.format(damage_msg)
                     self.gardeners[id]['points'] += self.defaults['points']['add_health']
                     await self._save_gardeners()
                 else:
@@ -210,6 +211,9 @@ class PlantTycoon:
             message += 'To your surprise it had all kinds of different seeds in them. And now that you\'re home, you want to plant it. '
             message += 'You went to a local farmer to identify the seed, and the farmer said it was {} **{} ({})** seed.\n\n'.format(plant['article'], plant['name'], plant['rarity'])
             message += 'Take good care of your seed and water it frequently. Once it blooms, something nice might come from it. If it dies, however, you will get nothing.'
+            if 'water' not in self.gardeners[author.id]['products']:
+                self.gardeners[author.id]['products']['water'] = 0
+            self.gardeners[author.id]['products']['water'] += 5
             self.gardeners[author.id]['current'] = plant
             await self._save_gardeners()
 
@@ -321,7 +325,7 @@ class PlantTycoon:
         """Look at the list of the available gardening supplies."""
         em = discord.Embed(title='All gardening supplies you can buy', description='\a\n', color=discord.Color.green())
         for product in self.products:
-                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\nCategory: {}\n+{} health\n-{}% damage\nUses: {}'.format(self.products[product]['cost'], self.products[product]['category'].capitalize(), self.products[product]['health'], self.products[product]['damage'], self.products[product]['uses']))
+                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage\nUses: {}\nCategory: {}'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'], self.products[product]['uses'], self.products[product]['category']))
         await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='buy')
@@ -362,15 +366,15 @@ class PlantTycoon:
                 message = 'I don\'t have this product.'
         await self.bot.say(message)
 
-    @commands.command(pass_context=True, name='shovel')
+    @commands.command(pass_context=True, name='poison')
     async def _shovel(self, context):
-        """Remove your plant using a shovel."""
+        """Shovel your plant out."""
         author = context.message.author
         if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
             message = 'You\'re currently not growing a plant.'
         else:
             self.gardeners[author.id]['current'] = False
-            message = 'You successfuly shoveled your plant out.'
+            message = 'You sucessfuly shovelled your plant out.'
             if self.gardeners[author.id]['points'] < 0:
                 self.gardeners[author.id]['points'] = 0
             await self._save_gardeners()
@@ -490,7 +494,7 @@ class PlantTycoon:
                         message = 'Your plant died!'
                         delete = True
                 if delete:
-                    await self._send_notification(id, message)
+                    await self.bot.send_message(discord.User(id=str(id)), message)
                     self.gardeners[id]['current'] = False
                     await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
@@ -498,6 +502,8 @@ class PlantTycoon:
     def __unload(self):
         self.completion_task.cancel()
         self.degradation_task.cancel()
+        self._save_gardeners()
+
 
 def check_folder():
     if not os.path.exists('data/planttycoon'):
