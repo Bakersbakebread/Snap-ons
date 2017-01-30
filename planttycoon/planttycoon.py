@@ -193,9 +193,40 @@ class PlantTycoon:
             self.gardeners[author.id]['badges'] = []
             self.gardeners[author.id]['products'] = {}
         if not self.gardeners[author.id]['current']:
-            plant = choice(self.plants['plants'])
-            plant['timestamp'] = int(time.time())
+            d = datetime.date.today()
+            month = d.month
 
+            #
+            # Event Plant Check start
+            #
+
+            if month == 1:
+                self.plants['plants'].append({"name": "Tanabata Tree", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/FD38JJj.jpg", "health": 100, "degradation": 1, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                event_plant = True
+            if month == 2:
+                self.plants['plants'].append({"name": "Chocolate Rose", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/Sqg6pcG.jpg", "health": 100, "degradation": 1, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                event_plant = True
+            if month == 3:
+                self.plants['plants'].append({"name": "Shamrock", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/kVig04M.jpg", "health": 100, "degradation": 1, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                event_plant = True
+            if month == 4:
+                self.plants['plants'].append({"name": "Easter Egg Eggplant", "article": "an", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/5jltGQa.jpg", "health": 100, "degradation": 1, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                event_plant = True
+            if month == 10:
+                self.plants['plants'].append({"name": "Jack O' Lantern", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/efApsxG.jpg", "health": 100, "degradation": 1, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                event_plant = True
+            if month == 12:
+                self.plants['plants'].append({"name": "Holly", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/maDLmJC.jpg", "health": 100, "degradation": 1, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                event_plant = True
+                
+            #
+            # Event Plant Check end
+            #
+
+            plant = choice(self.plants['plants'])
+            if event_plant is True:
+                del[self.plants['plants'][40]]
+                
             # TODO
             #
             # We're going to do an economy implementation,
