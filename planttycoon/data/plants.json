@@ -27,7 +27,7 @@
         {"name": "Citron Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/zh7Dr23.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Cherimoya Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/H62gQK6.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Mangosteen Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/McNnMqa.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
-        {"name": "Guava Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/iy8WgPt.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Fruit Brute", "reward": 1200"},
+        {"name": "Guava Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/iy8WgPt.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Orange Tree", "article": "an", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/lwjEJTm.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Apple Tree", "article": "an", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/QI3UTR3.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Sapodilla Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/6BvO5Fu.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
