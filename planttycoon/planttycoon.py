@@ -159,22 +159,31 @@ class PlantTycoon:
     async def _gardening(self, context):
         """Gardening commands."""
         if context.invoked_subcommand is None:
-            await self.bot.send_cmd_help(context)
+            prefix = context.prefix
 
-            # TODO
-            #
-            # Dammit, leave it here, I got plans for it.
-            # The help thingy is going to look really pretty with Embed! 🙃
-            #
-            # prefix = context.prefix
-            # description = '**Gardening!**\nHere be help and description soon'
-            # em = discord.Embed(description=description, color=discord.Color.green())
-            # em.set_thumbnail(url='')
-            # await self.bot.say(embed=em)
+            description = '**Welcome to Plant Tycoon.**\n'
+            description += 'This cog was made by **SnappyDragon18** and **PaddoInWonderland**.\n'
+            description += 'Grow your own plant. Be sure to take proper care of yours. If it grows, you get a reward.\n\n'
+            description += '**Commands**\n\n'
+            description += '``{}gardening seed``: Plant a seed inside the earth.\n'.format(prefix)
+            description += '``{}gardening profile``: Check your gardening profile.\n'.format(prefix)
+            description += '``{}gardening plants``: Look at the list of the available plants.\n'.format(prefix)
+            description += '``{}gardening plant``: Look at the details of a plant.\n'.format(prefix)
+            description += '``{}gardening state``: Check the state of your plant.\n'.format(prefix)
+            description += '``{}gardening products``: Look at the list of the available gardening supplies.\n'.format(prefix)
+            description += '``{}gardening buy``: Buy gardening supplies.\n'.format(prefix)
+            description += '``{}shovel``: Shovel your plant out.\n'.format(prefix)
+            description += '``{}water``: Water your plant.\n'.format(prefix)
+            description += '``{}fertilize``: Fertilize the soil.\n'.format(prefix)
+            description += '``{}prune``: Prune your plant.\n'.format(prefix)
 
+            em = discord.Embed(description=description, color=discord.Color.green())
+            em.set_thumbnail(url='http://i.imgur.com/iLVSemK.png')
+            await self.bot.say(embed=em)
+            
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
-        """Sow the seed to grow the plant."""
+        """Plant a seed inside the earth."""
         author = context.message.author
         # server = context.message.server
         if author.id not in self.gardeners:
