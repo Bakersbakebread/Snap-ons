@@ -43,7 +43,7 @@
         {"name": "Pod Plant", "article": "a", "time": 9000, "rarity": "super rare", "image": "http://i.imgur.com/ECAGMUM.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Odd-pod", "reward": 3600},
         {"name": "Peashooter", "article": "a", "time": 9000, "rarity": "super rare", "image": "http://imgur.com/a/IJBu2", "health": 100, "degradation": 0, "threshold": 110, "badge": "Odd-pod", "reward": 3600},
         {"name": "Starlight Rose", "article": "a", "time": 10800, "rarity": "epic", "image": "http://i.imgur.com/em8Kg5M.png", "health": 100, "degradation": 0, "threshold": 110, "badge": "Greenfingers", "reward": 5400},
-        {"name": "Pikmin", "article": "a", "time": 10800, "rarity": "epic", "image": "http://i.imgur.com/cFSmaHH.png", "health": 100, "degradation": 0, "threshold": 110, "badge": "Greenfingers", "reward": 5400"},
+        {"name": "Pikmin", "article": "a", "time": 10800, "rarity": "epic", "image": "http://i.imgur.com/cFSmaHH.png", "health": 100, "degradation": 0, "threshold": 110, "badge": "Greenfingers", "reward": 5400},
         {"name": "Groot", "article": "a", "time": 10800, "rarity": "epic", "image": "http://i.imgur.com/9f5QzaW.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Greenfingers", "reward": 5400},
         {"name": "Triffid", "article": "a", "time": 10800, "rarity": "epic", "image": "http://i.imgur.com/WZlwqUt.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Greenfingers", "reward": 5400},
         {"name": "Athelas", "article": "an", "time": 10800, "rarity": "epic", "image": "http://i.imgur.com/PNNMEjB.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Greenfingers", "reward": 5400},
