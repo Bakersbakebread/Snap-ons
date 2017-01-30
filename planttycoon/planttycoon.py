@@ -375,7 +375,7 @@ class PlantTycoon:
                 message = 'I don\'t have this product.'
         await self.bot.say(message)
 
-    @commands.command(pass_context=True, name='poison')
+    @commands.command(pass_context=True, name='shovel')
     async def _shovel(self, context):
         """Shovel your plant out."""
         author = context.message.author
