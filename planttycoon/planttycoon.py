@@ -215,7 +215,7 @@ class PlantTycoon:
             #
 
             if month == 1:
-                self.plants['plants'].append({"name": "Tanabata Tree", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/FD38JJj.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                self.plants['plants'].append({"name": "Tanabata Tree", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/FD38JJj.jpg", "health": 100, "degradation": 2.25, "threshold": 110, "badge": "Annualsary", "reward": 21600})
                 event_plant = True
             elif month == 2:
                 self.plants['plants'].append({"name": "Chocolate Rose", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/Sqg6pcG.jpg", "health": 100, "degradation": 2.25, "threshold": 110, "badge": "Annualsary", "reward": 21600})
