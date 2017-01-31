@@ -10,7 +10,7 @@
         {"name": "Petunia", "article": "a", "time": 3600, "rarity": "common", "image": "http://i.imgur.com/rJm8ISv.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Flower Power", "reward": 600},
         {"name": "Sunflower", "article": "a", "time": 3600, "rarity": "common", "image": "http://i.imgur.com/AzgzQK9.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Flower Power", "reward": 600},
         {"name": "Daffodil", "article": "a", "time": 3600, "rarity": "common", "image": "http://i.imgur.com/pnCCRsH.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Flower Power", "reward": 600},
-        {"name": "Clover", "article": "a", "time": 3600, "rarity": "common", "image": "http://i.imgur.com/0GSsABG.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Flower Power", "reward": 600},
+        {"name": "Clover", "article": "a", "time": 3600, "rarity": "common", "image": "http://i.imgur.com/jNTgirw.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Flower Power", "reward": 600},
         {"name": "Tulip", "article": "a", "time": 3600, "rarity": "common", "image": "http://i.imgur.com/kodIFjE.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Flower Power", "reward": 600},
         {"name": "Rose", "article": "a", "time": 3600, "rarity": "common", "image": "http://i.imgur.com/sdTNiOH.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Flower Power", "reward": 600},
         {"name": "Aster", "article": "an", "time": 3600, "rarity": "common", "image": "http://i.imgur.com/1tN04Hl.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Flower Power", "reward": 600},
