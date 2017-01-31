@@ -138,13 +138,19 @@ class PlantTycoon:
                     self.gardeners[id]['products'][product] -= 1
                     if self.gardeners[id]['products'][product] == 0:
                         del[self.gardeners[id]['products'][product.lower()]]
-                    message = 'Your plant got some health back!'
+                    if product_category == "water":
+                        emoji = ":sweat_drops:"
+                    elif product_category == "fertilizer":
+                        emoji = ":poop:"
+                    elif product_category == "tool":
+                        emoji = ":scissors:"
+                    message = 'Your plant got some health back! {}'.format(emoji)
                     if self.gardeners[id]['current']['health'] > self.gardeners[id]['current']['threshold']:
                         self.gardeners[id]['current']['health'] -= self.products[product]['damage']
                         if product_category == 'tool':
                             damage_msg = 'You used {} too many times!'.format(product)
                         else:
-                            damage_msg = 'You gave {} too much.'.format(product)
+                            damage_msg = 'You gave too much of {}.'.format(product)
                         message = '{} Your plant lost some health. :wilted_rose:'.format(damage_msg)
                     self.gardeners[id]['points'] += self.defaults['points']['add_health']
                     await self._save_gardeners()
@@ -154,7 +160,14 @@ class PlantTycoon:
                 message = 'You have no {}. Go buy some!'.format(product)
         else:
             message = 'Are you sure you are using {}?'.format(product_category)
-        await self._send_message(channel, message)
+
+        if product_category == "water":
+            em = discord.Embed(description=message, color=discord.Color.blue())
+        elif product_category == "fertilizer":
+            em = discord.Embed(description=message, color=discord.Color.dark_gold())
+        elif product_category == "tool":
+            em = discord.Embed(description=message, color=discord.Color.dark_grey())
+        await self.bot.say(embed=em)
 
     @commands.group(pass_context=True, name='gardening')
     async def _gardening(self, context):
@@ -181,7 +194,7 @@ class PlantTycoon:
             em = discord.Embed(description=description, color=discord.Color.green())
             em.set_thumbnail(url='http://i.imgur.com/iLVSemK.png')
             await self.bot.say(embed=em)
-            
+
     @_gardening.command(pass_context=True, name='seed')
     async def _seed(self, context):
         """Plant a seed inside the earth."""
@@ -219,7 +232,7 @@ class PlantTycoon:
             if month == 12:
                 self.plants['plants'].append({"name": "Holly", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/maDLmJC.jpg", "health": 100, "degradation": 0, "threshold": 110, "badge": "Annualsary", "reward": 21600})
                 event_plant = True
-                
+
             #
             # Event Plant Check end
             #
@@ -228,7 +241,7 @@ class PlantTycoon:
             plant['timestamp'] = int(time.time())
             if event_plant is True:
                 del[self.plants['plants'][40]]
-                
+
             # TODO
             #
             # We're going to do an economy implementation,
@@ -259,7 +272,8 @@ class PlantTycoon:
             self.gardeners[author.id]['current'] = plant
             await self._save_gardeners()
 
-            await self.bot.say(message)
+            em = discord.Embed(description=message, color=discord.Color.green())
+            await self.bot.say(embed=em)
         else:
             plant = self.gardeners[author.id]['current']
             await self.bot.say('You\'re already growing {} **{}**, silly.'.format(plant['article'], plant['name']))
@@ -420,7 +434,8 @@ class PlantTycoon:
             if self.gardeners[author.id]['points'] < 0:
                 self.gardeners[author.id]['points'] = 0
             await self._save_gardeners()
-        await self.bot.say(message)
+        em = discord.Embed(description=message, color=discord.Color.dark_grey())
+        await self.bot.say(embed=em)
 
     @commands.command(pass_context=True, name='water')
     async def _water(self, context):
