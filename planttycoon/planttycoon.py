@@ -175,8 +175,8 @@ class PlantTycoon:
         if context.invoked_subcommand is None:
             prefix = context.prefix
 
-            description = '**Welcome to Plant Tycoon.**\n'
-            description += 'This cog was made by **SnappyDragon18** and **PaddoInWonderland**.\n'
+            title = '**Welcome to Plant Tycoon.**\n'
+            description = 'This cog was made by **SnappyDragon18** and **PaddoInWonderland**.\n'
             description += 'Grow your own plant. Be sure to take proper care of yours. If it grows, you get a reward.\n\n'
             description += '**Commands**\n\n'
             description += '``{}gardening seed``: Plant a seed inside the earth.\n'.format(prefix)
@@ -191,7 +191,7 @@ class PlantTycoon:
             description += '``{}fertilize``: Fertilize the soil.\n'.format(prefix)
             description += '``{}prune``: Prune your plant.\n'.format(prefix)
 
-            em = discord.Embed(description=description, color=discord.Color.green())
+            em = discord.Embed(title=title, description=description, color=discord.Color.green())
             em.set_thumbnail(url='http://i.imgur.com/iLVSemK.png')
             await self.bot.say(embed=em)
 
