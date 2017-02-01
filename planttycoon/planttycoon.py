@@ -242,6 +242,7 @@ class PlantTycoon:
             if event_plant:
                 del[self.plants['plants'][40]]
 
+            #
             # TODO
             #
             # We're going to do an economy implementation,
