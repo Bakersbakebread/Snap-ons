@@ -29,6 +29,7 @@ class PlantTycoon:
         #
         self.completion_task = bot.loop.create_task(self.check_completion())
         self.degradation_task = bot.loop.create_task(self.check_degradation())
+        self.notification_task = bot.loop.create_task(self.send_notification())
 
         # TODO
         #
@@ -232,7 +233,7 @@ class PlantTycoon:
             elif month == 12:
                 self.plants['plants'].append({"name": "Holly", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/maDLmJC.jpg", "health": 100, "degradation": 5.5, "threshold": 110, "badge": "Annualsary", "reward": 21600})
                 event_plant = True
-                
+
             #
             # Event Plant Check end
             #
@@ -557,9 +558,26 @@ class PlantTycoon:
                     await self._save_gardeners()
             await asyncio.sleep(self.defaults['timers']['completion'] * 60)
 
+    async def send_notification(self):
+        while 'PlantTycoon' in self.bot.cogs:
+            for id in self.gardeners:
+                gardener = await self._gardener(id)
+                if gardener.current:
+                    messages = [
+                        'The soil seems dry, maybe you could give your plant some water?',
+                        'Your plant seems a bit droopy. I would give it some fertilizer if I were you.',
+                        'Your plant seems a bit too overgrown. You should probably trim it a bit.'
+                    ]
+                    health = gardener.current['health']
+                    if health < self.defaults['notification']['max_health']:
+                        message = choice(messages)
+                        await self.bot.send_message(discord.User(id=str(id)), message)
+            await asyncio.sleep(self.defaults['timers']['notification'] * 60)
+
     def __unload(self):
         self.completion_task.cancel()
         self.degradation_task.cancel()
+        self.notification_task.cancel()
         self._save_gardeners()
 
 
