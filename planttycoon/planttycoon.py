@@ -10,7 +10,7 @@ import os
 
 
 class PlantTycoon:
-    """Grow your own plants!"""
+    """Grow your own plants! Be sure to take proper care of it."""
     def __init__(self, bot):
         self.bot = bot
 
