@@ -22,7 +22,9 @@ class Unicode:
             data = 'U+{:04X}'.format(ord(character[0]))
         except ValueError:
             data = '<unknown>'
-        await self.bot.say(data)
+        em = discord.Embed(title=character ,description=data)
+        await self.bot.say(embed=em)
+        
     @unicode.command()
     async def decode(self, character):
         """Decode a Unicode character."""
@@ -36,6 +38,7 @@ class Unicode:
                 data = '<unknown>'
         except ValueError:
             data = '<unknown>'
-        await self.bot.say(data)
+        em = discord.Embed(title=character ,description=data)
+        await self.bot.say(embed=em)
 def setup(bot):
     bot.add_cog(Unicode(bot))
