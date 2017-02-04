@@ -32,7 +32,7 @@ class LoveCalculator:
 
         z = description[:3]
         z = int(z)
-        if int > 50:
+        if z > 50:
             emoji = '❤'
         else:
             emoji = '💔'
