@@ -30,8 +30,14 @@ class LoveCalculator:
         soupObject = BeautifulSoup(urllib.request.urlopen(url).read(), 'html.parser')
         description = soupObject.find('div', attrs={'class': 'result score'}).get_text().strip()
 
+        z = description[:3]
+        z = int(z)
+        if int > 50:
+            emoji = '❤'
+        else:
+            emoji = '💔'
         title = 'Dr. Love says that the love percentage for {} and {} is:'.format(x, y)
-        description = '❤ ' + description + ' ❤'
+        description = emoji + ' ' + description + ' ' + emoji
         em = discord.Embed(title=title, description=description, color=discord.Color.red())
         await self.bot.say(embed=em)
 
