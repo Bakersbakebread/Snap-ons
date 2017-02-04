@@ -10,7 +10,8 @@
     "complete": 150
   }, "timers": {
     "degradation": 1,
-    "completion": 1
+    "completion": 1,
+    "notification": 5
   }, "degradation": {
     "base_degradation": 1.5
   }, "notification": {
