@@ -10,7 +10,7 @@ class Interactions:
 
     @commands.command(pass_context=True)
     async def kill(self, context, user : discord.Member):
-        """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 25 unique and funny kill commands!"""
+        """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 30 unique and funny kill messages!"""
         killer = context.message.author.mention
         victim = user.mention
         technique = [
