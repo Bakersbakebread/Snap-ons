@@ -3,5 +3,6 @@
     "INSTALL_MSG" : "Love is in the air.",
     "NAME" : "LoveCalculator",
     "SHORT" : "Calculate the love percentage!",
-    "DESCRIPTION" : "Calculate the love percentage for two users!"
+    "DESCRIPTION" : "Calculate the love percentage for two users!",
+    "TAGS" : ["fun", "love"]
 }
