@@ -5,7 +5,7 @@
     "Sporadic": {"modifier": -0.075},
     "Odd-pod": {"modifier": -0.1},
     "Greenfingers": {"modifier": -0.225},
-    "Nobel Peas Prize": {"modifier": -35},
+    "Nobel Peas Prize": {"modifier": -0.35},
     "Annualsary": {"modifier": -0.5}
   }
 }
