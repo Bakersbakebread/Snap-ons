@@ -15,6 +15,6 @@
   }, "degradation": {
     "base_degradation": 1.5
   }, "notification": {
-    "max_health": 60
+    "max_health": 50
   }
 }
