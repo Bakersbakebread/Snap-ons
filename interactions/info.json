@@ -3,5 +3,6 @@
     "INSTALL_MSG" : "Time to get social!",
     "NAME" : "Interactions",
     "SHORT" : "Interact with other users!",
-    "DESCRIPTION" : "Interact with other users! Time to get social!"
+    "DESCRIPTION" : "Interact with other users! Time to get social!",
+    "TAGS" : ["fun", "random"]
 }
