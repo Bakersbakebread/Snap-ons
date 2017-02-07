@@ -29,7 +29,7 @@
         {"name": "Mangosteen Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/McNnMqa.jpg", "health": 100, "degradation": 0.75, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Guava Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/iy8WgPt.jpg", "health": 100, "degradation": 0.75, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Orange Tree", "article": "an", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/lwjEJTm.jpg", "health": 100, "degradation": 0.75, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
-        {"name": "Apple Tree", "article": "an", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/QI3UTR3.jpg", "health": 100, "degradation": , "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
+        {"name": "Apple Tree", "article": "an", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/QI3UTR3.jpg", "health": 100, "degradation": 0.75, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Sapodilla Tree", "article": "a", "time": 5400, "rarity": "uncommon", "image": "http://i.imgur.com/6BvO5Fu.jpg", "health": 100, "degradation": 0.75, "threshold": 110, "badge": "Fruit Brute", "reward": 1200},
         {"name": "Franklin Tree", "article": "a", "time": 7200, "rarity": "rare", "image": "http://i.imgur.com/hoh17hp.jpg", "health": 100, "degradation": 1, "threshold": 110, "badge": "Sporadic", "reward": 2400},
         {"name": "Parrot's Beak", "article": "a", "time": 7200, "rarity": "rare", "image": "http://i.imgur.com/lhSjfQY.jpg", "health": 100, "degradation": 1, "threshold": 110, "badge": "Sporadic", "reward": 2400},
