@@ -1,11 +1,11 @@
 {
   "badges": {
-    "Flower Power": {"modifier": -0.05},
-    "Fruit Brute": {"modifier": -0.1},
-    "Sporadic": {"modifier": -0.15},
-    "Odd-pod": {"modifier": -0.3},
-    "Greenfingers": {"modifier": -0.5},
-    "Nobel Peas Prize": {"modifier": -0.85},
-    "Annualsary": {"modifier": -1.15}
+    "Flower Power": {"modifier": -0.15},
+    "Fruit Brute": {"modifier": -0.25},
+    "Sporadic": {"modifier": -0.35},
+    "Odd-pod": {"modifier": -0.50},
+    "Greenfingers": {"modifier": -0.65},
+    "Nobel Peas Prize": {"modifier": -0.75},
+    "Annualsary": {"modifier": -1.1}
   }
 }
