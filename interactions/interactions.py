@@ -11,8 +11,8 @@ class Interactions:
     @commands.command(pass_context=True)
     async def kill(self, context, user : discord.Member):
         """Wanna kill someone? Wanna be the troll kind? You've got the perfect cog for the lulz! 30 unique and funny kill messages!"""
-        killer = context.message.author.mention
-        victim = user.mention
+        killer = context.message.author.display_name
+        victim = user.display_name
         technique = [
             '{0} shoots  in {1}\'s mouth with rainbow laser, causing {1}\'s head to explode with rainbows and {1} is reborn as unicorn. :unicorn:'.format(killer, victim),
             '{0} ate a piece of exotic butter. It was so amazing that it killed them.'.format(victim),
@@ -53,9 +53,9 @@ class Interactions:
     @commands.command(pass_context=True)
     async def interact(self, context, user : discord.Member):
         """Interact with the user you mention."""
-        executer = context.message.author.mention
-        victim = user.mention
-        
+        executer = context.message.author.display_name
+        victim = user.display_name
+
         interaction = [
             '{0} winks at {1}.'.format(executer, victim),
             '{0} hugs {1}.'.format(executer, victim),
@@ -88,7 +88,7 @@ class Interactions:
             '{0} throws a rock at {1}.'.format(executer, victim),
             '{0} licks {1}.'.format(executer, victim)
                 ]
-        
+
         if user.id == self.bot.user.id:
             await self.bot.say('**Error: Could not interact. Get cleverbot.py from 26-cogs to interact with bot!**')
         else:
@@ -96,8 +96,8 @@ class Interactions:
     @commands.command(pass_context=True)
     async def poke(self, context, user : discord.Member):
         """Poke peeps! :3"""
-        pokedoer = context.message.author.mention
-        victim = user.mention
+        pokedoer = context.message.author.display_name
+        victim = user.display_name
 
         poke = [
             '{0} pokes {1}\'s eye.'.format(pokedoer, victim),
@@ -115,9 +115,9 @@ class Interactions:
     async def throw(self, context, user : discord.Member, *, item : str):
 
         """Throw stuff at people!"""
-        thrower = context.message.author.mention
-        victim = user.mention
-        b0t = self.bot.user.mention
+        thrower = context.message.author.display_name
+        victim = user.display_name
+        b0t = self.bot.user.display_name
 
         if user.id == self.bot.user.id:
             await self.bot.say('**You\'re throwing stuff at me! {0} threw {1} at {2}!**'.format(b0t, item, thrower))
