@@ -17,16 +17,8 @@ class LoveCalculator:
     async def lovecalculator(self, lover: discord.Member, loved: discord.Member):
         """Calculate the love percentage!"""
 
-        user1 = lover
-        user2 = loved
-        x = user1.name
-        y = user2.name
-        if user1.nick:
-            x = user1.nick
-        if user2.nick:
-            y = user2.nick
-        name1 = x.replace(" ", "+")
-        name2 = y.replace(" ", "+")
+        x = lover.display_name
+        y = loved.display_name
 
         url = 'https://www.lovecalculator.com/love.php?name1={}&name2={}'.format(name1, name2)
         soupObject = BeautifulSoup(urllib.request.urlopen(url).read(), 'html.parser')
