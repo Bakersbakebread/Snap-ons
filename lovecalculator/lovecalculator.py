@@ -14,9 +14,11 @@ class LoveCalculator:
         self.bot = bot
 
     @commands.command(aliases=['lovecalc'])
-    async def lovecalculator(self, user1: discord.Member, user2: discord.Member):
+    async def lovecalculator(self, lover: discord.Member, loved: discord.Member):
         """Calculate the love percentage!"""
 
+        user1 = lover
+        user2 = loved
         x = user1.name
         y = user2.name
         if user1.nick:
