@@ -20,7 +20,7 @@ class LoveCalculator:
         x = lover.display_name
         y = loved.display_name
 
-        url = 'https://www.lovecalculator.com/love.php?name1={}&name2={}'.format(name1, name2)
+        url = 'https://www.lovecalculator.com/love.php?name1={}&name2={}'.format(x, y)
         soupObject = BeautifulSoup(urllib.request.urlopen(url).read(), 'html.parser')
         description = soupObject.find('div', attrs={'class': 'result score'}).get_text().strip()
 
