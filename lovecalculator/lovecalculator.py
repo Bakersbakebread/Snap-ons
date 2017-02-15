@@ -29,7 +29,7 @@ class LoveCalculator:
                 description = 'Dr. Love is busy right now'
 
         try:
-            z = description[:3]
+            z = description[:2]
             z = int(z)
             if z > 50:
                 emoji = '❤'
@@ -37,15 +37,9 @@ class LoveCalculator:
                 emoji = '💔'
             title = 'Dr. Love says that the love percentage for {} and {} is:'.format(x, y)
         except:
-            try:
-                z = description[:2]
-                z = int(z)
-                emoji = '💔'
-                title = 'Dr. Love says that the love percentage for {} and {} is:'.format(x, y)
-            except:
-                emoji = ''
-                title = 'Dr. Love has left a note for you.'
-                
+            emoji = ''
+            title = 'Dr. Love has left a note for you.'
+            
         description = emoji + ' ' + description + ' ' + emoji
         em = discord.Embed(title=title, description=description, color=discord.Color.red())
         await self.bot.say(embed=em)
