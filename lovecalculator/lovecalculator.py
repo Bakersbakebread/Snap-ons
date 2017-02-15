@@ -1,11 +1,11 @@
 import discord
 from discord.ext import commands
-try: # check if BeautifulSoup4 is installed
+try:
     from bs4 import BeautifulSoup
     soupAvailable = True
 except:
     soupAvailable = False
-import urllib.request
+import aiohttp
 
 class LoveCalculator:
     """Calculate the love percentage for two users!"""
@@ -21,16 +21,24 @@ class LoveCalculator:
         y = loved.display_name
 
         url = 'https://www.lovecalculator.com/love.php?name1={}&name2={}'.format(x.replace(" ", "+"), y.replace(" ", "+"))
-        soupObject = BeautifulSoup(urllib.request.urlopen(url).read(), 'html.parser')
-        description = soupObject.find('div', attrs={'class': 'result score'}).get_text().strip()
+        async with aiohttp.get(url) as response:
+            soupObject = BeautifulSoup(await response.text(), "html.parser")
+            try:
+                description = soupObject.find('div', attrs={'class': 'result score'}).get_text().strip()
+            except:
+                description = 'Dr. Love is busy right now'
 
-        z = description[:3]
-        z = int(z)
-        if z > 50:
-            emoji = '❤'
-        else:
-            emoji = '💔'
-        title = 'Dr. Love says that the love percentage for {} and {} is:'.format(x, y)
+        try:
+            z = description[:3]
+            z = int(z)
+            if z > 50:
+                emoji = '❤'
+            else:
+                emoji = '💔'
+            title = 'Dr. Love says that the love percentage for {} and {} is:'.format(x, y)
+        except:
+            emoji = ''
+            title = 'Dr. Love has left a note for you.'
         description = emoji + ' ' + description + ' ' + emoji
         em = discord.Embed(title=title, description=description, color=discord.Color.red())
         await self.bot.say(embed=em)
