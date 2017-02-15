@@ -24,18 +24,18 @@ To install the cogs, Follow the given steps:
 
 # Cogs
 > Interactions
-Interact with other users.
+> Interact with other users.
 > LoveCalculator
-Calculate the love percentage between two users.
+> Calculate the love percentage between two users.
 > MadLibs
-Play MadLibs on Discord.
+> Play MadLibs on Discord.
 > PlantTycoon
-Grow your own plant.
+> Grow your own plant.
 > RecyclingPlant
-Recycle to get paid.
+> Recycle to get paid.
 > SCP
-Look up SCP articles.
+> Look up SCP articles.
 > Seasonal
-Seasonal commands.
+> Seasonal commands.
 > Unicode
-Decode/Encode characters.
+> Decode/Encode characters.
