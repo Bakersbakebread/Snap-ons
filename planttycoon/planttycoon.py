@@ -394,7 +394,7 @@ class PlantTycoon:
             message = 'You\'re currently not growing a plant.'
         else:
             if product.lower() in self.products and amount > 0:
-                cost = self.products[product.lower()]['cost'] * amount * self.products[product.lower()]['uses']
+                cost = self.products[product.lower()]['cost'] * amount 
 
                 # TODO
                 #
@@ -571,7 +571,7 @@ class PlantTycoon:
                     health = gardener.current['health']
                     if health < self.defaults['notification']['max_health']:
                         message = choice(messages)
-                        await self.bot.send_message(discord.User(id=str(id)), message)
+                        await self.bot.send_notification(gardener, message)
             await asyncio.sleep(self.defaults['timers']['notification'] * 60)
 
     def __unload(self):
