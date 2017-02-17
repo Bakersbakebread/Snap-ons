@@ -394,7 +394,7 @@ class PlantTycoon:
             message = 'You\'re currently not growing a plant.'
         else:
             if product.lower() in self.products and amount > 0:
-                cost = self.products[product.lower()]['cost'] * amount 
+                cost = self.products[product.lower()]['cost'] * amount
 
                 # TODO
                 #
@@ -414,7 +414,7 @@ class PlantTycoon:
                     if product.lower() not in self.gardeners[author.id]['products']:
                         self.gardeners[author.id]['products'][product.lower()] = 0
                     self.gardeners[author.id]['products'][product.lower()] += amount
-                    self.gardeners[author.id]['points'] += self.defaults['points']['buy']
+                    self.gardeners[author.id]['products'][product.lower()] += amount * self.products[product.lower()]['uses']
                     await self._save_gardeners()
                     message = 'You bought {}.'.format(product.lower())
                 else:
