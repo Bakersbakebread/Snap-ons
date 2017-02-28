@@ -20,6 +20,7 @@ class PlantTycoon:
 
         self.gardeners = dataIO.load_json('data/planttycoon/gardeners.json')
         self.plants = dataIO.load_json('data/planttycoon/plants.json')
+        self.eventplants = dataIO.load_json('data/planttycoon/eventplant.json')
         self.products = dataIO.load_json('data/planttycoon/products.json')
         self.defaults = dataIO.load_json('data/planttycoon/defaults.json')
         self.badges = dataIO.load_json('data/planttycoon/badges.json')
@@ -216,22 +217,24 @@ class PlantTycoon:
             #
 
             if month == 1:
-                self.plants['plants'].append({"name": "Tanabata Tree", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/FD38JJj.jpg", "health": 100, "degradation": 9, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                self.plants['plants'].append(self.eventplants['eventplants']['January'])
                 event_plant = True
             elif month == 2:
-                self.plants['plants'].append({"name": "Chocolate Rose", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/Sqg6pcG.jpg", "health": 100, "degradation": 9, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                self.plants['plants'].append(self.eventplants['eventplants']['February'])
                 event_plant = True
             elif month == 3:
-                self.plants['plants'].append({"name": "Shamrock", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/kVig04M.jpg", "health": 100, "degradation": 9, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                self.plants['plants'].append(self.eventplants['eventplants']['March'])
                 event_plant = True
             elif month == 4:
-                self.plants['plants'].append({"name": "Easter Egg Eggplant", "article": "an", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/5jltGQa.jpg", "health": 100, "degradation": 9, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                self.plants['plants'].append(self.eventplants['eventplants']['April'])
                 event_plant = True
             elif month == 10:
-                self.plants['plants'].append({"name": "Jack O' Lantern", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/efApsxG.jpg", "health": 100, "degradation": 9, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                self.plants['plants'].append(self.eventplants['eventplants']['October'])
                 event_plant = True
+            elif month == 11:
+                self.plants['plants'].append(self.eventplants['eventplants']['November'])
             elif month == 12:
-                self.plants['plants'].append({"name": "Holly", "article": "a", "time": 70800, "rarity": "event", "image": "http://i.imgur.com/maDLmJC.jpg", "health": 100, "degradation": 9, "threshold": 110, "badge": "Annualsary", "reward": 21600})
+                self.plants['plants'].append(self.eventplants['eventplants']['December'])
                 event_plant = True
 
             #
