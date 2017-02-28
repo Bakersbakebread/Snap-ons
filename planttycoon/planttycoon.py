@@ -24,6 +24,7 @@ class PlantTycoon:
         self.products = dataIO.load_json('data/planttycoon/products.json')
         self.defaults = dataIO.load_json('data/planttycoon/defaults.json')
         self.badges = dataIO.load_json('data/planttycoon/badges.json')
+        self.notifications = dataIO.load_json('data/planttycoon/notifications.json')
 
         #
         # Starting loops
@@ -566,14 +567,9 @@ class PlantTycoon:
             for id in self.gardeners:
                 gardener = await self._gardener(id)
                 if gardener.current:
-                    messages = [
-                        'The soil seems dry, maybe you could give your plant some water?',
-                        'Your plant seems a bit droopy. I would give it some fertilizer if I were you.',
-                        'Your plant seems a bit too overgrown. You should probably trim it a bit.'
-                    ]
                     health = gardener.current['health']
                     if health < self.defaults['notification']['max_health']:
-                        message = choice(messages)
+                        message = choice(self.notifications['messages'])
                         await self.bot.send_notification(gardener, message)
             await asyncio.sleep(self.defaults['timers']['notification'] * 60)
 
