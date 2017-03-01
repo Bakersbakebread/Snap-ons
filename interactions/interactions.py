@@ -26,7 +26,7 @@ class Interactions:
             '{0} presses a random button and is teleported to the height of 100m, allowing them to fall to their inevitable death. Moral of the story: Don\'t go around pressing random buttons.'.format(victim),
             '{0} is injected with chocolate syrup, which mutates them into a person made out of chocolate. While doing a part-time job at the Daycare, they are devoured by the hungry babies. :chocolate_bar:'.format(victim),
             '{0} is sucked into Minecraft. {0}, being a noob at the so called "Real-Life Minecraft" faces the Game Over screen.'.format(victim),
-            '{0} turns on Goosebumps(2015 film) on the TV. {1} being a scaredy-cat, dies of an heart attack.'.format(killer, victim),
+            '{0} turns on Goosebumps (2015 film) on the TV. {1} being a scaredy-cat, dies of an heart attack.'.format(killer, victim),
             '{0} after a long day, plops down on the couch with {1} and turns on The Big Bang Theory. After a Sheldon Cooper joke, {1} laughs uncontrollably as they die.'.format(killer, victim),
             '{0} was given a chance to synthesize element 119 (Ununennium) and have it named after them, but they messed up. R.I.P.'.format(victim),
             '{0} gets {1} to watch anime with them. {1} couldn\'t handle it.'.format(killer, victim),
@@ -108,7 +108,7 @@ class Interactions:
                 ]
 
         if user.id == self.bot.user.id:
-            await self.bot.say('**Awww, Don\'t poke me! It makes me laugh!**')
+            await self.bot.say('**Awww, don\'t poke me! It makes me laugh!**')
         else:
             await self.bot.say('**{0}**'.format(random.choice(poke)))
     @commands.command(pass_context=True)
