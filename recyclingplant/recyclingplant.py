@@ -1,6 +1,6 @@
-import discord
 from discord.ext import commands
 import random
+
 
 class RecyclingPlant:
     """Apply for a job at the recycling plant!"""
@@ -95,5 +95,7 @@ class RecyclingPlant:
             else:
                 bank.deposit_credits(context.message.author, reward)
             await self.bot.say('You have been given **{0}$** for your services.'.format(reward))
+
+
 def setup(bot):
     bot.add_cog(RecyclingPlant(bot))
