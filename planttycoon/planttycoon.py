@@ -595,5 +595,4 @@ def check_file():
 def setup(bot):
     check_folder()
     check_file()
-    cog = PlantTycoon(bot)
-    bot.add_cog(cog)
+    bot.add_cog(PlantTycoon(bot))
