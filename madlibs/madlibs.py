@@ -26,9 +26,9 @@ class MadLibs:
 
         lib = [
             "{0} was slapped by their mom because they were running around showing their {8}",
-            "{4} was the only thing that {3} {1} in 2015.",
+            "{4} was the only thing that the {3} {1} in 2015.",
             "{0} met {9} at {5}.",
-            "{9} threw {6} {7} at {9}.",
+            "{0} threw {6} {7} at {9}.",
             "{0} told his friend that he liked her {8}.",
             "{9} is on an extreme diet of {7} and {4}.",
             "{0} said that green is not a {2} color.",
