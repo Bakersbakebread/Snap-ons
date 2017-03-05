@@ -59,5 +59,7 @@ class SCP:
         """Look through the log of unexplained locations."""
 
         await self.bot.say("""http://www.scp-wiki.net/log-of-unexplained-locations""")
+
+
 def setup(bot):
     bot.add_cog(SCP(bot))
