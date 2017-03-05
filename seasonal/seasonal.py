@@ -1,99 +1,14 @@
 from discord.ext import commands
 import random
-import discord
 import datetime
 
+
 class Seasonal:
-    """All your cog needs for holidays!""" #Remember: I don't own any of the following images and videos!
-    
+    """Go trick or treating or count days until Christmas!"""  # Remember: I don't own any of the following images and videos!
+
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command()
-    async def newyear(self):
-        """New Year's Wishes!"""
-        d = datetime.date.today()
-        cday = d.day
-        cmonth = d.month
-
-        if (cmonth == 1 and cday == 1):
-            await self.bot.say('**HAPPY NEW YEAR @everyone!**')
-        else:
-            await self.bot.say('**It isn\'t New Year yet! Come back on the first day of the year!**')
-    @commands.command()
-    async def valentine(self, user : discord.Member):
-        """Say it with Red!"""
-        d = datetime.date.today()
-        cday = d.day
-        cmonth = d.month
-
-        if (cmonth == 2 and cday == 14):
-            await self.bot.say('**{0}, I love you!** :heart: :rose:')
-        else:
-            await self.bot.say('**Today isn\'t the day for that... Come back on 14th of February!**')
-    @commands.command()
-    async def stpaddyday(self):
-        """Find the Pot of Gold!"""
-        d = datetime.date.today()
-        cmonth = d.month
-
-        if cmonth == 3:
-            await self.bot.say('**You found the magical Pot of Gold!** http://vignette4.wikia.nocookie.net/fantasy-story/images/0/05/Deluxe_Pot_of_Gold.png/revision/latest?cb=20150310185350')
-        else:
-            await self.bot.say('**The Leprachauns are asleep, they won\'t be up till March!**')
-    @commands.command(pass_context=True)
-    async def easter(self, context):
-        """Go on an easter egg hunt and find eggs!"""
-        egghunter = context.message.author.mention
-        
-        d = datetime.date.today()
-        cmonth = d.month
-
-        egg = [
-            '**peeps:** https://mymorningchocolate.files.wordpress.com/2010/04/marshmallow-peeps.jpg',
-            '**stickers:** http://i.ebayimg.com/images/g/VDgAAOSwoBtW2Qk5/s-l300.jpg',
-            '**mini-toys:** http://g03.a.alicdn.com/kf/HTB1YrkWLVXXXXa5XXXXq6xXFXXXx/1440-pcs-lot-Pokemon-Pikachu-Raichu-Charizard-Arceus-Mewtwo-mini-figures-Anime-Pocket-Monster-PVC-toys.jpg_640x640.jpg',
-            '**chocolate eggs:** https://cdn.instructables.com/FML/J2OQ/GKI19F8T/FMLJ2OQGKI19F8T.RECT2100.jpg',
-            '**money:** http://i.forbesimg.com/media/2009/12/16/1216_cash-dollars_650x455.jpg'
-                ]
-        
-        if (cmonth == 4):
-            await self.bot.say('**{0} found {1}**'.format(egghunter, random.choice(egg)))
-        else:
-            await self.bot.say('**It\'s not Easter! Come back in April for the Easter Egg Hunt!**')
-    @commands.command()
-    async def fool(self):
-        """Try it for yourselves fellas!"""
-        d = datetime.date.today()
-        cday = d.day
-        cmonth = d.month
-
-        if (cmonth == 4 and cday == 1):
-            await self.bot.say('**It\'s April 1... You actually waited to use this command. GET REKT SON! THIS DOES NOTHING! You\'ve just been... FOOLED!**')
-        else:
-            await self.bot.say('**Fool, come back on 1st April!**')
-    @commands.command()
-    async def earthday(self):
-        """Celebrate Earth Day with a Song!"""
-        d = datetime.date.today()
-        cday = d.day
-        cmonth = d.month
-
-        if (cmonth == 4 and cday == 22):
-            await self.bot.say('**Celebrate Earth Day!** https://www.youtube.com/watch?v=Slpz0D35oRI')
-        else:
-            await self.bot.say('**It ain\'t Earth Day, but you can still plant a few trees!**')
-    @commands.command()
-    async def fourthofjuly(self):
-        """Watch the 4th of July Fireworks show!"""
-        d = datetime.date.today()
-        cday = d.day
-        cmonth = d.month
-
-        if (cmonth == 7 and cday == 4):
-            await self.bot.say('https://www.youtube.com/watch?v=5ItMkqYeS0Y')
-        else:
-            await self.bot.say('**Today isn\'t the 4th of July. Come back later for the fireworks show!**')
     @commands.command(pass_context=True)
     async def trickortreat(self, context):
         """Go trick or treating on Discord and get either a trick or a treat! Don't let the tricks spoop you!"""
@@ -102,7 +17,6 @@ class Seasonal:
         d = datetime.date.today()
         cday = d.day
         cmonth = d.month
-    
         surprise = [
             'trick: https://i.ytimg.com/vi/lwgch2vrZxs/maxresdefault.jpg',
             'treat: https://cdn.shopify.com/s/files/1/0972/7116/products/harry-potter-chocolate-frog-unwrapped4_1024x1024.png?v=1459347352',
@@ -111,7 +25,7 @@ class Seasonal:
             'trick: http://scontent.cdninstagram.com/t51.2885-15/e35/12965880_565667836948598_2099180853_n.jpg?ig_cache_key=MTIzNzgxNDM0OTUxMjMyNDk0MA%3D%3D.2',
             'treat: https://heathersweets.files.wordpress.com/2011/10/haribo-horror-mix-inside.jpg',
             'trick: https://s-media-cache-ak0.pinimg.com/236x/04/3a/68/043a68cbf7789a508d802be4809ed0f1.jpg',
-        '    treat: http://www.bakingdom.com/wp-content/uploads/2010/11/Delicious-Cauldron-Cakes.jpg',
+            'treat: http://www.bakingdom.com/wp-content/uploads/2010/11/Delicious-Cauldron-Cakes.jpg',
             'trick: http://vignette4.wikia.nocookie.net/bigbangtheory/images/2/22/Vlcsnap-2011-11-20-15h18m17s164.png/revision/latest?cb=20111120111901',
             'treat :http://metanomicon.net/wp-content/uploads/2011/12/hansolo.jpg',
             'trick: http://cdn.mos.cms.futurecdn.net/k5MFr2h8GviPwuBnuKDzSN-970-80.jpg',
@@ -142,18 +56,7 @@ class Seasonal:
             await self.bot.say('{0} got a {1}'.format(trickortreater, random.choice(surprise)))
         else:
             await self.bot.say('**Oh, it isn\'t Halloween today! Come back on 31st of October!**')
-    @commands.command(pass_context=True)
-    async def thanksgiving(self, context):
-        """Get ready for Thanksgiving!"""
-        feaster = context.message.author.mention
 
-        d = datetime.date.today()
-        cmonth = d.month
-
-        if cmonth == 11:
-            await self.bot.say('**{0}, Get down to the dining room for the Thanksgiving feast!** http://gossiplankasinhala.net/wp-content/uploads/2012/11/thanksgiving-dinner-table-setting.jpg'.format(feaster))
-        else:
-            await self.bot.say('**It\'s not time for Thanksgiving!**')
     @commands.command()
     async def adventcalender(self):
         """Get gifts on each of the 25 days leading up to Christmas!"""
@@ -213,5 +116,7 @@ class Seasonal:
             await self.bot.say('Merry Christmas! Your final gift is... https://www.cyberpowerpc.com/images/cs/obsidian750dair/blk_220.png')
         else:
             await self.bot.say('**It\'s not Christmas time! Come back later to use the Advent Calender!**')
+
+
 def setup(bot):
     bot.add_cog(Seasonal(bot))
