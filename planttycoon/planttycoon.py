@@ -20,7 +20,7 @@ class PlantTycoon:
 
         self.gardeners = dataIO.load_json('data/planttycoon/gardeners.json')
         self.plants = dataIO.load_json('data/planttycoon/plants.json')
-        self.eventplants = dataIO.load_json('data/planttycoon/eventplant.json')
+        self.eventplants = dataIO.load_json('data/planttycoon/eventplants.json')
         self.products = dataIO.load_json('data/planttycoon/products.json')
         self.defaults = dataIO.load_json('data/planttycoon/defaults.json')
         self.badges = dataIO.load_json('data/planttycoon/badges.json')
