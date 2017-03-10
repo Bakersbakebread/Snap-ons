@@ -4,5 +4,6 @@
     "NAME" : "LoveCalculator",
     "SHORT" : "Calculate the love percentage!",
     "DESCRIPTION" : "Calculate the love percentage for two users!",
-    "TAGS" : ["fun", "love"]
+    "TAGS" : ["fun", "love"],
+    "REQUIREMENTS" : ["beautifulsoup4"]
 }
