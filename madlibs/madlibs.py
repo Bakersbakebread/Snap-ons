@@ -1,6 +1,6 @@
 from discord.ext import commands
 from cogs.utils.dataIO import dataIO
-from cogs.utils.dataIO import checks
+from cogs.utils import checks
 import random
 import os
 
