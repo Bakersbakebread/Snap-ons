@@ -48,7 +48,7 @@ def check_folder():
 
 def check_file():
     if not dataIO.is_valid_json('data/madlibs/madlibs.json'):
-        print('Creating default kill.json...')
+        print('Creating default madlibs.json...')
         dataIO.save_json('data/madlibs/madlibs.json', [])
         
         
