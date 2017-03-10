@@ -37,6 +37,7 @@ class MadLibs:
         {8} = 'body_part'
         {9} = 'famous_person'"""
         self.kills.append(lib)
+        dataIO.save_json('data/madlibs/madlibs.json', self.madlibs)
 
 
 def check_folder():
