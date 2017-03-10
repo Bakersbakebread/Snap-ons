@@ -16,11 +16,11 @@ class MadLibs:
     async def madlibs(self, name : str, verb_past : str, adjective : str, profession : str, food : str, location : str, number : int, thing_plural : str, body_part : str, famous_person : str):
         """Play the old school book game, Mad Libs, now on discord! Use "" to enter stuff that is two words or longer."""
         
-        if self.madlibs[0] exists:
+        if self.madlibs == []:
+            await self.bot.say('``Error: No libs found.``')
+        else:
             madlib = random.choice(self.madlibs).format(name, verb_past, adjective, profession, food, location, number, thing_plural, body_part, famous_person)
             await self.bot.say('``{0}``'.format(madlib))
-        else:
-            await self.bot.say('``Error: No libs found.``')
 
     @commands.command(pass_context=True)
     @checks.is_owner()
