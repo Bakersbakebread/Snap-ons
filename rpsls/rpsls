@@ -31,7 +31,7 @@ class RPSLS:
         if check:
             botchoice = random.choice(['rock', 'paper', 'scissors', 'lizard', 'spock'])
             if botchoice == 'rock':
-                botemote = ':moyai'
+                botemote = ':moyai:'
             elif botchoice == 'spock':
                 botemote = ':vulcan:'
             elif botchoice == 'paper':
