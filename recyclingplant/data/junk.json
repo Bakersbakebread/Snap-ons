@@ -1,5 +1,5 @@
 {
-    can : [
+    "can" : [
         {'object': 'Apple Core', 'action': 'trash'},
         {'object': 'Paper Cup', 'action': 'recycle'},
         {'object': 'Banana Peel', 'action': 'trash'},
