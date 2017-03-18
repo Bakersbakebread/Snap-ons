@@ -16,7 +16,7 @@ class RecyclingPlant:
         x = 0
         await self.bot.say('{0} has signed up for a shift at the Recycling Plant! Type ``exit`` to terminate it early.'.format(context.message.author.display_name))
         while x in range(0, 10):
-            used = random.choice(self.junk)
+            used = random.choice(self.junk['can'])
             reward = 0
             if used['action'] == 'trash':
                 opp = 'recycle'
