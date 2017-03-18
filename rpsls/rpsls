@@ -18,7 +18,7 @@ class RPSLS:
         check = True
         playerchoice = choice.lower()
         if playerchoice == 'rock':
-            playeremote = ':moai'
+            playeremote = ':moyai:'
         elif playerchoice == 'spock':
             playeremote = ':vulcan:'
         elif playerchoice == 'paper':
