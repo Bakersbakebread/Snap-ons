@@ -4,5 +4,5 @@
     "NAME" : "SCP",
     "SHORT" : "Look up SCP articles.",
     "DESCRIPTION" : "Look up SCP articles. Warning: Some of them may be too creepy or gruesome.",
-    "TAGS" : ["Goodreads", "gruesome"]
+    "TAGS" : ["gruesome"]
 }
