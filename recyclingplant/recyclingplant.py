@@ -33,16 +33,14 @@ class RecyclingPlant:
                 x += 1
             elif answer.content.lower().strip() == opp:
                 await self.bot.say('{}, you little brute, you put it down the wrong chute! (**-50**)'.format(context.message.author.display_name))
-                reward = reward - reward
+                reward = reward - 50
             elif answer.content.lower().strip() == 'exit':
                 await self.bot.say('{} has been relived of their duty.'.format(context.message.author.display_name))
                 break
             else:
                 await self.bot.say('``{}`` fell down the conveyor belt to be sorted again!'.format(used['object']))
         else:
-            if reward < 0:
-                self.bank.deposit_credits(context.message.author, 0)
-            else:
+            if reward > 0:
                 self.bank.deposit_credits(context.message.author, reward)
             await self.bot.say('{} been given **{}$** for your services.'.format(context.message.author.display_name, reward))
 
