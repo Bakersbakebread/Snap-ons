@@ -22,7 +22,7 @@ class RPSLS:
         elif playerchoice == 'spock':
             playeremote = ':vulcan:'
         elif playerchoice == 'paper':
-            playeremote = ':newspaper:'
+            playeremote = ':page_facing_up:'
         elif playerchoice in ['scissors', 'lizard']:
             playeremote = ':{}:'.format(playerchoice)
         else:
