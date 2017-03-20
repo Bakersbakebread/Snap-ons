@@ -160,7 +160,10 @@ class PlantTycoon:
                 else:
                     message = 'You have no {}. Go buy some!'.format(product)
             else:
-                message = 'You have no {}. Go buy some!'.format(product)
+                if product_category == 'tool':
+                    message = 'You have don\'t have a {}. Go buy one!'.format(product)
+                else:
+                    message = 'You have no {}. Go buy some!'.format(product)
         else:
             message = 'Are you sure you are using {}?'.format(product_category)
 
