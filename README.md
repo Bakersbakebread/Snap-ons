@@ -1,5 +1,6 @@
 <a href="https://www.patreon.com/bePatron?u=4352948" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
-Reminder: Repository name will be changed to Snap-ons, please note that you add the new repository.
+
+**Reminder: Repository name will be changed to Snap-ons, please note that you add the new repository.**
 
 # Snap-ons
 SnappyDragon's Cogs for Red-DiscordBot. Red-DiscordBot is a multipurpose bot for Discord developed by Twentysix26.
