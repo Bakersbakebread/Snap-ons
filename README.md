@@ -1,4 +1,5 @@
-<a href="https://www.patreon.com/bePatron?u=4352948" data-patreon-widget-type="become-patron-button">Become a Patron!</a><script async src="https://cdn6.patreon.com/becomePatronButton.bundle.js"></script>
+<a href="https://www.patreon.com/bePatron?u=4352948" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
+
 # SnappyCogs
 SnappyDragon's Cogs for Red-DiscordBot. Red-DiscordBot is a multipurpose bot for Discord developed by Twentysix26.
 To submit an idea for a cog, DM me on discord. You can always find me at the official server for Red. You can also find me at my server here: https://discord.gg/VYZgkzK
@@ -23,17 +24,9 @@ To install the cogs, Follow the given steps:
 > Once the module has loaded up, type yes.
 
 # Cogs
-> Interactions
->
-> Interact with other users.
->
 > LoveCalculator
 >
 > Calculate the love percentage between two users.
->
-> MadLibs
->
-> Play MadLibs on Discord.
 >
 > PlantTycoon
 >
@@ -46,10 +39,6 @@ To install the cogs, Follow the given steps:
 > SCP
 >
 > Look up SCP articles.
->
-> Seasonal
->
-> Seasonal commands.
 >
 > Unicode
 >
