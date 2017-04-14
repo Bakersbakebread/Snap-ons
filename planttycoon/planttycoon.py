@@ -221,25 +221,25 @@ class PlantTycoon:
             #
 
             if month == 1:
-                self.plants['plants'].append(self.eventplants['eventplants']["January"])
+                self.plants['plants'].append(self.eventplants['eventplants']['January'])
                 event_plant = True
             elif month == 2:
-                self.plants['plants'].append(self.eventplants['eventplants']["February"])
+                self.plants['plants'].append(self.eventplants['eventplants']['February'])
                 event_plant = True
             elif month == 3:
-                self.plants['plants'].append(self.eventplants['eventplants']["March"])
+                self.plants['plants'].append(self.eventplants['eventplants']['March'])
                 event_plant = True
             elif month == 4:
-                self.plants['plants'].append(self.eventplants['eventplants']["April"])
+                self.plants['plants'].append(self.eventplants['eventplants']['April'])
                 event_plant = True
             elif month == 10:
-                self.plants['plants'].append(self.eventplants['eventplants']["October"])
+                self.plants['plants'].append(self.eventplants['eventplants']['October'])
                 event_plant = True
             elif month == 11:
-                self.plants['plants'].append(self.eventplants['eventplants']["November"])
+                self.plants['plants'].append(self.eventplants['eventplants']['November'])
                 event_plant = True
             elif month == 12:
-                self.plants['plants'].append(self.eventplants['eventplants']["December"])
+                self.plants['plants'].append(self.eventplants['eventplants']['December'])
                 event_plant = True
 
             #
