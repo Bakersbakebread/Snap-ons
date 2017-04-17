@@ -221,25 +221,25 @@ class PlantTycoon:
             #
 
             if month == 1:
-                self.plants['plants'].append(self.eventplants['eventplants']['January'])
+                self.plants['plants'].append(self.plants['event']['January'])
                 event_plant = True
             elif month == 2:
-                self.plants['plants'].append(self.eventplants['eventplants']['February'])
+                self.plants['plants'].append(self.plants['event']['February'])
                 event_plant = True
             elif month == 3:
-                self.plants['plants'].append(self.eventplants['eventplants']['March'])
+                self.plants['plants'].append(self.plants['event']['March'])
                 event_plant = True
             elif month == 4:
-                self.plants['plants'].append(self.eventplants['eventplants']['April'])
+                self.plants['plants'].append(self.plants['event']['April'])
                 event_plant = True
             elif month == 10:
-                self.plants['plants'].append(self.eventplants['eventplants']['October'])
+                self.plants['plants'].append(self.plants['event']['October'])
                 event_plant = True
             elif month == 11:
-                self.plants['plants'].append(self.eventplants['eventplants']['November'])
+                self.plants['plants'].append(self.plants['event']['November'])
                 event_plant = True
             elif month == 12:
-                self.plants['plants'].append(self.eventplants['eventplants']['December'])
+                self.plants['plants'].append(self.plants['event']['December'])
                 event_plant = True
 
             #
@@ -250,28 +250,6 @@ class PlantTycoon:
             plant['timestamp'] = int(time.time())
             if event_plant:
                 del[self.plants['plants'][40]]
-
-            #
-            # TODO
-            #
-            # We're going to do an economy implementation,
-            # saving the server id to retrieve the Member object through:
-            # bot.get_server(Server.id).get_member(Member.id)
-            #
-            # Server ID will be stored in the `current` key as following:
-            # plant['origin_server'] = server.id
-            #
-            # And also adding a member ID, just to be sure:
-            # plant['member_id'] = author.id
-            #
-            # You can only grow one plant across all servers.
-            #
-            # For debugging purposes I insert a session id that is
-            # based on the current integer timestamp.
-            #
-            # plant['session_id'] = int(context.message.timestamp.timestamp())
-            #
-
             message = 'During one of your many heroic adventures, you came across a mysterious bag that said "pick one". '
             message += 'To your surprise it had all kinds of different seeds in them. And now that you\'re home, you want to plant it. '
             message += 'You went to a local farmer to identify the seed, and the farmer said it was {} **{} ({})** seed.\n\n'.format(plant['article'], plant['name'], plant['rarity'])
@@ -403,20 +381,6 @@ class PlantTycoon:
         else:
             if product.lower() in self.products and amount > 0:
                 cost = self.products[product.lower()]['cost'] * amount
-
-                # TODO
-                #
-                # Economy preparation. I might build in a check to see
-                # if the user has an economy bank account. When it
-                # hasn't, default to rewarding points.
-                #
-                # member = self.bot.get_server(gardener.current['origin_server']).get_user(gardener.current['member_id'])
-                #
-                # if self.bank.account_exists(member):
-                # else:
-                #       self.gardeners[id]['points'] -= cost
-                #
-
                 withdraw_points = await self._withdraw_points(author.id, cost)
                 if withdraw_points:
                     if product.lower() not in self.gardeners[author.id]['products']:
@@ -537,21 +501,6 @@ class PlantTycoon:
                     badge = gardener.current['badge']
                     reward = gardener.current['reward']
                     if (now - then) > grow_time:
-
-                        # TODO
-                        #
-                        # Economy preparation. I might build in a check to see
-                        # if the user has an economy bank account. When it
-                        # hasn't, default to rewarding points.
-                        #
-                        # member = self.bot.get_server(gardener.current['origin_server']).get_user(gardener.current['member_id'])
-                        #
-                        # if self.bank.account_exists(member):
-                        #       self.bank.deposit_credits(member, reward)
-                        # else:
-                        #       self.gardeners[id]['points'] += reward
-                        #
-
                         self.gardeners[id]['points'] += self.defaults['points']['complete']
                         if badge not in self.gardeners[id]['badges']:
                             self.gardeners[id]['badges'].append(badge)
