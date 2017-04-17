@@ -17,7 +17,7 @@ class PlantTycoon:
         #
         # Loading all data
         #
-
+        
         self.gardeners = dataIO.load_json('data/planttycoon/gardeners.json')
         self.plants = dataIO.load_json('data/planttycoon/plants.json')
         self.products = dataIO.load_json('data/planttycoon/products.json')
@@ -28,16 +28,16 @@ class PlantTycoon:
         #
         # Starting loops
         #
+
         self.completion_task = bot.loop.create_task(self.check_completion())
         self.degradation_task = bot.loop.create_task(self.check_degradation())
         self.notification_task = bot.loop.create_task(self.send_notification())
 
-        # TODO
         #
-        # In preparation for economy
+        # Loading bank
         #
-        # self.bank = bot.get_cog('Economy').bank
-        #
+
+        self.bank = bot.get_cog('Economy').bank
 
     async def _save_gardeners(self):
 
@@ -182,7 +182,8 @@ class PlantTycoon:
 
             title = '**Welcome to Plant Tycoon.**\n'
             description = 'This cog was made by **SnappyDragon18** and **PaddoInWonderland**.\n'
-            description += 'Grow your own plant. Be sure to take proper care of yours. If it grows, you get a reward.\n\n'
+            description += 'Grow your own plant. Be sure to take proper care of yours. If it grows, you get a reward.\n'
+            description += 'As you nurture your plant, you gain **Gro-cash** which can be traded for credits at a fixed rate.\n\n'
             description += '**Commands**\n\n'
             description += '``{}gardening seed``: Plant a seed inside the earth.\n'.format(prefix)
             description += '``{}gardening profile``: Check your gardening profile.\n'.format(prefix)
@@ -277,7 +278,7 @@ class PlantTycoon:
             em = discord.Embed(color=discord.Color.green(), description='\a\n')
             avatar = author.avatar_url if author.avatar else author.default_avatar_url
             em.set_author(name='Gardening profile of {}'.format(author.name), icon_url=avatar)
-            em.add_field(name='**Points**', value=gardener.points)
+            em.add_field(name='**Gro-cash**', value=gardener.points)
             if not gardener.current:
                 em.add_field(name='**Currently growing**', value='None')
             else:
