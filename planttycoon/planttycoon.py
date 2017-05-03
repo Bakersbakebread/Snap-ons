@@ -241,6 +241,8 @@ class PlantTycoon:
             elif month == 12:
                 self.plants['plants'].append(self.plants['event']['December'])
                 event_plant = True
+            else:
+                event_plant = False
 
             #
             # Event Plant Check end
