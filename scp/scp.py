@@ -9,14 +9,14 @@ class SCP:
 
     @commands.command()
     async def scp(self, num : int):
-        """Look up SCP articles. Warning: Some of them may be too creepy or gruesome. Reminder: You must specify a number between 1 and 2999."""
+        """Look up SCP articles. Warning: Some of them may be too creepy or gruesome. Reminder: You must specify a number between 1 and 3999."""
 
         #Thanks Shigbeard and Redjumpman for helping me!
 
-        if (num > 0 and num <= 2999):
+        if (num > 0 and num <= 3999):
              msg = "http://www.scp-wiki.net/scp-{:03}".format(num)
         else:
-             msg = "You must specify a number between 1 and 2999"
+             msg = "You must specify a number between 1 and 3999"
 
         await self.bot.say(msg)
 
