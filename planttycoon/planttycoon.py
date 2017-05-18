@@ -192,6 +192,7 @@ class PlantTycoon:
             description += '``{}gardening state``: Check the state of your plant.\n'.format(prefix)
             description += '``{}gardening products``: Look at the list of the available gardening supplies.\n'.format(prefix)
             description += '``{}gardening buy``: Buy gardening supplies.\n'.format(prefix)
+            description += '``{}gardening convert``: Exchange Gro-cash for credits.'.format(prefix)
             description += '``{}shovel``: Shovel your plant out.\n'.format(prefix)
             description += '``{}water``: Water your plant.\n'.format(prefix)
             description += '``{}fertilize``: Fertilize the soil.\n'.format(prefix)
@@ -397,6 +398,22 @@ class PlantTycoon:
             else:
                 message = 'I don\'t have this product.'
         await self.bot.say(message)
+        
+
+    @_gardening.command(pass_context=True, name='convert')
+    async def _convert(self, context, amount: int):
+        """Exchange Gro-Cash for credits."""
+        author = context.message.author
+        if self.bank.account_exists(author.id):
+            withdraw_points = await self._withdraw_points(author.id, amount)
+            if withdraw_points:
+                self.bank.deposit_credits(author.id, amount)
+                message = '{} Gro-cash successfully exchanged for credits.'.format(amount)
+            else:
+                message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], amount)
+        else:
+            'You don\'t have a bank account. Use ``{}bank register`` to open a bank account.'.format(prefix)
+
 
     @commands.command(pass_context=True, name='shovel')
     async def _shovel(self, context):
