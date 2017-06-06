@@ -88,7 +88,6 @@ class PlantTycoon:
 
     async def _withdraw_points(self, id, amount):
 
-        # TO BE DEPRECATED soon
         #
         # Substract points from the gardener
         #
