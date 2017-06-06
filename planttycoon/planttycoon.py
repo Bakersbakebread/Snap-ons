@@ -404,15 +404,12 @@ class PlantTycoon:
     async def _convert(self, context, amount: int):
         """Exchange Gro-Cash for credits."""
         author = context.message.author
-        if self.bank.account_exists(author.id):
-            withdraw_points = await self._withdraw_points(author.id, amount)
-            if withdraw_points:
-                self.bank.deposit_credits(author.id, amount)
-                message = '{} Gro-cash successfully exchanged for credits.'.format(amount)
-            else:
-                message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], amount)
+        withdraw_points = await self._withdraw_points(author.id, amount)
+        if withdraw_points:
+            self.bank.deposit_credits(author.id, amount)
+            message = '{} Gro-cash successfully exchanged for credits.'.format(amount)
         else:
-            'You don\'t have a bank account. Use ``{}bank register`` to open a bank account.'.format(prefix)
+            message = 'Account not found or insufficient credits.'
 
 
     @commands.command(pass_context=True, name='shovel')
