@@ -402,7 +402,7 @@ class PlantTycoon:
     @_gardening.command(pass_context=True, name='convert')
     async def _convert(self, context, amount: int):
         """Exchange Gro-Cash for credits."""
-        id = _get_member(context.message.author.id)
+        id = await self._get_member(context.message.author.id)
         if self.bank.account_exists(id):
             withdraw_points = await self._withdraw_points(id, amount)
             if withdraw_points:
