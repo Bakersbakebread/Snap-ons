@@ -181,8 +181,8 @@ class PlantTycoon:
 
             title = '**Welcome to Plant Tycoon.**\n'
             description = 'This cog was made by **SnappyDragon18** and **PaddoInWonderland**.\n'
-            description += 'Grow your own plant. Be sure to take proper care of yours. If it grows, you get a reward.\n'
-            description += 'As you nurture your plant, you gain **Gro-cash** which can be traded for credits at a fixed rate.\n\n'
+            description += 'Grow your own plant. Be sure to take proper care of yours. If it successfully grows, you get a reward.\n'
+            description += 'As you nurture your plant, you gain **Gro-cash** which can be traded for credits.\n\n'
             description += '**Commands**\n\n'
             description += '``{}gardening seed``: Plant a seed inside the earth.\n'.format(prefix)
             description += '``{}gardening profile``: Check your gardening profile.\n'.format(prefix)
@@ -468,33 +468,6 @@ class PlantTycoon:
             await self._send_message(channel, message)
         else:
             await self._add_health(channel, author.id, product, product_category)
-
-    # TODO
-    #
-    # Future function
-    #
-    # @commands.command(pass_context=True, name='pesticide')
-    # async def _pesticide(self, context):
-    #    """Spray pesticide on your plant."""
-    #    author = context.message.author
-    #    if author.id not in self.gardeners or not self.gardeners[author.id]['current']:
-    #        message = 'You\'re currently not growing a plant.'
-    #    else:
-    #        if 'pesticide' in self.gardeners[author.id]['products']:
-    #            if self.gardeners[author.id]['products']['pesticide']['uses'] > 0:
-    #                self.gardeners[author.id]['current']['health'] += self.products['pesticide']['health']
-    #                self.gardeners[author.id]['products']['pesticide']['uses'] -= 1
-    #                message = 'Your plant is free of pests!'
-    #                if self.gardeners[author.id]['current']['health'] > self.gardeners[author.id]['current']['threshold']:
-    #                    self.gardeners[author.id]['current']['health'] -= self.products['pesticide']['damage']
-    #                    message = 'You sprayed too much pesticide! Your plant lost some health. :wilted_rose:'
-    #                self.gardeners[author.id]['points'] += self.defaults['points']['pesticide']
-    #                await self._save_gardeners()
-    #            else:
-    #                message = 'You have no pesticide. Go buy some!'
-    #        else:
-    #            message = 'You have no pesticide. Go buy some!'
-    #    await self.bot.say(message)
 
     async def check_degradation(self):
         while 'PlantTycoon' in self.bot.cogs:
