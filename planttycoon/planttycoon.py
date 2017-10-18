@@ -191,7 +191,7 @@ class PlantTycoon:
             description += '``{}gardening state``: Check the state of your plant.\n'.format(prefix)
             description += '``{}gardening products``: Look at the list of the available gardening supplies.\n'.format(prefix)
             description += '``{}gardening buy``: Buy gardening supplies.\n'.format(prefix)
-            description += '``{}gardening convert``: Exchange Gro-cash for credits.'.format(prefix)
+            description += '``{}gardening convert``: Exchange Gro-cash for credits.\n'.format(prefix)
             description += '``{}shovel``: Shovel your plant out.\n'.format(prefix)
             description += '``{}water``: Water your plant.\n'.format(prefix)
             description += '``{}fertilize``: Fertilize the soil.\n'.format(prefix)
