@@ -184,7 +184,7 @@ class PlantTycoon:
 
             title = '**Welcome to Plant Tycoon.**\n'
             description = 'Grow your own plant. Be sure to take proper care of yours. If it successfully grows, you get a reward.\n'
-            description += 'As you nurture your plant, you gain gro-cash which can be traded for credits.\n\n'
+            description += 'As you nurture your plant, you gain gro-cash which can be exchanged for credits.\n\n'
             description += '**Commands**\n\n'
             description += '``{}gardening seed``: Plant a seed inside the earth.\n'.format(prefix)
             description += '``{}gardening profile``: Check your gardening profile.\n'.format(prefix)
