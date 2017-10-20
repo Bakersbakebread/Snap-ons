@@ -184,7 +184,7 @@ class PlantTycoon:
 
             title = '**Welcome to Plant Tycoon.**\n'
             description = 'Grow your own plant. Be sure to take proper care of yours. If it successfully grows, you get a reward.\n'
-            description += 'As you nurture your plant, you gain **gro-cash** which can be traded for credits.\n\n'
+            description += 'As you nurture your plant, you gain gro-cash which can be traded for credits.\n\n'
             description += '**Commands**\n\n'
             description += '``{}gardening seed``: Plant a seed inside the earth.\n'.format(prefix)
             description += '``{}gardening profile``: Check your gardening profile.\n'.format(prefix)
@@ -201,7 +201,7 @@ class PlantTycoon:
 
             em = discord.Embed(title=title, description=description, color=discord.Color.green())
             em.set_thumbnail(url='https://image.prntscr.com/image/AW7GuFIBSeyEgkR2W3SeiQ.png')
-            em.set_footer(text='This cog was made by **SnappyDragon18** and **PaddoInWonderland**. This cogs consists of **556** lines. (484 sloc)')
+            em.set_footer(text='This cog was made by SnappyDragon18 and PaddoInWonderland. This cog consists of 556 lines. (484 sloc)')
             await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='seed')
