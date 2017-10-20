@@ -27,7 +27,7 @@ class SCP:
     async def scpj(self, joke : str):
         """Look up SCP-Js. Reminder: Enter the correct name or else the resultant page will be invalid. (Use 001, etc. in case of numbers less than 100.)"""
 
-        msg = "http://www.scp-wiki.net/scp-{}-j").format(joke)
+        msg = "http://www.scp-wiki.net/scp-{}-j".format(joke)
         em = discord.Embed(description=msg, color=discord.Color.green())
         await self.bot.say(embed=em)
 
