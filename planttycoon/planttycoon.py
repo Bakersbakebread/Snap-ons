@@ -331,7 +331,6 @@ class PlantTycoon:
                 tick_tock = 0
         em = discord.Embed(title='All plants that are growable', color=discord.Color.green())
         em.add_field(name='\a', value=tick)
-        em.add_field(name='\a', value='\a')
         em.add_field(name='\a', value=tock)
         await self.bot.say(embed=em)
 
