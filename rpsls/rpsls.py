@@ -1,5 +1,6 @@
 from cogs.utils.dataIO import dataIO
 from discord.ext import commands
+import discord
 import os
 import random
 import asyncio
@@ -26,7 +27,9 @@ class RPSLS:
         elif playerchoice in ['scissors', 'lizard']:
             playeremote = ':{}:'.format(playerchoice)
         else:
-            await self.bot.say('Invalid choice.')
+            message = 'Invalid choice.'
+            em = discord.Embed(description=message, color=discord.Color.red())
+            await self.bot.say(embed=em)
             check = False
         if check:
             botchoice = random.choice(['rock', 'paper', 'scissors', 'lizard', 'spock'])
@@ -38,14 +41,19 @@ class RPSLS:
                 botemote = ':page_facing_up:'
             else:
                 botemote = ':{}:'.format(botchoice)
-            await self.bot.say('{} vs. {}, who will win?'.format(playeremote, botemote))
+            message = '{} vs. {}, who will win?'.format(playeremote, botemote)
+            em = discord.Embed(description=message, color=discord.Color.blue())
             await asyncio.sleep(2)
             if playerchoice in self.weaknesses[botchoice]:
-                await self.bot.say('You win! :sob:')
+                message = 'You win! :sob:'
+                emcolor = discord.Color.red()
             elif botchoice in self.weaknesses[playerchoice]:
-                await self.bot.say('I win! :smile:')
+                message = 'I win! :smile:'
+                emcolor = discord.Color.green()
             else:
-                await self.bot.say('It\'s a draw! :neutral_face:')
+                message = 'It\'s a draw! :neutral_face:'
+                emcolor = discord.Color.blue()
+            em = discord.Embed(description=message, color=emcolor)
 
 
 def check_folder():
