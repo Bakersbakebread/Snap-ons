@@ -358,13 +358,16 @@ class PlantTycoon:
         gardener = await self._gardener(author.id)
         if author.id not in self.gardeners or not gardener.current:
             message = 'You\'re currently not growing a plant.'
+            emcolor = discord.Color.red()
         else:
             plant = gardener.current
             degradation = await self._degradation(gardener)
             die_in = await self._die_in(gardener, degradation)
             to_grow = await self._grow_time(gardener)
             message = 'You\'re growing {0} **{1}**. Its health is **{2:.2f}%** and still has to grow for **{3:.1f}** minutes. It is losing **{4:.2f}%** per minute and will die in **{5:.1f}** minutes.'.format(plant['article'], plant['name'], plant['health'], to_grow, degradation.degradation, die_in)
-        await self.bot.say(message)
+            emcolor=discord.Color.green()
+        em = discord.Embed(description=message, color=emcolor)
+        await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='products')
     async def _products(self, context):
