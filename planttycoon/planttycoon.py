@@ -114,7 +114,8 @@ class PlantTycoon:
         #
 
         member = await self._get_member(user_id)
-        await self.bot.send_message(member, message)
+        em = discord.Embed(description=message, color=discord.Color.green())
+        await self.bot.send_message(member, embed=em)
 
     async def _send_message(self, channel, message):
 
@@ -122,7 +123,8 @@ class PlantTycoon:
         # Sends a message
         #
 
-        await self.bot.send_message(channel, message)
+        em = discord.Embed(description=message, color=discord.Color.green())
+        await self.bot.send_message(channel, embed=em)
 
     async def _add_health(self, channel, id, product, product_category):
 
@@ -166,11 +168,12 @@ class PlantTycoon:
             message = 'Are you sure you are using {}?'.format(product_category)
 
         if product_category == "water":
-            em = discord.Embed(description=message, color=discord.Color.blue())
+            emcolor = discord.Color.blue()
         elif product_category == "fertilizer":
-            em = discord.Embed(description=message, color=discord.Color.dark_gold())
+            emcolor = discord.Color.dark_gold()
         elif product_category == "tool":
-            em = discord.Embed(description=message, color=discord.Color.dark_grey())
+            emcolor = discord.Color.dark_grey()
+        em = discord.Embed(description=message, color=emcolor)
         await self.bot.say(embed=em)
 
     @commands.group(pass_context=True, name='gardening')
@@ -266,7 +269,9 @@ class PlantTycoon:
             await self.bot.say(embed=em)
         else:
             plant = self.gardeners[author.id]['current']
-            await self.bot.say('You\'re already growing {} **{}**, silly.'.format(plant['article'], plant['name']))
+            message = 'You\'re already growing {} **{}**, silly.'.format(plant['article'], plant['name'])
+            em = discord.Embed(description=message, color=discord.Color.green())
+            await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='profile')
     async def _profile(self, context, *, member: discord.Member=None):
@@ -307,7 +312,9 @@ class PlantTycoon:
                 em.set_footer(text='Total degradation: {0:.2f}% / {1} min (100 / ({2} / 60) * (BaseDegr {3:.2f} + PlantDegr {4:.2f})) + ModDegr {5:.2f}) Your plant will die in {6} minutes and {7:.1f} minutes to go for flowering.'.format(degradation.degradation, self.defaults['timers']['degradation'], degradation.time, self.defaults['degradation']['base_degradation'], gardener.current['degradation'], degradation.modifiers, die_in, to_grow))
             await self.bot.say(embed=em)
         else:
-            await self.bot.say('Who?')
+            message = 'Who?'
+            em = discord.Embed(description=message, color=discord.Color.red())
+            await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='plants')
     async def _plants(self, context):
@@ -365,7 +372,7 @@ class PlantTycoon:
             die_in = await self._die_in(gardener, degradation)
             to_grow = await self._grow_time(gardener)
             message = 'You\'re growing {0} **{1}**. Its health is **{2:.2f}%** and still has to grow for **{3:.1f}** minutes. It is losing **{4:.2f}%** per minute and will die in **{5:.1f}** minutes.'.format(plant['article'], plant['name'], plant['health'], to_grow, degradation.degradation, die_in)
-            emcolor=discord.Color.green()
+            emcolor = discord.Color.green()
         em = discord.Embed(description=message, color=emcolor)
         await self.bot.say(embed=em)
 
@@ -399,7 +406,8 @@ class PlantTycoon:
 
             else:
                 message = 'I don\'t have this product.'
-        await self.bot.say(message)
+        em = discord.Embed(description=message, color=discord.Color.green())
+        await self.bot.say(embed=em)
         
 
     @_gardening.command(pass_context=True, name='convert')
@@ -415,7 +423,8 @@ class PlantTycoon:
                 message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], amount)
         else:
             message = 'Account not found.'
-        await self.bot.say(message)
+        em = discord.Embed(description=message, color=discord.Color.green())
+        await self.bot.say(embed=em)
 
 
     @commands.command(pass_context=True, name='shovel')
