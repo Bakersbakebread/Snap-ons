@@ -39,7 +39,7 @@ class SCP:
 
     @commands.command()
     async def scpex(self, num : int):
-        """Look up explained SCP articles. Warning: Some of them may be too creepy or gruesome. Reminder: You must specify a valid archive number.(711, 920, 1841, 1851, 1974, 2600, 4023, 8900)"""
+        """Look up explained SCP articles. Warning: Some of them may be too creepy or gruesome. Reminder: You must specify a valid archive number. (711, 920, 1841, 1851, 1974, 2600, 4023, 8900)"""
 
         if num in (711, 920, 1841, 1851, 1974, 2600, 4023, 8900):
              msg = "http://www.scp-wiki.net/scp-{:03}-ex".format(num)
