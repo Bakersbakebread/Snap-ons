@@ -332,6 +332,7 @@ class PlantTycoon:
         em = discord.Embed(title='All plants that are growable', color=discord.Color.green())
         em.add_field(name='\a', value=tick)
         em.add_field(name='\a', value=tock)
+        await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='plant')
     async def _plant(self, context, *plant):
