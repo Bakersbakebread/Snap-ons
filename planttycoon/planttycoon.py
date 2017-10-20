@@ -319,19 +319,11 @@ class PlantTycoon:
     @_gardening.command(pass_context=True, name='plants')
     async def _plants(self, context):
         """Look at the list of the available plants."""
-        tick = ''
-        tock = ''
-        tick_tock = 0
+        plants = ''
         for plant in self.plants['plants']:
-            if tick_tock == 0:
-                tick += '**{}**\n'.format(plant['name'])
-                tick_tock = 1
-            else:
-                tock += '**{}**\n'.format(plant['name'])
-                tick_tock = 0
+            plants += '**{}**\n'.format(plant['name'])
         em = discord.Embed(title='All plants that are growable', color=discord.Color.green())
-        em.add_field(name='\a', value=tick)
-        em.add_field(name='\a', value=tock)
+        em.add_field(name='\a', value=plants)
         await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='plant')
