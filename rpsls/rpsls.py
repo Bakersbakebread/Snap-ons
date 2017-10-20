@@ -43,6 +43,7 @@ class RPSLS:
                 botemote = ':{}:'.format(botchoice)
             message = '{} vs. {}, who will win?'.format(playeremote, botemote)
             em = discord.Embed(description=message, color=discord.Color.blue())
+            await self.bot.say(embed=em)
             await asyncio.sleep(2)
             if playerchoice in self.weaknesses[botchoice]:
                 message = 'You win! :sob:'
@@ -54,6 +55,7 @@ class RPSLS:
                 message = 'It\'s a draw! :neutral_face:'
                 emcolor = discord.Color.blue()
             em = discord.Embed(description=message, color=emcolor)
+            await self.bot.say(embed=em)
 
 
 def check_folder():
