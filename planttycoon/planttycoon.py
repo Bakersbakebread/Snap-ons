@@ -380,7 +380,7 @@ class PlantTycoon:
         """Look at the list of the available gardening supplies."""
         em = discord.Embed(title='All gardening supplies you can buy', description='\a\n', color=discord.Color.green())
         for product in self.products:
-                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} pts\n+{} health\n-{}% damage\nUses: {}\nCategory: {}'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'], self.products[product]['uses'], self.products[product]['category']))
+                em.add_field(name='**{}**'.format(product.capitalize()), value='Cost: {} GC\n+{} health\n-{}% damage\nUses: {}\nCategory: {}'.format(self.products[product]['cost'], self.products[product]['health'], self.products[product]['damage'], self.products[product]['uses'], self.products[product]['category']))
         await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='buy')
