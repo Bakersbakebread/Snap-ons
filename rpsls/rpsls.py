@@ -47,10 +47,10 @@ class RPSLS:
             await asyncio.sleep(2)
             if playerchoice in self.weaknesses[botchoice]:
                 message = 'You win! :sob:'
-                emcolor = discord.Color.red()
+                emcolor = discord.Color.green()
             elif botchoice in self.weaknesses[playerchoice]:
                 message = 'I win! :smile:'
-                emcolor = discord.Color.green()
+                emcolor = discord.Color.red()
             else:
                 message = 'It\'s a draw! :neutral_face:'
                 emcolor = discord.Color.blue()
