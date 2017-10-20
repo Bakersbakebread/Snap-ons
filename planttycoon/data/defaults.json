@@ -6,8 +6,7 @@
     "pruning": 20,
     "pesticide": 25,
     "growing": 5,
-    "damage": 25,
-    "complete": 150
+    "damage": 25
   }, "timers": {
     "degradation": 1,
     "completion": 1,
