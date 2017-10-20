@@ -185,7 +185,7 @@ class PlantTycoon:
             title = '**Welcome to Plant Tycoon.**\n'
             description = 'This cog was made by **SnappyDragon18** and **PaddoInWonderland**.\n'
             description += 'Grow your own plant. Be sure to take proper care of yours. If it successfully grows, you get a reward.\n'
-            description += 'As you nurture your plant, you gain **Gro-cash** which can be traded for credits.\n\n'
+            description += 'As you nurture your plant, you gain **gro-cash** which can be traded for credits.\n\n'
             description += '**Commands**\n\n'
             description += '``{}gardening seed``: Plant a seed inside the earth.\n'.format(prefix)
             description += '``{}gardening profile``: Check your gardening profile.\n'.format(prefix)
@@ -194,7 +194,7 @@ class PlantTycoon:
             description += '``{}gardening state``: Check the state of your plant.\n'.format(prefix)
             description += '``{}gardening products``: Look at the list of the available gardening supplies.\n'.format(prefix)
             description += '``{}gardening buy``: Buy gardening supplies.\n'.format(prefix)
-            description += '``{}gardening convert``: Exchange Gro-cash for credits.\n'.format(prefix)
+            description += '``{}gardening convert``: Exchange gro-cash for credits.\n'.format(prefix)
             description += '``{}shovel``: Shovel your plant out.\n'.format(prefix)
             description += '``{}water``: Water your plant.\n'.format(prefix)
             description += '``{}fertilize``: Fertilize the soil.\n'.format(prefix)
@@ -401,8 +401,7 @@ class PlantTycoon:
                     await self._save_gardeners()
                     message = 'You bought {}.'.format(product.lower())
                 else:
-                    message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], self.products[product.lower()]['cost'] * amount)
-
+                    message = 'You don\'t have enough gro-cash. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], self.products[product.lower()]['cost'] * amount)
             else:
                 message = 'I don\'t have this product.'
         em = discord.Embed(description=message, color=discord.Color.green())
@@ -411,13 +410,13 @@ class PlantTycoon:
 
     @_gardening.command(pass_context=True, name='convert')
     async def _convert(self, context, amount: int):
-        """Exchange Gro-Cash for credits."""
+        """Exchange gro-cash for credits."""
         author = context.message.author
         if self.bank.account_exists(author):
             withdraw_points = await self._withdraw_points(author.id, amount)
             if withdraw_points:
                 self.bank.deposit_credits(author, amount)
-                message = '{} Gro-cash successfully exchanged for credits.'.format(amount)
+                message = '{} gro-cash successfully exchanged for credits.'.format(amount)
             else:
                 message = 'You don\'t have enough points. You have {}, but need {}.'.format(self.gardeners[author.id]['points'], amount)
         else:
@@ -506,10 +505,10 @@ class PlantTycoon:
                     if delete:
                         delete = False
                     if (now - then) > grow_time:
-                        self.gardeners[id]['points'] += self.defaults['points']['complete']
+                        self.gardeners[id]['points'] += reward
                         if badge not in self.gardeners[id]['badges']:
                             self.gardeners[id]['badges'].append(badge)
-                        message = 'Your plant made it! You are rewarded with the **{}** badge and you have recieved **{}** points.'.format(badge, reward)
+                        message = 'Your plant made it! You are rewarded with the **{}** badge and you have recieved **{}** gro-cash.'.format(badge, reward)
                         delete = True
                     if health < 0:
                         message = 'Your plant died!'
