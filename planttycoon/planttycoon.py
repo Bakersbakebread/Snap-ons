@@ -198,7 +198,7 @@ class PlantTycoon:
             description += '``{}prune``: Prune your plant.\n'.format(prefix)
 
             em = discord.Embed(title=title, description=description, color=discord.Color.green())
-            em.set_thumbnail(url='http://i.imgur.com/iLVSemK.png')
+            em.set_thumbnail(url='https://image.prntscr.com/image/AW7GuFIBSeyEgkR2W3SeiQ.png')
             await self.bot.say(embed=em)
 
     @_gardening.command(pass_context=True, name='seed')
