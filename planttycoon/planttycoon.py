@@ -492,6 +492,8 @@ class PlantTycoon:
                     grow_time = gardener.current['time']
                     badge = gardener.current['badge']
                     reward = gardener.current['reward']
+                    if delete:
+                        delete = False
                     if (now - then) > grow_time:
                         self.gardeners[id]['points'] += self.defaults['points']['complete']
                         if badge not in self.gardeners[id]['badges']:
