@@ -1,5 +1,5 @@
 {
-    "AUTHOR" : "SnappyDragon",
+    "AUTHOR" : ["SnappyDragon"],
     "INSTALL_MSG" : "Congratulations! You have added Snap-ons to your repository list! Time to get snappy!",
     "NAME" : "Snap-ons",
     "SHORT" : "Nerd-culture based cogs for Red-DiscordBot",
